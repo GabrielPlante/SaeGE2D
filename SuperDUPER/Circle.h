@@ -1,6 +1,7 @@
 #pragma once
 #include "Renderable.h"
 #include "Color.h"
+#include <vector>
 
 class Circle : public Renderable
 {
@@ -10,5 +11,7 @@ public:
 	~Circle();
 protected:
 	Color color;
+private:
+	std::vector<SDL_Point> circlePoints;
 };
 

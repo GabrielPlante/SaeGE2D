@@ -123,9 +123,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -133,8 +135,10 @@
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="Window.h" />

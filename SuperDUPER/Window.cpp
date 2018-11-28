@@ -20,6 +20,7 @@ Window::Window(const int screenWith, const int screenHeight)
 }
 
 void Window::clear() {
+	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 	SDL_RenderClear(gRenderer);
 }
 

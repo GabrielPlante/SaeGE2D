@@ -1,7 +1,6 @@
 #include "Rect.h"
 
 
-
 Rect::Rect(int x, int y, int w, int h, Color color)
 	:Renderable(x, y, w, h) {
 	this->color = color;

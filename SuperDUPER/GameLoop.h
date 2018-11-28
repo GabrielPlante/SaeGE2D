@@ -18,6 +18,7 @@ private:
 	Map map;
 	Event event;
 	std::vector<std::unique_ptr<Entity>> entities;
+	std::shared_ptr<Player> player;
 	Uint32 timeSinceGameStart;
 };
 

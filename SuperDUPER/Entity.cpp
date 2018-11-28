@@ -1,7 +1,6 @@
 #include "Entity.h"
 
 
-
 Entity::Entity(double x, double y)
 {
 	position.x = x;

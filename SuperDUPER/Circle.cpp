@@ -52,7 +52,7 @@ Circle::Circle(int x, int y, int radius, Color color)
 }
 
 void Circle::setPosition(int x, int y) {
-	if (x != position.x && y != position.y) {
+	if (x != position.x || y != position.y) {
 		int deltaX = 0;
 		if (x != position.x) {
 			deltaX = x - position.x;
@@ -63,9 +63,10 @@ void Circle::setPosition(int x, int y) {
 			deltaY = y - position.y;
 			position.y = y;
 		}
-		for (auto it = circlePoints.begin(); it != circlePoints.end(); it++) {
-			it->x += deltaX;
-			it->y += deltaY;
+		int circlePointsSize = circlePoints.size();
+		for (int i = 0; i != circlePointsSize; ++i){
+			circlePoints[i].x += deltaX;
+			circlePoints[i].y += deltaY;
 		}
 	}
 }

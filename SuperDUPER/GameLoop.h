@@ -3,8 +3,9 @@
 #include "Event.h"
 #include "Circle.h"
 #include "Map.h"
-#include "Entity.h"
+#include "Player.h"
 #include <vector>
+#include <memory>
 
 class GameLoop
 {
@@ -16,7 +17,7 @@ private:
 	Window gameWindow{ 1200, 600 };
 	Map map;
 	Event event;
-	std::vector<Entity> entities;
+	std::vector<std::unique_ptr<Entity>> entities;
 	Uint32 timeSinceGameStart;
 };
 

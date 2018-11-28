@@ -2,15 +2,13 @@
 
 
 
-Renderable::Renderable(int x, int y, int w, int h){
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
+Renderable::Renderable(int x, int y){
+	position.x = x;
+	position.y = y;
 }
 
-const SDL_Rect* Renderable::getRect() {
-	return &rect;
+const SDL_Point* Renderable::getPosition() {
+	return &position;
 }
 
 Renderable::~Renderable()

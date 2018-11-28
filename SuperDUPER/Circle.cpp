@@ -2,8 +2,9 @@
 
 
 Circle::Circle(int x, int y, int radius, Color color)
-	: Renderable(x, y, radius, radius) {
+	: Renderable(x, y) {
 	this->color = color;
+	this->radius = radius;
 	for (int rad = radius; rad > radius * 2 / 3; rad--) {
 		x = rad - 1;
 		y = 0;
@@ -15,23 +16,23 @@ Circle::Circle(int x, int y, int radius, Color color)
 		{
 			//  Each of the following renders an octant of the circle
 			SDL_Point point;
-			point.x = rect.x + x; point.y = rect.y - y;
+			point.x = position.x + x; point.y = position.y - y;
 			circlePoints.emplace_back(point);
-			point.x = rect.x + x; point.y = rect.y + y;
+			point.x = position.x + x; point.y = position.y + y;
 			circlePoints.emplace_back(point);
-			point.x = rect.x - x; point.y = rect.y - y;
+			point.x = position.x - x; point.y = position.y - y;
 			circlePoints.emplace_back(point);
-			point.x = rect.x - x; point.y = rect.y + y;
+			point.x = position.x - x; point.y = position.y + y;
 			circlePoints.emplace_back(point);
-			point.x = rect.x + y; point.y = rect.y - x;
+			point.x = position.x + y; point.y = position.y - x;
 			circlePoints.emplace_back(point);
-			point.x = rect.x + y; point.y = rect.y - x;
+			point.x = position.x + y; point.y = position.y - x;
 			circlePoints.emplace_back(point);
-			point.x = rect.x + y; point.y = rect.y + x;
+			point.x = position.x + y; point.y = position.y + x;
 			circlePoints.emplace_back(point);
-			point.x = rect.x - y; point.y = rect.y - x;
+			point.x = position.x - y; point.y = position.y - x;
 			circlePoints.emplace_back(point);
-			point.x = rect.x - y; point.y = rect.y + x;
+			point.x = position.x - y; point.y = position.y + x;
 			circlePoints.emplace_back(point);
 
 			if (err <= 0)
@@ -46,6 +47,25 @@ Circle::Circle(int x, int y, int radius, Color color)
 				dx += 2;
 				err += dx - (rad << 1);
 			}
+		}
+	}
+}
+
+void Circle::setPosition(int x, int y) {
+	if (x != position.x && y != position.y) {
+		int deltaX = 0;
+		if (x != position.x) {
+			deltaX = x - position.x;
+			position.x = x;
+		}
+		int deltaY = 0;
+		if (y != position.y) {
+			deltaY = y - position.y;
+			position.y = y;
+		}
+		for (auto it = circlePoints.begin(); it != circlePoints.end(); it++) {
+			it->x += deltaX;
+			it->y += deltaY;
 		}
 	}
 }

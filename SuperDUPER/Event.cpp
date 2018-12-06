@@ -14,9 +14,10 @@ EventType Event::getEventType() {
 		return EventType::QUIT;
 	else if (event.type == SDL_MOUSEBUTTONDOWN)
 		return EventType::PLAYER;
+	return EventType::NONE;
 }
 
-void Event::playerEvent(Player* player) {
+void Event::playerEvent(Character* player) {
 	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);

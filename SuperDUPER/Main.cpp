@@ -2,7 +2,7 @@
 #include "GameLoop.h"
 
 int main(int argc, char* args[]) {
-	int maxFps = 60;
+	int maxFps = 80;
 	const int timeBetweenFrame{ 1000 / maxFps };
 
 	GameLoop gameLoop;

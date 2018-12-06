@@ -3,7 +3,7 @@
 #include "Event.h"
 #include "Circle.h"
 #include "Map.h"
-#include "Player.h"
+#include "Character.h"
 #include <vector>
 #include <memory>
 
@@ -15,10 +15,10 @@ public:
 	~GameLoop();
 private:
 	Window gameWindow{ 1200, 600 };
-	Map map;
+	std::unique_ptr<Map> map;
 	Event event;
-	std::vector<std::unique_ptr<Entity>> entities;
-	std::shared_ptr<Player> player;
+	std::vector<Entity> entities;
+	std::shared_ptr<Character> player;
 	Uint32 timeSinceGameStart;
 };
 

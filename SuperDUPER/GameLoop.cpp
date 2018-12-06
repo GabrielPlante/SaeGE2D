@@ -1,7 +1,8 @@
 #include "GameLoop.h"
 
 GameLoop::GameLoop(){
-	player = std::shared_ptr<Player>{ new Player(100, 100) };
+	player = std::shared_ptr<Character>{ new Character(100, 100, Color(0, 0, 255)) };
+	map = std::unique_ptr<Map>{ new Map() };
 }
 
 bool GameLoop::update() {
@@ -16,16 +17,25 @@ bool GameLoop::update() {
 	}
 
 	//Then refresh everything that has to be
-	for (auto it = entities.begin(); it != entities.end(); it++) {
-		(**it).refresh();
+	int entitiesSize = entities.size();
+	if (entitiesSize) {
+		Entity* entitiesPtr = &entities[0];
+		for (int i = 0; i != entitiesSize; i++) {
+			entitiesPtr[i].refresh();
+		}
 	}
 	player->refresh();
 
 	gameWindow.clear();//Then clear the screen
 	//Then put everything in the renderer
 
-	for (auto it = entities.begin(); it != entities.end(); it++) {
-		(**it).render(gameWindow.getRenderer());//Put all the entities
+	map->render(gameWindow.getRenderer());
+
+	if (entitiesSize) {
+		Entity* entitiesPtr = &entities[0];
+		for (int i = 0; i != entitiesSize; i++) {
+			entitiesPtr[i].render(gameWindow.getRenderer());//Put all the entities
+		}
 	}
 	player->render(gameWindow.getRenderer());//Put the player last so he is above everything else
 

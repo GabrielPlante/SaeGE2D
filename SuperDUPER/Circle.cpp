@@ -64,9 +64,10 @@ void Circle::setPosition(int x, int y) {
 			position.y = y;
 		}
 		int circlePointsSize = circlePoints.size();
+		SDL_Point* points = &circlePoints[0];
 		for (int i = 0; i != circlePointsSize; ++i){
-			circlePoints[i].x += deltaX;
-			circlePoints[i].y += deltaY;
+			points[i].x += deltaX;
+			points[i].y += deltaY;
 		}
 	}
 }

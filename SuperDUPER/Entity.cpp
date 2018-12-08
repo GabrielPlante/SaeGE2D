@@ -8,7 +8,7 @@ Entity::Entity(double x, double y)
 }
 
 void Entity::render(SDL_Renderer* renderer) {
-	shape->setPosition(static_cast<int>(position.x), static_cast<int>(position.y));
+	shape->setPosition(position.x, position.y);
 	shape->render(renderer);
 }
 

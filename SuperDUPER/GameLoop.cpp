@@ -1,8 +1,8 @@
 #include "GameLoop.h"
 
-GameLoop::GameLoop(){
-	player = std::shared_ptr<Character>{ new Character(100, 100, Color(0, 0, 255)) };
-	map = std::unique_ptr<Map>{ new Map() };
+GameLoop::GameLoop()
+	:map{}, player{ 100, 100, Color(0, 0, 255) }
+{
 }
 
 bool GameLoop::update() {
@@ -12,7 +12,7 @@ bool GameLoop::update() {
 		if (event.getEventType() == EventType::QUIT)
 			return false;
 		else if (event.getEventType() == EventType::PLAYER) {
-			event.playerEvent(&(*player));
+			event.playerEvent(&player);
 		}
 	}
 
@@ -24,12 +24,12 @@ bool GameLoop::update() {
 			entitiesPtr[i].refresh();
 		}
 	}
-	player->refresh();
+	player.refresh();
 
 	gameWindow.clear();//Then clear the screen
 	//Then put everything in the renderer
 
-	map->render(gameWindow.getRenderer());
+	map.render(gameWindow.getRenderer());
 
 	if (entitiesSize) {
 		Entity* entitiesPtr = &entities[0];
@@ -37,7 +37,7 @@ bool GameLoop::update() {
 			entitiesPtr[i].render(gameWindow.getRenderer());//Put all the entities
 		}
 	}
-	player->render(gameWindow.getRenderer());//Put the player last so he is above everything else
+	player.render(gameWindow.getRenderer());//Put the player last so he is above everything else
 
 	gameWindow.update();//Then print it
 	return true;

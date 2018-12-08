@@ -5,7 +5,6 @@
 #include "Map.h"
 #include "Character.h"
 #include <vector>
-#include <memory>
 
 class GameLoop
 {
@@ -15,10 +14,10 @@ public:
 	~GameLoop();
 private:
 	Window gameWindow{ 1200, 600 };
-	std::unique_ptr<Map> map;
+	Map map;
 	Event event;
 	std::vector<Entity> entities;
-	std::shared_ptr<Character> player;
+	Character player;
 	Uint32 timeSinceGameStart;
 };
 

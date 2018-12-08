@@ -16,7 +16,7 @@ bool LifeForm::refresh() {
 	return false;
 }
 
-bool LifeForm::move(const SDL_Point& destination) {
+bool LifeForm::move(const IntPosition& destination) {
 	constexpr auto dividingSpeedFactor = 1000;//This will divide the speed of every lifeform in the game;
 	//The division of the operation to get the movement according to x and y
 	const auto dividingMovementFactor = sqrt(pow(destination.x - position.x, 2) + pow(destination.y - position.y, 2)) * dividingSpeedFactor;

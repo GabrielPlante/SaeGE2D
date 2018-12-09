@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3A45BFC7-5EAA-42A1-884E-CFFE7EE9D25A}</ProjectGuid>
     <RootNamespace>SuperDUPER</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,8 +70,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\user\Documents\SDL2-2.0.8\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\user\Documents\SDL2-2.0.8\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Documents\SDL2-2.0.9\lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Documents\SDL2-2.0.9\lib\x86;$(LibraryPath)</LibraryPath>
+    <GenerateManifest>true</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -92,6 +97,10 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -150,6 +159,15 @@
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\codemirror-3.01\codemirror.css" />
+    <None Include="packages.config" />
+    <None Include="Scripts\codemirror-3.01\codemirror.js" />
+    <None Include="Scripts\codemirror-3.01\mode\css.js" />
+    <None Include="Scripts\codemirror-3.01\mode\htmlmixed.js" />
+    <None Include="Scripts\codemirror-3.01\mode\javascript.js" />
+    <None Include="Scripts\codemirror-3.01\mode\xml.js" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,6 +9,21 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{be0116c5-4ff5-48bf-8af5-64d72ba3722a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\codemirror-3.01">
+      <UniqueIdentifier>{9c7bca72-589f-49a4-958a-45cf262a929c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\codemirror-3.01\mode">
+      <UniqueIdentifier>{daa05549-8835-4e11-a369-8e892e01681e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content">
+      <UniqueIdentifier>{056e2e0a-71c7-454d-a679-c1fcbe2f4755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Content\codemirror-3.01">
+      <UniqueIdentifier>{22670162-b93d-4eeb-a8c0-7d2e2941515c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -91,5 +106,26 @@
     <ClInclude Include="DefaultTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\codemirror-3.01\mode\xml.js">
+      <Filter>Scripts\codemirror-3.01\mode</Filter>
+    </None>
+    <None Include="Scripts\codemirror-3.01\mode\javascript.js">
+      <Filter>Scripts\codemirror-3.01\mode</Filter>
+    </None>
+    <None Include="Scripts\codemirror-3.01\mode\htmlmixed.js">
+      <Filter>Scripts\codemirror-3.01\mode</Filter>
+    </None>
+    <None Include="Scripts\codemirror-3.01\mode\css.js">
+      <Filter>Scripts\codemirror-3.01\mode</Filter>
+    </None>
+    <None Include="Scripts\codemirror-3.01\codemirror.js">
+      <Filter>Scripts\codemirror-3.01</Filter>
+    </None>
+    <None Include="Content\codemirror-3.01\codemirror.css">
+      <Filter>Content\codemirror-3.01</Filter>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

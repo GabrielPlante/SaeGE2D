@@ -1,7 +1,6 @@
 #pragma once
 #include <SDL.h>
 #include "Rect.h"
-#include <memory>
 class Tile
 {
 public:
@@ -11,7 +10,8 @@ public:
 	virtual bool isWalkable() = 0;
 	virtual bool isDestructible() = 0;
 	~Tile();
+	constexpr static int tileSize = 10;
 private:
-	std::unique_ptr<Rect> tileGraphic;
+	Rect tileGraphic;
 };
 

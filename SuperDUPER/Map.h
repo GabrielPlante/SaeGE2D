@@ -1,5 +1,5 @@
 #pragma once
-#include "Tile.h"
+#include "Chunk.h"
 #include <vector>
 
 class Map
@@ -9,6 +9,6 @@ public:
 	void render(SDL_Renderer* renderer);
 	~Map();
 private:
-	std::vector<Tile> tiles;
+	std::vector<Chunk> chunks;
 };
 

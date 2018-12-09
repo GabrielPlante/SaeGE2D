@@ -3,13 +3,12 @@
 
 
 Tile::Tile(int x, int y, Color color)
+	:tileGraphic{ x, y, tileSize, tileSize, color }
 {
-	constexpr int tileSize = 10;
-	tileGraphic = std::unique_ptr<Rect>{ new Rect(x*tileSize, y*tileSize, tileSize, tileSize, color) };
 }
 
 void Tile::render(SDL_Renderer* renderer) {
-	tileGraphic->render(renderer);
+	tileGraphic.render(renderer);
 }
 
 Tile::~Tile()

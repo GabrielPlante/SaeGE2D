@@ -2,13 +2,15 @@
 #include <SDL.h>
 #include "Renderable.h"
 #include <memory>
+#include <array>
+#include "IntPosition.h"
 
-struct Position
+struct DoublePosition
 {
 	double x;
 	double y;
-	Position() {}
-	Position(double x, double y) {
+	DoublePosition() {}
+	DoublePosition(double x, double y) {
 		this->x = x;
 		this->y = y;
 	}
@@ -23,6 +25,6 @@ public:
 	~Entity();
 protected:
 	std::unique_ptr<Renderable> shape;
-	Position position;
+	DoublePosition position;
 };
 

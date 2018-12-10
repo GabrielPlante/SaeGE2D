@@ -8,7 +8,7 @@ class Chunk
 {
 public:
 	Chunk(int x, int y);
-	void render(SDL_Renderer* renderer);
+	void render(SDL_Renderer* renderer, const Viewport& viewport);
 	~Chunk();
 	constexpr static int chunkSize{ 100 };
 	constexpr static int nbrOfTile{ chunkSize * chunkSize };

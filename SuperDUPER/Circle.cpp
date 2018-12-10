@@ -72,10 +72,12 @@ void Circle::setPosition(int x, int y) {
 	}
 }
 
-void Circle::render(SDL_Renderer* renderer) {
-	SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);//This color will be the one of the circle
-	SDL_Point* points = &circlePoints[0];//Convert from vector to array
-	SDL_RenderDrawPoints(renderer, points, circlePoints.size());
+void Circle::render(SDL_Renderer* renderer, const Viewport& viewport) {
+	if (viewport.isInViewport(Rectangle(position.x-radius, position.y-radius, radius*2, radius*2))) {
+		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);//This color will be the one of the circle
+		SDL_Point* points = &circlePoints[0];//Convert from vector to array
+		SDL_RenderDrawPoints(renderer, points, circlePoints.size());
+	}
 }
 
 Circle::~Circle()

@@ -20,8 +20,9 @@ class Entity
 {
 public:
 	Entity(double x, double y);
-	void render(SDL_Renderer* renderer);
+	void render(SDL_Renderer* renderer, const Viewport& viewport);
 	virtual bool refresh() = 0;//Return true if the entity doesn't exist anymore, else false
+	IntPosition chunkPosition() const;
 	~Entity();
 protected:
 	std::unique_ptr<Renderable> shape;

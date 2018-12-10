@@ -3,7 +3,7 @@
 
 
 DefaultTile::DefaultTile(int x, int y)
-	:Tile(x, y, Color(0, 0, 0))
+	:Tile(x, y, Color(0, 128, 0))
 {
 }
 

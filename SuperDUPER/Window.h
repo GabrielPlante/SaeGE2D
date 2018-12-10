@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include "Viewport.h"
 #include <stdexcept>
 
 class Window
@@ -9,10 +10,10 @@ public:
 	void clear();
 	void update();
 	SDL_Renderer* getRenderer();
+	Viewport& getViewport();
 	~Window();
 private:
 	SDL_Window* gWindow{ nullptr };
+	Viewport viewport;
 	SDL_Renderer* gRenderer{ nullptr };
-	int SCREEN_WIDTH;
-	int SCREEN_HEIGHT;
 };

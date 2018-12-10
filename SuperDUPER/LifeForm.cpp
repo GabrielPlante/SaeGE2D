@@ -39,10 +39,12 @@ bool LifeForm::move(const IntPosition& destination) {
 }
 
 void LifeForm::setDestination(int x, int y) {
-	destination.x = x;
-	destination.y = y;
-	timeAtLastMovement = SDL_GetTicks();//So the refresh function triger a movement
-	isMoving = true;
+	if (x != position.x || y != position.y) {
+		destination.x = x;
+		destination.y = y;
+		timeAtLastMovement = SDL_GetTicks();//So the refresh function triger a movement
+		isMoving = true;
+	}
 }
 
 LifeForm::~LifeForm()

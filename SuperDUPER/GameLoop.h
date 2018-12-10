@@ -13,7 +13,7 @@ public:
 	bool update();
 	~GameLoop();
 private:
-	Window gameWindow{ 1200, 600 };
+	Window gameWindow;
 	Map map;
 	Event event;
 	std::vector<Entity> entities;

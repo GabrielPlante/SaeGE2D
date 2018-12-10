@@ -5,6 +5,7 @@
 Chunk::Chunk(int x, int y)
 	: position{ x, y } {
 	//Temporary, construct a chunk full of default tile
+	//The delta of the position caused by the chunk position
 	constexpr int tilePosChange = chunkSize * Tile::tileSize;
 	for (int i = 0; i != chunkSize; i++) {
 		for (int j = 0; j != chunkSize; j++) {
@@ -14,10 +15,12 @@ Chunk::Chunk(int x, int y)
 	isInitialised = true;
 }
 
-void Chunk::render(SDL_Renderer* renderer) {
+void Chunk::render(SDL_Renderer* renderer, const Viewport& viewport) {
 	if (isInitialised) {
-		for (int i = 0; i != nbrOfTile; i++) {
-			tiles[i]->render(renderer);
+		if (viewport.isInViewport(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
+			for (int i = 0; i != nbrOfTile; i++) {
+				tiles[i]->render(renderer, viewport);
+			}
 		}
 	}
 }

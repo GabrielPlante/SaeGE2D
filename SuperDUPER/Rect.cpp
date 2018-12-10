@@ -15,9 +15,11 @@ void Rect::setPosition(int x, int y) {
 	rect.y = y;
 }
 
-void Rect::render(SDL_Renderer* renderer) {
-	SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
-	SDL_RenderFillRect(renderer, &rect);
+void Rect::render(SDL_Renderer* renderer, const Viewport& viewport) {
+	if (viewport.isInViewport(rect)) {
+		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
+		SDL_RenderFillRect(renderer, &rect);
+	}
 }
 
 Rect::~Rect()

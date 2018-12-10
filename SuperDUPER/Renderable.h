@@ -1,16 +1,16 @@
 #pragma once
 #include <SDL.h>
-#include "Viewport.h"
+#include "Camera.h"
 
 class Renderable
 {
 public:
 	Renderable(int x, int y);
-	const SDL_Point* getPosition();
-	virtual void setPosition(int x, int y) = 0;
-	virtual void render(SDL_Renderer* renderer, const Viewport& viewport) = 0;
+	virtual void render(SDL_Renderer* renderer, const Camera& camera) = 0;
+	void setPosition(long int x, long int y);
+	IntPosition getRelativePosition(const Camera& camera) const;
 	~Renderable();
 protected:
-	SDL_Point position;
+	IntPosition position;
 };
 

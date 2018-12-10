@@ -2,12 +2,13 @@
 #include "GameLoop.h"
 
 int main(int argc, char* args[]) {
-	constexpr int maxFps = 80;
+	constexpr int maxFps = 60;
 	const int timeBetweenFrame{ 1000 / maxFps };
 
 	GameLoop gameLoop;
 
 	Uint32 timeAtLastFrame = SDL_GetTicks();
+
 	while (gameLoop.update()) {
 		int timeSinceLastFrame{ static_cast<int>(SDL_GetTicks() - timeAtLastFrame) };
 		if (timeSinceLastFrame < timeBetweenFrame)//To cap fps

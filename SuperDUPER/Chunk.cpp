@@ -15,9 +15,9 @@ Chunk::Chunk(int x, int y)
 	isInitialised = true;
 }
 
-void Chunk::render(SDL_Renderer* renderer, const Viewport& viewport) {
+void Chunk::render(SDL_Renderer* renderer, const Camera& viewport) {
 	if (isInitialised) {
-		if (viewport.isInViewport(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
+		if (viewport.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
 			for (int i = 0; i != nbrOfTile; i++) {
 				tiles[i]->render(renderer, viewport);
 			}

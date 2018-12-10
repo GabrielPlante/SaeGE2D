@@ -13,11 +13,10 @@ bool GameLoop::update() {
 	while (event.pollEvent()) {
 		if (event.getEventType() == EventType::QUIT)
 			return false;
-		else if (event.getEventType() == EventType::PLAYER) {
-			event.playerEvent(&player);
+		else if (event.getEventType() == EventType::MOUSE) {
+			event.mouseEvent(&player, gameWindow.getCamera());
 		}
 	}
-
 
 	//Then refresh everything that has to be
 	int entitiesSize = entities.size();
@@ -33,19 +32,18 @@ bool GameLoop::update() {
 	//Then put everything in the renderer
 
 	//First, render the map (background)
-	map.render(gameWindow.getRenderer(), gameWindow.getViewport());
+	map.render(gameWindow.getRenderer(), gameWindow.getCamera());
 
 	if (entitiesSize) {
 		Entity* entitiesPtr = &entities[0];
 		for (int i = 0; i != entitiesSize; i++) {
-			entitiesPtr[i].render(gameWindow.getRenderer(), gameWindow.getViewport());//Put all the entities
+			entitiesPtr[i].render(gameWindow.getRenderer(), gameWindow.getCamera());//Put all the entities
 		}
 	}
-	player.render(gameWindow.getRenderer(), gameWindow.getViewport());//Put the player last so he is above everything else
+	player.render(gameWindow.getRenderer(), gameWindow.getCamera());//Put the player last so he is above everything else
 
 	gameWindow.update();//Then print it
 	return true;
-	//return timeSinceGameStart < 10000;//Shuting down program after 10 sec
 }
 
 GameLoop::~GameLoop()

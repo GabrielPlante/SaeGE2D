@@ -2,39 +2,32 @@
 
 
 Circle::Circle(int x, int y, int radius, Color color)
-	: Renderable(x, y) {
-	this->color = color;
-	this->radius = radius;
-	for (int rad = radius; rad > radius * 2 / 3; rad--) {
-		x = rad - 1;
-		y = 0;
+	: Renderable(x, y), color{ color }, radius{ radius }
+{
+}
+
+void Circle::render(SDL_Renderer* renderer, const Camera& camera) {
+	if (camera.isInCamera(Rectangle(position.x - radius, position.y - radius, radius * 2, radius * 2))) {
+		//This color will be the one of the circle
+		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
+		
+		//The position relative to the screen is used to render the circle
+		IntPosition relativePosition{ getRelativePosition(camera) };
+		//The middle point algorithm
+		int rad = radius;
+		int x = rad - 1;
+		int y = 0;
 		int dx = 1;
 		int dy = 1;
 		int err = dx - (rad << 1);
 
 		while (x >= y)
 		{
-			//  Each of the following renders an octant of the circle
-			SDL_Point point;
-			point.x = position.x + x; point.y = position.y - y;
-			circlePoints.emplace_back(point);
-			point.x = position.x + x; point.y = position.y + y;
-			circlePoints.emplace_back(point);
-			point.x = position.x - x; point.y = position.y - y;
-			circlePoints.emplace_back(point);
-			point.x = position.x - x; point.y = position.y + y;
-			circlePoints.emplace_back(point);
-			point.x = position.x + y; point.y = position.y - x;
-			circlePoints.emplace_back(point);
-			point.x = position.x + y; point.y = position.y - x;
-			circlePoints.emplace_back(point);
-			point.x = position.x + y; point.y = position.y + x;
-			circlePoints.emplace_back(point);
-			point.x = position.x - y; point.y = position.y - x;
-			circlePoints.emplace_back(point);
-			point.x = position.x - y; point.y = position.y + x;
-			circlePoints.emplace_back(point);
-
+			//Draw every line between two opposite point
+			SDL_RenderDrawLine(renderer, relativePosition.x - x, relativePosition.y - y, relativePosition.x + x, relativePosition.y - y);
+			SDL_RenderDrawLine(renderer, relativePosition.x - y, relativePosition.y + x, relativePosition.x + y, relativePosition.y + x);
+			SDL_RenderDrawLine(renderer, relativePosition.x - y, relativePosition.y - x, relativePosition.x + y, relativePosition.y - x);
+			SDL_RenderDrawLine(renderer, relativePosition.x - x, relativePosition.y + y, relativePosition.x + x, relativePosition.y + y);
 			if (err <= 0)
 			{
 				y++;
@@ -48,35 +41,6 @@ Circle::Circle(int x, int y, int radius, Color color)
 				err += dx - (rad << 1);
 			}
 		}
-	}
-}
-
-void Circle::setPosition(int x, int y) {
-	if (x != position.x || y != position.y) {
-		int deltaX = 0;
-		if (x != position.x) {
-			deltaX = x - position.x;
-			position.x = x;
-		}
-		int deltaY = 0;
-		if (y != position.y) {
-			deltaY = y - position.y;
-			position.y = y;
-		}
-		int circlePointsSize = circlePoints.size();
-		SDL_Point* points = &circlePoints[0];
-		for (int i = 0; i != circlePointsSize; ++i){
-			points[i].x += deltaX;
-			points[i].y += deltaY;
-		}
-	}
-}
-
-void Circle::render(SDL_Renderer* renderer, const Viewport& viewport) {
-	if (viewport.isInViewport(Rectangle(position.x-radius, position.y-radius, radius*2, radius*2))) {
-		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);//This color will be the one of the circle
-		SDL_Point* points = &circlePoints[0];//Convert from vector to array
-		SDL_RenderDrawPoints(renderer, points, circlePoints.size());
 	}
 }
 

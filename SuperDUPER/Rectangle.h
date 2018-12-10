@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include "IntPosition.h"
 
 //A simple rectangle
 struct Rectangle{
@@ -10,6 +11,10 @@ struct Rectangle{
 	Rectangle() {}
 	Rectangle(const SDL_Rect& rect)
 		:x{ rect.x }, y{ rect.y }, w{ rect.w }, h{ rect.h }
+	{
+	}
+	Rectangle(const IntPosition& position, const int w, const int h)
+		:x{ position.x }, y{ position.y }, w{ w }, h{ h }
 	{
 	}
 	Rectangle(const int x, const int y, const int w, const int h)

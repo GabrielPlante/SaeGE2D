@@ -3,7 +3,7 @@
 
 
 Window::Window(const int screenWith, const int screenHeight)
-	:viewport{ 0, 0, screenWith, screenHeight }
+	:camera{ 0, 0, screenWith, screenHeight }
 {
 	//Initialise SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -33,8 +33,8 @@ SDL_Renderer* Window::getRenderer() {
 	return gRenderer;
 }
 
-Viewport& Window::getViewport() {
-	return viewport;
+Camera& Window::getCamera() {
+	return camera;
 }
 
 Window::~Window()

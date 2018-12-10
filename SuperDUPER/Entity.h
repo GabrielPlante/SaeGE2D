@@ -20,7 +20,7 @@ class Entity
 {
 public:
 	Entity(double x, double y);
-	void render(SDL_Renderer* renderer, const Viewport& viewport);
+	void render(SDL_Renderer* renderer, const Camera& viewport);
 	virtual bool refresh() = 0;//Return true if the entity doesn't exist anymore, else false
 	IntPosition chunkPosition() const;
 	~Entity();

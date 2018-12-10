@@ -7,7 +7,7 @@ Tile::Tile(int x, int y, Color color)
 {
 }
 
-void Tile::render(SDL_Renderer* renderer, const Viewport& viewport) {
+void Tile::render(SDL_Renderer* renderer, const Camera& viewport) {
 	tileGraphic.render(renderer, viewport);
 }
 

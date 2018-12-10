@@ -6,7 +6,7 @@ class Map
 {
 public:
 	Map();
-	void render(SDL_Renderer* renderer, const Viewport& viewport);
+	void render(SDL_Renderer* renderer, const Camera& viewport);
 	~Map();
 private:
 	std::vector<Chunk> chunks;

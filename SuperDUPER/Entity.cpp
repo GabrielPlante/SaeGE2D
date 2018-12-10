@@ -8,7 +8,7 @@ Entity::Entity(double x, double y)
 	position.y = y;
 }
 
-void Entity::render(SDL_Renderer* renderer, const Viewport& viewport) {
+void Entity::render(SDL_Renderer* renderer, const Camera& viewport) {
 	shape->setPosition(static_cast<int>(position.x), static_cast<int>(position.y));
 	shape->render(renderer, viewport);
 }

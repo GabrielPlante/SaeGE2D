@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3A45BFC7-5EAA-42A1-884E-CFFE7EE9D25A}</ProjectGuid>
     <RootNamespace>SuperDUPER</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Documents\SDL2-2.0.9\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\user\Documents\SDL2-2.0.8\include;D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\user\Documents\SDL2-2.0.8\lib\x86;D:\Documents\SDL2-2.0.9\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
@@ -144,7 +144,7 @@
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="Viewport.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +163,7 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="Tile.h" />
-    <ClInclude Include="Viewport.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

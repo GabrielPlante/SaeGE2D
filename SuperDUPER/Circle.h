@@ -7,13 +7,11 @@ class Circle : public Renderable
 {
 public:
 	Circle(int x, int y, int radius, Color color);
-	void setPosition(int x, int y) override;
-	void render(SDL_Renderer* renderer, const Viewport& viewport) override;
+	void render(SDL_Renderer* renderer, const Camera& viewport) override;
 	~Circle();
 protected:
 	Color color;
 private:
 	int radius;
-	std::vector<SDL_Point> circlePoints;
 };
 

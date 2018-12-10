@@ -1,24 +1,16 @@
 #include "Rect.h"
-
+#include "Rectangle.h"
 
 Rect::Rect(int x, int y, int w, int h, Color color)
-	:Renderable(x, y) {
-	this->color = color;
-	rect.x = x;
-	rect.y = y;
-	rect.w = w;
-	rect.h = h;
+	:Renderable(x, y), rect{ x, y, w, h }, color{ color }
+{
 }
 
-void Rect::setPosition(int x, int y) {
-	rect.x = x;
-	rect.y = y;
-}
-
-void Rect::render(SDL_Renderer* renderer, const Viewport& viewport) {
-	if (viewport.isInViewport(rect)) {
+void Rect::render(SDL_Renderer* renderer, const Camera& camera) {
+	if (camera.isInCamera(rect)) {
 		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
-		SDL_RenderFillRect(renderer, &rect);
+		//Converting the coordinate to relative position
+		SDL_RenderFillRect(renderer, &Rectangle{ getRelativePosition(camera), rect.w, rect.h }.toSDL_Rect());
 	}
 }
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL.h>
-#include "Viewport.h"
+#include "Camera.h"
 #include <stdexcept>
 
 class Window
@@ -10,10 +10,10 @@ public:
 	void clear();
 	void update();
 	SDL_Renderer* getRenderer();
-	Viewport& getViewport();
+	Camera& getCamera();
 	~Window();
 private:
 	SDL_Window* gWindow{ nullptr };
-	Viewport viewport;
+	Camera camera;
 	SDL_Renderer* gRenderer{ nullptr };
 };

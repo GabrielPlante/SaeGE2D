@@ -11,6 +11,9 @@ class GameLoop
 public:
 	GameLoop();
 	bool update();
+	bool handleEvent(Event& event);
+	void refreshEntities();
+	void renderEntities(SDL_Renderer* renderer, Camera& camera);
 	~GameLoop();
 private:
 	Window gameWindow;

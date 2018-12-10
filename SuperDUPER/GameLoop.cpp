@@ -10,6 +10,23 @@ GameLoop::GameLoop()
 bool GameLoop::update() {
 	timeSinceGameStart = SDL_GetTicks();
 	//First, see if there is any input from the user
+	if (!handleEvent(event))
+		return false;
+
+	refreshEntities();
+
+	gameWindow.clear();//Then clear the screen
+	//Then put everything in the renderer
+
+	map.render(gameWindow.getRenderer(), gameWindow.getCamera());
+
+	renderEntities(gameWindow.getRenderer(), gameWindow.getCamera());
+
+	gameWindow.update();//Then print it
+	return true;
+}
+
+bool GameLoop::handleEvent(Event& event) {
 	while (event.pollEvent()) {
 		if (event.getEventType() == EventType::QUIT)
 			return false;
@@ -17,8 +34,10 @@ bool GameLoop::update() {
 			event.mouseEvent(&player, gameWindow.getCamera());
 		}
 	}
+	return true;
+}
 
-	//Then refresh everything that has to be
+void GameLoop::refreshEntities() {
 	int entitiesSize = entities.size();
 	if (entitiesSize) {
 		Entity* entitiesPtr = &entities[0];
@@ -27,23 +46,17 @@ bool GameLoop::update() {
 		}
 	}
 	player.refresh();
+}
 
-	gameWindow.clear();//Then clear the screen
-	//Then put everything in the renderer
-
-	//First, render the map (background)
-	map.render(gameWindow.getRenderer(), gameWindow.getCamera());
-
+void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
+	int entitiesSize = entities.size();
 	if (entitiesSize) {
 		Entity* entitiesPtr = &entities[0];
 		for (int i = 0; i != entitiesSize; i++) {
-			entitiesPtr[i].render(gameWindow.getRenderer(), gameWindow.getCamera());//Put all the entities
+			entitiesPtr[i].render(renderer, camera);//Put all the entities
 		}
 	}
-	player.render(gameWindow.getRenderer(), gameWindow.getCamera());//Put the player last so he is above everything else
-
-	gameWindow.update();//Then print it
-	return true;
+	player.render(renderer, camera);//Put the player last so he is above everything else
 }
 
 GameLoop::~GameLoop()

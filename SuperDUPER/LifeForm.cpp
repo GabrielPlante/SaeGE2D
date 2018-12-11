@@ -1,5 +1,7 @@
 #include "LifeForm.h"
 
+constexpr double PI = 3.14159;
+
 
 
 LifeForm::LifeForm(double x, double y, int speed, int healthPoint)
@@ -43,6 +45,13 @@ void LifeForm::setDestination(int x, int y) {
 		destination.x = x;
 		destination.y = y;
 		timeAtLastMovement = SDL_GetTicks();//So the refresh function triger a movement
+		if (x != position.x)
+			directionAngle = atan2(-(y - position.y), x - position.x);
+		if (directionAngle < 0)
+			directionAngle = abs(directionAngle);
+		else
+			directionAngle = 2 * PI - directionAngle;
+
 		isMoving = true;
 	}
 }

@@ -15,6 +15,7 @@ private:
 	int actualSpeed;
 	int baseSpeed;
 	int healthPoint;
+	double directionAngle;
 	IntPosition destination;
 	bool isMoving = false;
 	Uint32 timeAtLastMovement;

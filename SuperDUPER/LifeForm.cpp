@@ -15,13 +15,13 @@ bool LifeForm::refresh() {
 
 bool LifeForm::move(const IntPosition& destination) {
 	if (directionAngle == facingDirection) {
-		constexpr auto dividingSpeedFactor = 1000;//This will divide the speed of every lifeform in the game;
+		constexpr int dividingSpeedFactor = 1000;//This will divide the speed of every lifeform in the game;
 		//The division of the operation to get the movement according to x and y
-		const auto dividingMovementFactor = sqrt(pow(destination.x - position.x, 2) + pow(destination.y - position.y, 2)) * dividingSpeedFactor;
+		const double dividingMovementFactor = sqrt(pow(destination.x - position.x, 2) + pow(destination.y - position.y, 2)) * dividingSpeedFactor;
 		//To get a movement independant of framerate
-		const auto deltaTime = SDL_GetTicks() - timeAtLastMovement;
+		const Uint32 deltaTime = SDL_GetTicks() - timeAtLastMovement;
 		//We fist calculate the x movement so we can check if the destination is reached
-		const auto movementX = (destination.x - position.x) * deltaTime * actualSpeed / dividingMovementFactor;
+		const double movementX = (destination.x - position.x) * deltaTime * actualSpeed / dividingMovementFactor;
 		if (movementX > abs(destination.x - position.x)) {//If the destination is reached
 			position.x = destination.x;
 			position.y = destination.y;
@@ -55,7 +55,7 @@ void LifeForm::rotate(double directionAngle, double rotatingSpeed) {
 
 	if (abs(angleDifference) < rotatingSpeed) {//check if the lifeform finish rotating
 		facingDirection = directionAngle;
-		timeAtLastMovement = SDL_GetTicks();
+		timeAtLastMovement = SDL_GetTicks();//Initialise movement timer
 	}
 	else {
 		facingDirection += rotatingSpeed * angleSign;//Rotate the correct way
@@ -70,9 +70,8 @@ void LifeForm::setDestination(int x, int y) {
 	if (x != position.x || y != position.y) {
 		destination.x = x;
 		destination.y = y;
-		timeAtLastMovement = SDL_GetTicks();//So the refresh function triger a movement
+		timeAtLastMovement = SDL_GetTicks();//Initialise movement timer
 		directionAngle = position.angle(IntPosition(x, y));
-
 		isMoving = true;
 	}
 }

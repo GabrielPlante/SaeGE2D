@@ -14,10 +14,10 @@ public:
 	~LifeForm();
 private:
 	int actualSpeed;
-	int baseSpeed;
+	int baseSpeed;//Speed unit is : pixel/sec
 	double rotatingSpeed;
 	int healthPoint;
-	double directionAngle;
+	double directionAngle;//All angle are in radian, in [0-2PI]
 	double facingDirection;//The direction the lifeform currently face
 	IntPosition destination;
 	bool isMoving = false;

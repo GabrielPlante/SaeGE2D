@@ -14,6 +14,16 @@ struct DoublePosition
 		this->x = x;
 		this->y = y;
 	}
+	double angle(IntPosition destination) {//Find the angle between the point and the direction
+		constexpr double PI = 3.14159265;
+		double directionAngle = 0;
+		directionAngle = atan2(-(destination.y - y), destination.x - x);
+		if (directionAngle < 0)
+			directionAngle = abs(directionAngle);
+		else
+			directionAngle = 2 * PI - directionAngle;
+		return directionAngle;
+	}
 };
 
 class Entity

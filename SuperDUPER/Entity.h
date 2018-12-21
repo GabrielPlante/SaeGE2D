@@ -33,6 +33,7 @@ public:
 	void render(SDL_Renderer* renderer, const Camera& viewport);
 	virtual bool refresh() = 0;//Return true if the entity doesn't exist anymore, else false
 	IntPosition chunkPosition() const;
+	IntPosition getPosition() const;
 	~Entity();
 protected:
 	std::unique_ptr<Renderable> shape;

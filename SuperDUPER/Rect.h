@@ -8,6 +8,7 @@ class Rect : public Renderable
 public:
 	Rect(int x, int y, int w, int h, Color color);
 	void render(SDL_Renderer* renderer, const Camera& viewport) override;
+	bool pointIsIn(IntPosition point) override;
 	~Rect();
 protected:
 	Rectangle rect;

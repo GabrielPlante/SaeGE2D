@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include <math.h>
+#include "Destination.h"
 
 class LifeForm :
 	public Entity
@@ -8,9 +9,9 @@ class LifeForm :
 public:
 	LifeForm(double x, double y, int speed, int healthPoint, double facingDirection = 0, double rotatingSpeed = .1);
 	bool refresh() override;
-	bool move(const IntPosition& destination);
+	bool move(const Destination& destination, const int speed);
 	void rotate(double directionAngle, double rotatingSpeed);
-	void setDestination(int x, int y);
+	void setDestination(const Destination destination);
 	~LifeForm();
 private:
 	int actualSpeed;
@@ -19,8 +20,9 @@ private:
 	int healthPoint;
 	double directionAngle;//All angle are in radian, in [0-2PI]
 	double facingDirection;//The direction the lifeform currently face
-	IntPosition destination;
+	Destination destination;
 	bool isMoving = false;
+	bool isTurning = false;
 	Uint32 timeAtLastMovement;
 };
 

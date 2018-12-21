@@ -8,6 +8,7 @@ class Circle : public Renderable
 public:
 	Circle(int x, int y, int radius, Color color);
 	void render(SDL_Renderer* renderer, const Camera& viewport) override;
+	bool pointIsIn(IntPosition point) override;
 	~Circle();
 protected:
 	Color color;

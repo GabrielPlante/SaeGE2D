@@ -1,6 +1,5 @@
 #include "Event.h"
 
-
 Event::Event()
 {
 }
@@ -25,7 +24,7 @@ void Event::mouseEvent(Character* player, const Camera& camera) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);
 		IntPosition absolutePosition{ camera.relativeToAbsolute(x, y) };
-		player->setDestination(absolutePosition.x, absolutePosition.y);
+		player->setDestination(IntPosition(absolutePosition.x, absolutePosition.y));
 	}
 }
 

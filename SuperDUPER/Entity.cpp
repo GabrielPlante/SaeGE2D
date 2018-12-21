@@ -20,6 +20,10 @@ IntPosition Entity::chunkPosition() const {
 	};
 }
 
+IntPosition Entity::getPosition() const {
+	return IntPosition(static_cast<int>(position.x), static_cast<int>(position.y));
+}
+
 Entity::~Entity()
 {
 }

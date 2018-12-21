@@ -8,35 +8,33 @@ LifeForm::LifeForm(double x, double y, int speed, int healthPoint, double direct
 }
 
 bool LifeForm::refresh() {
-	if (isMoving)
-		move(destination);
+	if (isMoving) {
+		if (isTurning)
+			rotate(directionAngle, rotatingSpeed);
+		else
+			move(destination, actualSpeed);
+	}
 	return false;
 }
 
-bool LifeForm::move(const IntPosition& destination) {
-	if (directionAngle == facingDirection) {
-		constexpr int dividingSpeedFactor = 1000;//This will divide the speed of every lifeform in the game;
-		//The division of the operation to get the movement according to x and y
-		const double dividingMovementFactor = sqrt(pow(destination.x - position.x, 2) + pow(destination.y - position.y, 2)) * dividingSpeedFactor;
-		//To get a movement independant of framerate
-		const Uint32 deltaTime = SDL_GetTicks() - timeAtLastMovement;
-		//We fist calculate the x movement so we can check if the destination is reached
-		const double movementX = (destination.x - position.x) * deltaTime * actualSpeed / dividingMovementFactor;
-		if (movementX > abs(destination.x - position.x)) {//If the destination is reached
-			position.x = destination.x;
-			position.y = destination.y;
-			isMoving = false;
-			return true;
-		}
-		else {
-			position.x += movementX;
-			position.y += (destination.y - position.y) * deltaTime * actualSpeed / dividingMovementFactor;
-			timeAtLastMovement = SDL_GetTicks();
-			return false;
-		}
+bool LifeForm::move(const Destination& destination, const int speed) {
+	constexpr int dividingSpeedFactor = 1000;//This will divide the speed of every lifeform in the game;
+	//The division of the operation to get the movement according to x and y
+	const double dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2)) * dividingSpeedFactor;
+	//To get a movement independant of framerate
+	const Uint32 deltaTime = SDL_GetTicks() - timeAtLastMovement;
+	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
+	const double movementX = (destination.getCoordinate().x - position.x) * deltaTime * speed / dividingMovementFactor;
+	if (movementX > abs(destination.getCoordinate().x - position.x)) {//If the destination.getCoordinate() is reached
+		position.x = destination.getCoordinate().x;
+		position.y = destination.getCoordinate().y;
+		isMoving = false;
+		return true;
 	}
 	else {
-		rotate(directionAngle, rotatingSpeed);
+		position.x += movementX;
+		position.y += (destination.getCoordinate().y - position.y) * deltaTime * speed / dividingMovementFactor;
+		timeAtLastMovement = SDL_GetTicks();
 		return false;
 	}
 }
@@ -64,16 +62,16 @@ void LifeForm::rotate(double directionAngle, double rotatingSpeed) {
 		else if (facingDirection < 0)
 			facingDirection += 2 * PI;
 	}
+	if (directionAngle == facingDirection)//If the turn is finished, we declare it as such
+		isTurning = false;
 }
 
-void LifeForm::setDestination(int x, int y) {
-	if (x != position.x || y != position.y) {
-		destination.x = x;
-		destination.y = y;
-		timeAtLastMovement = SDL_GetTicks();//Initialise movement timer
-		directionAngle = position.angle(IntPosition(x, y));
-		isMoving = true;
-	}
+void LifeForm::setDestination(const Destination destination) {
+	this->destination = destination;
+	timeAtLastMovement = SDL_GetTicks();//Initialise movement timer
+	directionAngle = position.angle(destination.getCoordinate());
+	isMoving = true;
+	isTurning = true;
 }
 
 LifeForm::~LifeForm()

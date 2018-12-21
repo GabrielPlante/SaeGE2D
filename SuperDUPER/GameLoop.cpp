@@ -5,6 +5,9 @@ constexpr int SCREEH_HEIGHT{ 600 };
 GameLoop::GameLoop()
 	:map{}, player{ 100, 100, Color(0, 0, 255) }, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
 {
+	//test
+	entities.emplace_back(std::unique_ptr<Entity>{new Character(400, 400, Color(128, 128, 128))});
+	entities.emplace_back(std::unique_ptr<Entity>{new Character(600, 400, Color(128, 128, 128))});
 }
 
 bool GameLoop::update() {
@@ -40,9 +43,9 @@ bool GameLoop::handleEvent(Event& event) {
 void GameLoop::refreshEntities() {
 	int entitiesSize = entities.size();
 	if (entitiesSize) {
-		Entity* entitiesPtr = &entities[0];
+		std::unique_ptr<Entity>* entitiesPtr = &entities[0];
 		for (int i = 0; i != entitiesSize; i++) {
-			entitiesPtr[i].refresh();
+			entitiesPtr[i]->refresh();
 		}
 	}
 	player.refresh();
@@ -51,9 +54,9 @@ void GameLoop::refreshEntities() {
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	int entitiesSize = entities.size();
 	if (entitiesSize) {
-		Entity* entitiesPtr = &entities[0];
+		std::unique_ptr<Entity>* entitiesPtr = &entities[0];
 		for (int i = 0; i != entitiesSize; i++) {
-			entitiesPtr[i].render(renderer, camera);//Put all the entities
+			entitiesPtr[i]->render(renderer, camera);//Put all the entities
 		}
 	}
 	player.render(renderer, camera);//Put the player last so he is above everything else

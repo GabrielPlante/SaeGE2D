@@ -44,6 +44,16 @@ void Circle::render(SDL_Renderer* renderer, const Camera& camera) {
 	}
 }
 
+//Optimised way to find if a point is in the circle
+bool Circle::pointIsIn(IntPosition point) {
+	const int dx = abs(point.x - position.x);
+	if (dx > radius) return false;
+	const int dy = abs(point.y - position.y);
+	if (dy > radius) return false;
+	return dx * dx + dy * dy <= radius * radius;
+}
+
+
 Circle::~Circle()
 {
 }

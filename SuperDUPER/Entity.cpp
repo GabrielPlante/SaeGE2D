@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "Chunk.h"
+#include "Map.h"
 
 
 Entity::Entity(double x, double y)
@@ -13,15 +13,15 @@ void Entity::render(SDL_Renderer* renderer, const Camera& viewport) {
 	shape->render(renderer, viewport);
 }
 
-IntPosition Entity::chunkPosition() const {
-	return IntPosition{
-		static_cast<int>(position.x) / (Chunk::chunkSize*Tile::tileSize),
-		static_cast<int>(position.y) / (Chunk::chunkSize*Tile::tileSize)
+/*Position<> Entity::chunkPosition() const {
+	return Position<>{
+		static_cast<int>(position.x) / (Map::chunkSize*Tile::tileSize),
+		static_cast<int>(position.y) / (Map::chunkSize*Tile::tileSize)
 	};
-}
+}*/
 
-IntPosition Entity::getPosition() const {
-	return IntPosition(static_cast<int>(position.x), static_cast<int>(position.y));
+Position<> Entity::getPosition() const {
+	return Position<>(static_cast<int>(position.x), static_cast<int>(position.y));
 }
 
 Entity::~Entity()

@@ -112,9 +112,6 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Chunk.h">
-      <Filter>Header Files\Map</Filter>
-    </ClInclude>
     <ClInclude Include="DefaultTile.h">
       <Filter>Header Files\Map</Filter>
     </ClInclude>
@@ -136,9 +133,6 @@
     <ClInclude Include="Color.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="IntPosition.h">
-      <Filter>Header Files\Struct</Filter>
-    </ClInclude>
     <ClInclude Include="Rectangle.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
@@ -156,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Destination.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Header Files\Struct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 
 Destination::Destination(){}
 
-Destination::Destination(IntPosition coordinate)
+Destination::Destination(Position<> coordinate)
 	:coordinate{ coordinate }
 {
 }
@@ -13,7 +13,7 @@ Destination::Destination(Entity* entity)
 {
 }
 
-IntPosition Destination::getCoordinate() const {
+Position<> Destination::getCoordinate() const {
 	if (entity != nullptr)
 		return entity->getPosition();
 	else

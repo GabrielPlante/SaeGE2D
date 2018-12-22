@@ -12,7 +12,7 @@ void Renderable::setPosition(long int x, long int y) {
 	position.y = y;
 }
 
-IntPosition Renderable::getRelativePosition(const Camera& camera) const {
+Position<> Renderable::getRelativePosition(const Camera& camera) const {
 	return camera.absoluteToRelative(position.x, position.y);
 }
 

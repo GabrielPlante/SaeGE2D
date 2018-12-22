@@ -23,8 +23,8 @@ void Event::mouseEvent(Character* player, const Camera& camera) {
 	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);
-		IntPosition absolutePosition{ camera.relativeToAbsolute(x, y) };
-		player->setDestination(IntPosition(absolutePosition.x, absolutePosition.y));
+		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };
+		player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
 	}
 }
 

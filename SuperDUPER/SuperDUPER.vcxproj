@@ -152,7 +152,6 @@
   <ItemGroup>
     <ClInclude Include="BedRock.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Chunk.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DefaultTile.h" />
@@ -160,9 +159,9 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="GameLoop.h" />
-    <ClInclude Include="IntPosition.h" />
     <ClInclude Include="LifeForm.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />

@@ -3,7 +3,7 @@
 #include "Renderable.h"
 #include <memory>
 #include <array>
-#include "IntPosition.h"
+#include "Position.h"
 
 struct DoublePosition
 {
@@ -14,16 +14,6 @@ struct DoublePosition
 		this->x = x;
 		this->y = y;
 	}
-	double angle(IntPosition destination) {//Find the angle between the point and the direction
-		constexpr double PI = 3.14159265;
-		double directionAngle = 0;
-		directionAngle = atan2(-(destination.y - y), destination.x - x);
-		if (directionAngle < 0)
-			directionAngle = abs(directionAngle);
-		else
-			directionAngle = 2 * PI - directionAngle;
-		return directionAngle;
-	}
 };
 
 class Entity
@@ -32,11 +22,11 @@ public:
 	Entity(double x, double y);
 	void render(SDL_Renderer* renderer, const Camera& viewport);
 	virtual bool refresh() = 0;//Return true if the entity doesn't exist anymore, else false
-	IntPosition chunkPosition() const;
-	IntPosition getPosition() const;
+	//Position<> chunkPosition() const;
+	Position<> getPosition() const;
 	~Entity();
 protected:
 	std::unique_ptr<Renderable> shape;
-	DoublePosition position;
+	Position<double> position;
 };
 

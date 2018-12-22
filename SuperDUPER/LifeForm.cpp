@@ -18,11 +18,11 @@ bool LifeForm::refresh() {
 }
 
 bool LifeForm::move(const Destination& destination, const int speed) {
-	constexpr int dividingSpeedFactor = 1000;//This will divide the speed of every lifeform in the game;
+	constexpr double dividingSpeedFactor{ 1000 * 1000 };//This will divide the speed of every lifeform in the game;
 	//The division of the operation to get the movement according to x and y
 	const double dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2)) * dividingSpeedFactor;
 	//To get a movement independant of framerate
-	const Uint32 deltaTime = SDL_GetTicks() - timeAtLastMovement;
+	const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
 	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
 	const double movementX = (destination.getCoordinate().x - position.x) * deltaTime * speed / dividingMovementFactor;
 	if (movementX > abs(destination.getCoordinate().x - position.x)) {//If the destination.getCoordinate() is reached
@@ -34,13 +34,16 @@ bool LifeForm::move(const Destination& destination, const int speed) {
 	else {
 		position.x += movementX;
 		position.y += (destination.getCoordinate().y - position.y) * deltaTime * speed / dividingMovementFactor;
-		timeAtLastMovement = SDL_GetTicks();
+		timeAtLastMovement = std::chrono::high_resolution_clock::now();
 		return false;
 	}
 }
 
 void LifeForm::rotate(double directionAngle, double rotatingSpeed) {
-	constexpr double PI = 3.14159265;
+	constexpr double PI{ 3.14159265 };
+	constexpr double dividingRotateFactor{ 10*1000 };
+	const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
+	rotatingSpeed *= deltaTime / dividingRotateFactor;
 	double angleDifference = directionAngle - facingDirection;
 	if (angleDifference < -PI)//First make 4 cases 2
 		angleDifference += 2 * PI;
@@ -53,7 +56,6 @@ void LifeForm::rotate(double directionAngle, double rotatingSpeed) {
 
 	if (abs(angleDifference) < rotatingSpeed) {//check if the lifeform finish rotating
 		facingDirection = directionAngle;
-		timeAtLastMovement = SDL_GetTicks();//Initialise movement timer
 	}
 	else {
 		facingDirection += rotatingSpeed * angleSign;//Rotate the correct way
@@ -64,11 +66,12 @@ void LifeForm::rotate(double directionAngle, double rotatingSpeed) {
 	}
 	if (directionAngle == facingDirection)//If the turn is finished, we declare it as such
 		isTurning = false;
+	timeAtLastMovement = std::chrono::high_resolution_clock::now();
 }
 
 void LifeForm::setDestination(const Destination destination) {
 	this->destination = destination;
-	timeAtLastMovement = SDL_GetTicks();//Initialise movement timer
+	timeAtLastMovement = std::chrono::high_resolution_clock::now();//Initialise movement timer
 	directionAngle = position.angle(destination.getCoordinate());
 	isMoving = true;
 	isTurning = true;

@@ -1,8 +1,8 @@
-#include "Chunk.h"
+#include "Map.h"
 #include "DefaultTile.h"
 
 
-Chunk::Chunk(int x, int y)
+Map::Chunk::Chunk(int x, int y)
 	: position{ x, y } {
 	//Temporary, construct a chunk full of default tile
 	//The delta of the position caused by the chunk position
@@ -12,19 +12,12 @@ Chunk::Chunk(int x, int y)
 			tiles[i*chunkSize + j] = std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
 		}
 	}
-	isInitialised = true;
 }
 
-void Chunk::render(SDL_Renderer* renderer, const Camera& viewport) {
-	if (isInitialised) {
-		if (viewport.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
-			for (int i = 0; i != nbrOfTile; i++) {
-				tiles[i]->render(renderer, viewport);
-			}
+void Map::Chunk::render(SDL_Renderer* renderer, const Camera& viewport) {
+	if (viewport.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
+		for (int i = 0; i != nbrOfTile; i++) {
+			tiles[i]->render(renderer, viewport);
 		}
 	}
-}
-
-Chunk::~Chunk()
-{
 }

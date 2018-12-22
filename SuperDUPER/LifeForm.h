@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include <math.h>
 #include "Destination.h"
+#include <chrono>
 
 class LifeForm :
 	public Entity
@@ -23,6 +24,6 @@ private:
 	Destination destination;
 	bool isMoving = false;
 	bool isTurning = false;
-	Uint32 timeAtLastMovement;
+	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastMovement;
 };
 

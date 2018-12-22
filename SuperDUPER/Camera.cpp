@@ -13,13 +13,13 @@ void Camera::move(int deltaX, int deltaY) {
 }
 
 //Convert a position relative to the screen to a absolute in-game position
-IntPosition Camera::relativeToAbsolute(int x, int y) const {
-	return IntPosition{ x + camera.x, y + camera.y };
+Position<> Camera::relativeToAbsolute(int x, int y) const {
+	return Position<>{ x + camera.x, y + camera.y };
 }
 
 //Convert a absolute in-game position to a position relative to the screen
-IntPosition Camera::absoluteToRelative(long int x, long int y) const {
-	return IntPosition{ x - camera.x, y - camera.y };
+Position<> Camera::absoluteToRelative(long int x, long int y) const {
+	return Position<>{ x - camera.x, y - camera.y };
 }
 
 void Camera::resize(double deltaW, double deltaH) {

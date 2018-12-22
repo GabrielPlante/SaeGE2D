@@ -10,12 +10,12 @@ void Rect::render(SDL_Renderer* renderer, const Camera& camera) {
 	if (camera.isInCamera(rect)) {
 		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
 		//Converting the coordinate to relative position
-		IntPosition relativePosition{ getRelativePosition(camera) };
+		Position<> relativePosition{ getRelativePosition(camera) };
 		SDL_RenderFillRect(renderer, &Rectangle{ relativePosition.x - rect.w / 2, relativePosition.y - rect.h / 2, rect.w, rect.h }.toSDL_Rect());
 	}
 }
 
-bool Rect::pointIsIn(IntPosition point) {
+bool Rect::pointIsIn(Position<> point) {
 	if (abs(point.x - position.x + rect.w / 2) > rect.w)
 		return false;
 	if (abs(point.y - position.y + rect.h / 2) > rect.h)

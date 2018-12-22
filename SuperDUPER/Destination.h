@@ -1,16 +1,16 @@
 #pragma once
-#include "IntPosition.h"
+#include "Position.h"
 #include "Entity.h"
 class Destination
 {
 public:
 	Destination();
-	Destination(IntPosition coordinate);
+	Destination(Position<> coordinate);
 	Destination(Entity* entity);
-	IntPosition getCoordinate() const;
+	Position<> getCoordinate() const;
 	~Destination();
 private:
-	IntPosition coordinate;
+	Position<> coordinate;
 	Entity* entity = nullptr;
 };
 

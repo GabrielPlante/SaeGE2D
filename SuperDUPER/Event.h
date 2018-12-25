@@ -11,7 +11,7 @@ public:
 	bool pollEvent();
 	EventType getEventType();
 	void playerEvent(Character* player);
-	void mouseEvent(Character* player, const Camera& camera);
+	void mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<Entity>>& entitiesList);
 	~Event();
 private:
 	SDL_Event event;

@@ -15,7 +15,7 @@ void Rect::render(SDL_Renderer* renderer, const Camera& camera) {
 	}
 }
 
-bool Rect::pointIsIn(Position<> point) {
+bool Rect::pointIsIn(Position<> point) const {
 	if (abs(point.x - position.x + rect.w / 2) > rect.w)
 		return false;
 	if (abs(point.y - position.y + rect.h / 2) > rect.h)

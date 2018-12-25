@@ -34,7 +34,7 @@ bool GameLoop::handleEvent(Event& event) {
 		if (event.getEventType() == EventType::QUIT)
 			return false;
 		else if (event.getEventType() == EventType::MOUSE) {
-			event.mouseEvent(&player, gameWindow.getCamera());
+			event.mouseEvent(&player, gameWindow.getCamera(), entities);
 		}
 	}
 	return true;

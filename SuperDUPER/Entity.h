@@ -23,7 +23,8 @@ public:
 	void render(SDL_Renderer* renderer, const Camera& viewport);
 	virtual bool refresh() = 0;//Return true if the entity doesn't exist anymore, else false
 	//Position<> chunkPosition() const;
-	Position<> getPosition() const;
+	Position<double> getPosition() const;
+	bool pointIsOnThis(Position<> point) const;
 	~Entity();
 protected:
 	std::unique_ptr<Renderable> shape;

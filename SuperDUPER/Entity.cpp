@@ -20,8 +20,12 @@ void Entity::render(SDL_Renderer* renderer, const Camera& viewport) {
 	};
 }*/
 
-Position<> Entity::getPosition() const {
-	return Position<>(static_cast<int>(position.x), static_cast<int>(position.y));
+Position<double> Entity::getPosition() const {
+	return position;
+}
+
+bool Entity::pointIsOnThis(Position<> point) const {
+	return shape->pointIsIn(point);
 }
 
 Entity::~Entity()

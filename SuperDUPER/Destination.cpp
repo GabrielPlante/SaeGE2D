@@ -13,11 +13,11 @@ Destination::Destination(Entity* entity)
 {
 }
 
-Position<> Destination::getCoordinate() const {
+Position<double> Destination::getCoordinate() const {
 	if (entity != nullptr)
 		return entity->getPosition();
-	else
-		return coordinate;
+	else//There is surely something better to do
+		return Position<double>{static_cast<double>(coordinate.x), static_cast<double>(coordinate.y)};
 }
 
 Destination::~Destination()

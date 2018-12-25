@@ -7,7 +7,7 @@ public:
 	Destination();
 	Destination(Position<> coordinate);
 	Destination(Entity* entity);
-	Position<> getCoordinate() const;
+	Position<double> getCoordinate() const;
 	~Destination();
 private:
 	Position<> coordinate;

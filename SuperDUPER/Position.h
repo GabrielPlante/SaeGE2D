@@ -20,7 +20,7 @@ struct Position
 		point.y = static_cast<int>(y);
 		return point;
 	}
-	double angle(Position<> destination) {//Find the angle between the point and the direction
+	double angle(Position<double> destination) {//Find the angle between the point and the direction
 		constexpr double PI = 3.14159265;
 		double directionAngle = 0;
 		directionAngle = atan2(-(destination.y - y), destination.x - x);
@@ -30,6 +30,5 @@ struct Position
 			directionAngle = 2 * PI - directionAngle;
 		return directionAngle;
 	}
-
 };
 

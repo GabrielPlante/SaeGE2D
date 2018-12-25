@@ -19,12 +19,20 @@ EventType Event::getEventType() {
 void Event::playerEvent(Character* player) {
 }
 
-void Event::mouseEvent(Character* player, const Camera& camera) {
+void Event::mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<Entity>>& entitiesList) {
 	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) {
 		int x, y;
-		SDL_GetMouseState(&x, &y);
-		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };
-		player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
+		SDL_GetMouseState(&x, &y);//Get the position of the mouse
+		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };//Convert x & y to absolute position
+		bool clickedOnEntity = false;
+		for (auto it = entitiesList.begin(); it != entitiesList.end(); it++) {
+			if ((**it).pointIsOnThis(absolutePosition)) {
+				player->setDestination(&(**it));
+				clickedOnEntity = true;
+			}
+		}
+		if (!clickedOnEntity)
+			player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
 	}
 }
 

@@ -6,7 +6,10 @@ class Character :
 {
 public:
 	Character(int x, int y, Color color);
+	void render(SDL_Renderer* renderer, const Camera& camera);
 	bool refresh() override;
 	~Character();
+private:
+	int radius = 10;
 };
 

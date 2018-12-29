@@ -8,9 +8,9 @@ Entity::Entity(double x, double y)
 	position.y = y;
 }
 
-void Entity::render(SDL_Renderer* renderer, const Camera& viewport) {
+void Entity::render(SDL_Renderer* renderer, const Camera& camera) {
 	shape->setPosition(static_cast<int>(position.x), static_cast<int>(position.y));
-	shape->render(renderer, viewport);
+	shape->render(renderer, camera);
 }
 
 /*Position<> Entity::chunkPosition() const {
@@ -19,14 +19,6 @@ void Entity::render(SDL_Renderer* renderer, const Camera& viewport) {
 		static_cast<int>(position.y) / (Map::chunkSize*Tile::tileSize)
 	};
 }*/
-
-Position<double> Entity::getPosition() const {
-	return position;
-}
-
-bool Entity::pointIsOnThis(Position<> point) const {
-	return shape->pointIsIn(point);
-}
 
 Entity::~Entity()
 {

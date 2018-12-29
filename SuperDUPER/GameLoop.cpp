@@ -56,9 +56,20 @@ void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	if (entitiesSize) {
 		std::unique_ptr<Entity>* entitiesPtr = &entities[0];
 		for (int i = 0; i != entitiesSize; i++) {
-			entitiesPtr[i]->render(renderer, camera);//Put all the entities
+			//Render only if the player can see it
+			if (player.isInSight(entitiesPtr[i]->getPosition()))
+				entitiesPtr[i]->render(renderer, camera);//Put all the entities
 		}
 	}
+	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(player.getPosition().x), static_cast<int>(player.getPosition().y)) };
+	//Render the limited vision
+	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection()+player.getSightArea())),
+		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection()+player.getSightArea()))) };
+	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection()-player.getSightArea())),
+		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection()-player.getSightArea()))) };
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line1.x, line1.y);
+	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);
 	player.render(renderer, camera);//Put the player last so he is above everything else
 }
 

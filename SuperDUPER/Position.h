@@ -20,7 +20,7 @@ struct Position
 		point.y = static_cast<int>(y);
 		return point;
 	}
-	double angle(Position<double> destination) {//Find the angle between the point and the direction
+	double angle(Position<double> destination) const {//Find the angle between the point and the direction
 		constexpr double PI = 3.14159265;
 		double directionAngle = 0;
 		directionAngle = atan2(-(destination.y - y), destination.x - x);
@@ -29,6 +29,17 @@ struct Position
 		else
 			directionAngle = 2 * PI - directionAngle;
 		return directionAngle;
+	}
+	static double reajustAngle(double angle) {
+		constexpr double PI = 3.14159265;
+		if (angle < 0)
+			angle += 2 * PI;
+		else if (angle > 2 * PI)
+			angle -= 2 * PI;
+		return angle;
+	}
+	bool operator==(const Position<T>& other) {
+		return x == other.x && y == other.y;
 	}
 };
 

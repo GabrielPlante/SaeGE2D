@@ -8,7 +8,7 @@ class Event
 {
 public:
 	Event();
-	bool pollEvent();
+	bool pollEvent() { return SDL_PollEvent(&event); };
 	EventType getEventType();
 	void playerEvent(Character* player);
 	void mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<Entity>>& entitiesList);

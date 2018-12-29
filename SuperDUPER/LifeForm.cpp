@@ -1,10 +1,13 @@
 #include "LifeForm.h"
 
+int LifeForm::idCount = 0;
 
-LifeForm::LifeForm(double x, double y, int speed, int healthPoint, double directionAngle, double rotatingSpeed)
+LifeForm::LifeForm(double x, double y, int speed, int healthPoint, double directionAngle, double rotatingSpeed, int sightRange, float sightArea)
 	:Entity(x, y), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint },
-	directionAngle{ directionAngle }, rotatingSpeed{ rotatingSpeed }
+	directionAngle{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
+	sightArea{ sightArea }, id{ idCount }
 {
+	idCount++;
 }
 
 bool LifeForm::refresh() {
@@ -18,6 +21,10 @@ bool LifeForm::refresh() {
 }
 
 bool LifeForm::move(const Destination& destination, const int speed) {
+	if (destination.getCoordinate() == position) {
+		isMoving = false;
+		return true;
+	}
 	constexpr double dividingSpeedFactor{ 1000 * 1000 };//This will divide the speed of every lifeform in the game;
 	//The division of the operation to get the movement according to x and y
 	const double dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2)) * dividingSpeedFactor;
@@ -75,6 +82,12 @@ void LifeForm::setDestination(const Destination destination) {
 	directionAngle = position.angle(destination.getCoordinate());
 	isMoving = true;
 	isTurning = true;
+}
+
+bool LifeForm::isInSight(const Position<double>& entity) const {
+	constexpr double PI = 3.14159265;
+	double angleEntityPlayer = Position<>::reajustAngle(position.angle(entity) - facingDirection);
+	return (angleEntityPlayer <= sightArea || angleEntityPlayer >= 2 * PI - sightArea);
 }
 
 LifeForm::~LifeForm()

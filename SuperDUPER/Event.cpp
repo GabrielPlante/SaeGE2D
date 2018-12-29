@@ -4,10 +4,6 @@ Event::Event()
 {
 }
 
-bool Event::pollEvent() {
-	return SDL_PollEvent(&event);
-}
-
 EventType Event::getEventType() {
 	if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
 		return EventType::QUIT;
@@ -26,7 +22,7 @@ void Event::mouseEvent(Character* player, const Camera& camera, const std::vecto
 		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };//Convert x & y to absolute position
 		bool clickedOnEntity = false;
 		for (auto it = entitiesList.begin(); it != entitiesList.end(); it++) {
-			if ((**it).pointIsOnThis(absolutePosition)) {
+			if ((**it).pointIsOnThis(absolutePosition) && player->isInSight((**it).getPosition())) {
 				player->setDestination(&(**it));
 				clickedOnEntity = true;
 			}

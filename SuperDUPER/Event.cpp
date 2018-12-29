@@ -23,12 +23,20 @@ void Event::mouseEvent(Character* player, const Camera& camera, const std::vecto
 		bool clickedOnEntity = false;
 		for (auto it = entitiesList.begin(); it != entitiesList.end(); it++) {
 			if ((**it).pointIsOnThis(absolutePosition) && player->isInSight((**it).getPosition())) {
-				player->setDestination(&(**it));
+				if (state[SDL_SCANCODE_LALT])
+					player->setRotatingDestination(&(**it));
+				else
+					player->setDestination(&(**it));
 				clickedOnEntity = true;
+				break;
 			}
 		}
-		if (!clickedOnEntity)
-			player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
+		if (!clickedOnEntity) {
+			if (state[SDL_SCANCODE_LALT])
+				player->setRotatingDestination(Position<>(absolutePosition.x, absolutePosition.y));
+			else
+				player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
+		}
 	}
 }
 

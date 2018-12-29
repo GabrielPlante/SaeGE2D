@@ -4,8 +4,8 @@
 #include "GameLoop.h"
 
 int main(int argc, char* args[]) {
-	constexpr int maxFps = 80;
-	constexpr long long timeBetweenFrame{ 1000*1000 / maxFps };
+	constexpr double maxFps = 60;
+	constexpr long int timeBetweenFrame{ static_cast<long int>(1000*1000 / maxFps) };
 
 	GameLoop gameLoop;
 

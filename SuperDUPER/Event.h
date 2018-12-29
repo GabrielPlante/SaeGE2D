@@ -15,5 +15,6 @@ public:
 	~Event();
 private:
 	SDL_Event event;
+	const Uint8* state = SDL_GetKeyboardState(NULL);
 };
 

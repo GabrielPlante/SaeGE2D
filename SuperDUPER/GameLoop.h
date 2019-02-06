@@ -19,7 +19,7 @@ private:
 	Window gameWindow;
 	Map map;
 	Event event;
-	std::vector<std::unique_ptr<Entity>> entities;
+	std::vector<std::unique_ptr<LifeForm>> lifeForms;
 	Character player;
 	Uint32 timeSinceGameStart;
 };

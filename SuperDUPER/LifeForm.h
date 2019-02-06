@@ -3,7 +3,6 @@
 #include <math.h>
 #include "Destination.h"
 #include <chrono>
-#include <unordered_map>
 
 enum class Friendliness {Neutral, Friend, Enemy};
 
@@ -14,16 +13,18 @@ class LifeForm :
 {
 public:
 	LifeForm(double x, double y, int speed, int healthPoint, Friendliness friendliness = Friendliness::Neutral,
-		double facingDirection = 0, double rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);
-	bool refresh() override;
-	bool move(const Destination& destination, const int speed);
-	void rotate(double directionAngle, double rotatingSpeed);
+		double facingDirection = 0, double rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
+	bool refresh() override;//Method to call each frame
+	bool move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
+	void rotate(double directionAngle, double rotatingSpeed);//Same as move but for the rotation
 	void setDestination(const Destination& destination);
 	void setRotatingDestination(const Destination& destination);
-	bool isInSight(const Position<double>& position) const;
+	void attack(const Destination& destination);
+	bool isInSight(const Position<double>& position) const;//return true if a position is in sight
 	int getSightRange() const { return sightRange; }
 	float getSightArea() const { return sightArea; }
 	double getFacingDirection() const { return facingDirection; }
+	Friendliness getFriendliness() const { return friendliness; }
 	~LifeForm();
 private:
 	const int id;

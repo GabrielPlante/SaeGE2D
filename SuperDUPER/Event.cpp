@@ -15,13 +15,13 @@ EventType Event::getEventType() {
 void Event::playerEvent(Character* player) {
 }
 
-void Event::mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<Entity>>& entitiesList) {
+void Event::mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<LifeForm>>& lifeFormsList) {
 	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);//Get the position of the mouse
 		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };//Convert x & y to absolute position
 		bool clickedOnEntity = false;
-		for (auto it = entitiesList.begin(); it != entitiesList.end(); it++) {
+		for (auto it = lifeFormsList.begin(); it != lifeFormsList.end(); it++) {
 			if ((**it).pointIsOnThis(absolutePosition) && player->isInSight((**it).getPosition())) {
 				if (state[SDL_SCANCODE_LALT])
 					player->setRotatingDestination(&(**it));

@@ -145,6 +145,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MeleeWeapon.cpp" />
+    <ClCompile Include="RangeWeapon.cpp" />
     <ClCompile Include="Rect.cpp" />
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="RangeWeapon.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />

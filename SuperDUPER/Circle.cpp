@@ -6,7 +6,7 @@ Circle::Circle(int x, int y, int radius, Color color)
 {
 }
 
-void Circle::render(SDL_Renderer* renderer, const Camera& camera) {
+void Circle::render(SDL_Renderer* renderer, const Camera& camera) const {
 	if (camera.isInCamera(Rectangle(position.x - radius, position.y - radius, radius * 2, radius * 2))) {
 		//This color will be the one of the circle
 		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);

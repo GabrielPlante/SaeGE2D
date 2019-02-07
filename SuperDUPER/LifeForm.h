@@ -12,12 +12,12 @@ class LifeForm :
 	public Entity
 {
 public:
-	LifeForm(double x, double y, int speed, int healthPoint, Friendliness friendliness = Friendliness::Neutral,
+	LifeForm(double x, double y, int speed, int healthPoint, int radius, Friendliness friendliness = Friendliness::Neutral,
 		double facingDirection = 0, double rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
-	void render(SDL_Renderer* renderer, const Camera& camera) = 0;
+	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	bool refresh() override;//Method to call each frame
-	void move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
-	void rotate(double directionAngle, double rotatingSpeed);//Same as move but for the rotation
+	//void move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
+	//void rotate(double directionAngle, double rotatingSpeed);//Same as move but for the rotation
 	bool rawMovement(const Destination& destination, const int speed, const long long deltaTime);//Raw mean that the method doesn't change any boolean attribute
 	bool rawRotation(double directionAngle, double rotatingSpeed, const long long deltaTime);
 	void setDestination(const Destination& destination);
@@ -51,9 +51,11 @@ private:
 	bool isTurning = false;
 	bool isAttacking = false;
 	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastMovement;
-	//std::vector<std::unique_ptr<Item>> itemList;
+	//std::vector<std::unique_ptr<Item>> backpack;
 	std::unique_ptr<Weapon> inHandWeapon;//Item 
 	int maxEncumbrance;
 	Friendliness friendliness;
+protected:
+	int radius;
 };
 

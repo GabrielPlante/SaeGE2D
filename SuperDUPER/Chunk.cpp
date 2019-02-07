@@ -14,7 +14,7 @@ Map::Chunk::Chunk(int x, int y)
 	}
 }
 
-void Map::Chunk::render(SDL_Renderer* renderer, const Camera& viewport) {
+void Map::Chunk::render(SDL_Renderer* renderer, const Camera& viewport) const {
 	if (viewport.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
 		for (int i = 0; i != nbrOfTile; i++) {
 			tiles[i]->render(renderer, viewport);

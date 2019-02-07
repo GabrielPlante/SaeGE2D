@@ -113,6 +113,9 @@
     <ClCompile Include="MeleeWeapon.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
+    <ClCompile Include="RangeWeapon.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -176,6 +179,9 @@
       <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="MeleeWeapon.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeWeapon.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>

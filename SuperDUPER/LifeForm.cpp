@@ -3,32 +3,39 @@
 
 int LifeForm::idCount = 0;
 
-LifeForm::LifeForm(double x, double y, int speed, int healthPoint, Friendliness friendliness,
+LifeForm::LifeForm(double x, double y, int speed, int healthPoint, int radius, Friendliness friendliness,
 	double directionAngle, double rotatingSpeed, int sightRange, float sightArea)
-	:Entity(x, y), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint }, friendliness{ friendliness },
+	:Entity(x, y), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ facingDirection }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
 	sightArea{ sightArea }, id{ idCount }
 {
 	idCount++;
 }
 
-void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) {
+void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 	constexpr int halfLenght = 40;
 	constexpr int height = 30;
+
+	//healtbar
 	SDL_SetRenderDrawColor(renderer, 230, 0, 0, 200);
 	for (int width = 0; width < 3; width++) {
 		SDL_RenderDrawLine(renderer, getPosition().x - halfLenght, getPosition().y - height + width, getPosition().x + halfLenght * (healthPoint * 2.0 / baseHealtPoint - 1), getPosition().y - height + width);
 	}
+
+	//Render the weapon
+	if (inHandWeapon)
+		inHandWeapon->render(renderer, camera, position, facingDirection, radius);
 }
 
 bool LifeForm::refresh() {
-	if (isTurning) {
+	if (isTurning) {//Treat hard turn (turning without moving)
 		const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
 		if (rawRotation(directionAngle, rotatingSpeed, deltaTime))
 			isTurning = false;
 		timeAtLastMovement = std::chrono::high_resolution_clock::now();
 	}
 	else if (!(destination.getCoordinate() == position)) {
+		//If it's moving or attacking and out of range
 		if ((isAttacking && inHandWeapon && position.distanceSquared(destination.getCoordinate()) > pow(inHandWeapon->getRange(), 2)) || !isAttacking) {
 			double angle = position.angle(destination.getCoordinate());
 			constexpr float deltaAngle = 0.1f;

@@ -5,10 +5,10 @@ Map::Map()
 	chunks.emplace_back(0, 0);
 }
 
-void Map::render(SDL_Renderer* renderer, const Camera& viewport) {
+void Map::render(SDL_Renderer* renderer, const Camera& viewport) const {
 	int nbrOfChunk = chunks.size();
 	if (nbrOfChunk) {
-		typename Map::Chunk* chunkPtr = &chunks[0];
+		const typename Map::Chunk* chunkPtr = &chunks[0];
 		for (int i = 0; i != nbrOfChunk; i++) {
 			chunkPtr[i].render(renderer, viewport);
 		}

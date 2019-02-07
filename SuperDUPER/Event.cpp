@@ -16,26 +16,25 @@ void Event::playerEvent(Character* player) {
 }
 
 void Event::mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<LifeForm>>& lifeFormsList) {
-	if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_RIGHT) {
+	if (event.type == SDL_MOUSEBUTTONDOWN/* && event.button.button == SDL_BUTTON_RIGHT*/) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);//Get the position of the mouse
 		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };//Convert x & y to absolute position
 		bool clickedOnEntity = false;
 		for (auto it = lifeFormsList.begin(); it != lifeFormsList.end(); it++) {
 			if ((**it).pointIsOnThis(absolutePosition) && player->isInSight((**it).getPosition())) {
-				if (state[SDL_SCANCODE_LALT])
-					player->setRotatingDestination(&(**it));
-				else
+				if (event.button.button == SDL_BUTTON_RIGHT) {
 					player->setDestination(&(**it));
+				}
+				else {
+					player->attack(&(**it));
+				}
 				clickedOnEntity = true;
 				break;
 			}
 		}
-		if (!clickedOnEntity) {
-			if (state[SDL_SCANCODE_LALT])
-				player->setRotatingDestination(Position<>(absolutePosition.x, absolutePosition.y));
-			else
-				player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
+		if (!clickedOnEntity && event.button.button == SDL_BUTTON_RIGHT) {
+			player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
 		}
 	}
 }

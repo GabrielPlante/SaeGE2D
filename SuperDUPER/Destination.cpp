@@ -1,4 +1,5 @@
 #include "Destination.h"
+#include "LifeForm.h"
 
 
 Destination::Destination(){}
@@ -8,7 +9,7 @@ Destination::Destination(Position<> coordinate)
 {
 }
 
-Destination::Destination(Entity* entity)
+Destination::Destination(LifeForm* entity)
 	: entity{ entity }
 {
 }

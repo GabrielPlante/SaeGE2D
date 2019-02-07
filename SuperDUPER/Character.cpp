@@ -8,7 +8,10 @@ Character::Character(int x, int y, Color color)
 }
 
 void Character::render(SDL_Renderer* renderer, const Camera& camera) {
-	Entity::render(renderer, camera);
+	if (isAlive()) {
+		Entity::render(renderer, camera);
+		LifeForm::render(renderer, camera);
+	}
 }
 
 bool Character::refresh() {

@@ -45,6 +45,12 @@
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{967e8869-e551-426d-8278-eda19458c82b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{da139411-cc38-4921-86aa-7c3c98d7651a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item">
+      <UniqueIdentifier>{f3b22ca3-b38d-4dd5-9d7d-c71734985891}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -97,6 +103,18 @@
     </ClCompile>
     <ClCompile Include="Destination.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="MeleeWeapon.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeWeapon.cpp">
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +171,18 @@
     </ClInclude>
     <ClInclude Include="Position.h">
       <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="MeleeWeapon.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeWeapon.h">
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

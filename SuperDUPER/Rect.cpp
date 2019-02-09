@@ -6,7 +6,7 @@ Rect::Rect(int x, int y, int w, int h, Color color)
 {
 }
 
-void Rect::render(SDL_Renderer* renderer, const Camera& camera) {
+void Rect::render(SDL_Renderer* renderer, const Camera& camera) const {
 	if (camera.isInCamera(rect)) {
 		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
 		//Converting the coordinate to relative position

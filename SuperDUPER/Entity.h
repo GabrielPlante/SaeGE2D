@@ -10,7 +10,7 @@ class Entity
 public:
 	Entity(double x, double y);
 	//Render the shape of the entity
-	virtual void render(SDL_Renderer* renderer, const Camera& camera) = 0;
+	virtual void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	virtual bool refresh() = 0;//Return true if the entity doesn't exist anymore, else false
 	//Position<> chunkPosition() const;
 	Position<double> getPosition() const { return position; }

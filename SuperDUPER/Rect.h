@@ -7,7 +7,7 @@ class Rect : public Renderable
 {
 public:
 	Rect(int x, int y, int w, int h, Color color);
-	void render(SDL_Renderer* renderer, const Camera& viewport) override;
+	void render(SDL_Renderer* renderer, const Camera& viewport) const override;
 	bool pointIsIn(Position<> point) const override;
 	~Rect();
 protected:

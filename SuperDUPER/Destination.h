@@ -1,17 +1,17 @@
 #pragma once
 #include "Position.h"
-#include "Entity.h"
+class LifeForm;
 class Destination
 {
 public:
 	Destination();
 	Destination(Position<> coordinate);
-	Destination(Entity* entity);
+	Destination(LifeForm* entity);
 	Position<double> getCoordinate() const;
-	Entity* getEntity() { return entity; }
+	LifeForm* getEntity() const { return entity; }
 	~Destination();
 private:
 	Position<> coordinate;
-	Entity* entity = nullptr;
+	LifeForm* entity = nullptr;
 };
 

@@ -29,6 +29,7 @@ public:
 	float getSightArea() const { return sightArea; }
 	double getFacingDirection() const { return facingDirection; }
 	Friendliness getFriendliness() const { return friendliness; }
+	int getRadius() const { return radius; }
 	bool takeDamage(int amount);//Return true if the lifeform is alive 
 	bool isAlive() const { return healthPoint > 0; }
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }

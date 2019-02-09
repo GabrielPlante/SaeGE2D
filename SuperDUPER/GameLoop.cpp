@@ -1,5 +1,5 @@
 #include "GameLoop.h"
-#include "MeleeWeapon.h"
+#include "BasicSword.h"
 constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
 
@@ -10,7 +10,7 @@ GameLoop::GameLoop()
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	player.takeWeaponInHand(std::unique_ptr<Weapon> {new MeleeWeapon{ "Epee", 100, 100, 100 }});
+	player.takeWeaponInHand(std::unique_ptr<Weapon> {new BasicSword{}});
 }
 
 bool GameLoop::update() {

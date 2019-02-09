@@ -1,5 +1,6 @@
 #include "LifeForm.h"
-#include <iostream>
+
+constexpr float deltaAngle = 0.1f;
 
 int LifeForm::idCount = 0;
 
@@ -13,43 +14,49 @@ LifeForm::LifeForm(double x, double y, int speed, int healthPoint, int radius, F
 }
 
 void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
-	constexpr int halfLenght = 40;
-	constexpr int height = 30;
+	constexpr int halfLenght{ 40 };
+	constexpr int height{ 30 };
 
-	//healtbar
+	//healtbar (temporary)
 	SDL_SetRenderDrawColor(renderer, 230, 0, 0, 200);
+	Position<> relativePosition{ camera.absoluteToRelative(static_cast<long>(position.x), static_cast<long>(position.y)) };
 	for (int width = 0; width < 3; width++) {
-		SDL_RenderDrawLine(renderer, getPosition().x - halfLenght, getPosition().y - height + width, getPosition().x + halfLenght * (healthPoint * 2.0 / baseHealtPoint - 1), getPosition().y - height + width);
+		SDL_RenderDrawLine(renderer, relativePosition.x - halfLenght, relativePosition.y - height + width,
+			relativePosition.x + static_cast<int>(halfLenght * (healthPoint * 2.0 / baseHealtPoint - 1)), relativePosition.y - height + width);
 	}
 
 	//Render the weapon
 	if (inHandWeapon)
-		inHandWeapon->render(renderer, camera, position, facingDirection, radius);
+		inHandWeapon->render(renderer, camera, *this);
 }
 
 bool LifeForm::refresh() {
+	if (inHandWeapon)
+		inHandWeapon->refresh();
+
 	if (isTurning) {//Treat hard turn (turning without moving)
 		const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
 		if (rawRotation(directionAngle, rotatingSpeed, deltaTime))
 			isTurning = false;
 		timeAtLastMovement = std::chrono::high_resolution_clock::now();
 	}
+	//Turning prevent from moving
 	else if (!(destination.getCoordinate() == position)) {
 		//If it's moving or attacking and out of range
-		if ((isAttacking && inHandWeapon && position.distanceSquared(destination.getCoordinate()) > pow(inHandWeapon->getRange(), 2)) || !isAttacking) {
+		if (isAttacking && inHandWeapon && position.distanceSquared(destination.getCoordinate()) < pow(inHandWeapon->getRange(), 2)) {
+			if (destination.getEntity())
+				attack(destination.getEntity());
+			isAttacking = false;
+			clearDestination();
+		}
+		else {
 			double angle = position.angle(destination.getCoordinate());
-			constexpr float deltaAngle = 0.1f;
 			if (angle < facingDirection - deltaAngle && angle > facingDirection + deltaAngle)
 				facingDirection = angle;
 			const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
 			rawMovement(destination, actualSpeed, deltaTime);
 			timeAtLastMovement = std::chrono::high_resolution_clock::now();
-		}
-		else {
-			if (destination.getEntity())
-				attack(destination.getEntity());
-			isAttacking = false;
-			clearDestination();
+
 		}
 	}
 	return false;
@@ -121,12 +128,19 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 void LifeForm::attack(LifeForm* lifeForm) {
 	if (inHandWeapon) {
 		//If the target is out of range
-		if (pow(position.x - lifeForm->getPosition().x, 2) + pow(position.y - lifeForm->getPosition().y, 2) > pow(inHandWeapon->getRange(), 2)) {
+		if (position.distanceSquared(lifeForm->getPosition()) > pow(inHandWeapon->getRange(), 2)){
 			setDestination(lifeForm);
 			isAttacking = true;
 		}
-		else
-			inHandWeapon->attack(lifeForm);
+		else {
+			double angle = position.angle(lifeForm->getPosition());
+			if (angle - deltaAngle > facingDirection || angle + deltaAngle < facingDirection) {
+				setDestination(lifeForm);
+				isAttacking = true;
+			}
+			else
+				inHandWeapon->attack(lifeForm);
+		}
 	}
 }
 

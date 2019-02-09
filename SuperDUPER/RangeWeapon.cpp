@@ -7,8 +7,15 @@ RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamag
 {
 }
 
-void RangeWeapon::render(SDL_Renderer* renderer, const Camera& camer, const Position<double> playerPositiona, const double facingDirection, const int playerRadius) const {
-
+bool RangeWeapon::refresh() {
+	auto it = projectiles.begin();
+	while (it != projectiles.end()) {
+		if ((**it).refresh())//Refresh the projectile and check if it's still alive
+			it = projectiles.erase(it);
+		else
+			it++;
+	}
+	return false;
 }
 
 bool RangeWeapon::attack(LifeForm* lifeForm) {

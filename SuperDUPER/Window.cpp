@@ -3,7 +3,7 @@
 
 
 Window::Window(const int screenWith, const int screenHeight)
-	:camera{ 0, 0, screenWith, screenHeight }
+	:camera{ -100, 0, screenWith, screenHeight }
 {
 	//Initialise SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)

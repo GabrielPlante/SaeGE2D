@@ -10,7 +10,8 @@ class Weapon :
 {
 public:
 	Weapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate);
-	virtual void render(SDL_Renderer* renderer, const Camera& camera, const Position<double> playerPosition, const double facingDirection, const int playerRadius) const = 0;
+	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
+	virtual bool refresh() = 0;
 	virtual bool attack(LifeForm* lifeForm) = 0;//Return true if the attack occur
 	int getBaseDamage() const { return baseDamage; }
 	float getFireRate() const { return fireRate; }

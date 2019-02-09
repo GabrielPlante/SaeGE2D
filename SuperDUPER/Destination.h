@@ -8,6 +8,7 @@ public:
 	Destination(Position<> coordinate);
 	Destination(Entity* entity);
 	Position<double> getCoordinate() const;
+	Entity* getEntity() { return entity; }
 	~Destination();
 private:
 	Position<> coordinate;

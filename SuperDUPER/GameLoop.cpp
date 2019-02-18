@@ -67,10 +67,10 @@ void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	}
 	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(player.getPosition().x), static_cast<int>(player.getPosition().y)) };
 	//Render the limited vision
-	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection()+player.getSightArea())),
-		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection()+player.getSightArea()))) };
-	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection()-player.getSightArea())),
-		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection()-player.getSightArea()))) };
+	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection().get()+player.getSightArea())),
+		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection().get()+player.getSightArea()))) };
+	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection().get()-player.getSightArea())),
+		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection().get()-player.getSightArea()))) };
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line1.x, line1.y);
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);

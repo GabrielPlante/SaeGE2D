@@ -157,6 +157,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Angle.h" />
     <ClInclude Include="BasicBow.h" />
     <ClInclude Include="BasicSword.h" />
     <ClInclude Include="BedRock.h" />

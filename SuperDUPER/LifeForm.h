@@ -19,7 +19,7 @@ public:
 	//void move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
 	//void rotate(double directionAngle, double rotatingSpeed);//Same as move but for the rotation
 	bool rawMovement(const Destination& destination, const int speed, const long long deltaTime);//Raw mean that the method doesn't change any boolean attribute
-	bool rawRotation(double directionAngle, double rotatingSpeed, const long long deltaTime);
+	bool rawRotation(Angle directionAngle, double rotatingSpeed, const long long deltaTime);
 	void setDestination(const Destination& destination);
 	void setRotatingDestination(const Destination& destination);
 	void attack(LifeForm* lifeForm);
@@ -27,7 +27,7 @@ public:
 	int getHealthPoint() const { return healthPoint; }
 	int getSightRange() const { return sightRange; }
 	float getSightArea() const { return sightArea; }
-	double getFacingDirection() const { return facingDirection; }
+	Angle getFacingDirection() const { return facingDirection; }
 	Friendliness getFriendliness() const { return friendliness; }
 	int getRadius() const { return radius; }
 	bool takeDamage(int amount);//Return true if the lifeform is alive 
@@ -46,8 +46,8 @@ private:
 	int healthPoint;
 	int baseHealtPoint = healthPoint;
 	//All angle are in radian, in [0-2PI]
-	double directionAngle;//The direction the lifeform want to turn to
-	double facingDirection;//The direction the lifeform currently face
+	Angle directionAngle;//The direction the lifeform want to turn to
+	Angle facingDirection;//The direction the lifeform currently face
 	Destination destination = Destination(this);
 	bool isTurning = false;
 	bool isAttacking = false;

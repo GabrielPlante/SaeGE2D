@@ -36,7 +36,7 @@ bool LifeForm::refresh() {
 
 	if (isTurning) {//Treat hard turn (turning without moving)
 		const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
-		if (rawRotation(directionAngle, rotatingSpeed, deltaTime))
+		if (rawRotation(directionAngle.get(), rotatingSpeed, deltaTime))
 			isTurning = false;
 		timeAtLastMovement = std::chrono::high_resolution_clock::now();
 	}
@@ -50,8 +50,8 @@ bool LifeForm::refresh() {
 			clearDestination();
 		}
 		else {
-			double angle = position.angle(destination.getCoordinate());
-			if (angle < facingDirection - deltaAngle && angle > facingDirection + deltaAngle)
+			Angle angle = position.angle(destination.getCoordinate());
+			if (angle.get() < facingDirection.get() - deltaAngle && angle.get() > facingDirection.get() + deltaAngle)
 				facingDirection = angle;
 			const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
 			rawMovement(destination, actualSpeed, deltaTime);
@@ -80,29 +80,22 @@ bool LifeForm::rawMovement(const Destination& destination, const int speed, cons
 	}
 }
 
-bool LifeForm::rawRotation(double directionAngle, double rotatingSpeed, const long long deltaTime) {
+bool LifeForm::rawRotation(Angle directionAngle, double rotatingSpeed, const long long deltaTime) {
 	constexpr double PI{ 3.14159265 };
 	constexpr double dividingRotateFactor{ 10*1000 };
 	rotatingSpeed *= deltaTime / dividingRotateFactor;
-	double angleDifference = directionAngle - facingDirection;
-	if (angleDifference < -PI)//First make 4 cases 2
-		angleDifference += 2 * PI;
-	else if (angleDifference > PI)
-		angleDifference -= 2 * PI;
+
+	double angleDifference = directionAngle.difference(facingDirection);
 
 	int angleSign = 1;//Sign of the angle (1 or -1)
 	if (angleDifference != 0)
 		angleSign = static_cast<int>(abs(angleDifference) / angleDifference);
 
 	if (abs(angleDifference) < rotatingSpeed) {//check if the lifeform finish rotating
-		facingDirection = directionAngle;
+		facingDirection.set(directionAngle);
 	}
 	else {
-		facingDirection += rotatingSpeed * angleSign;//Rotate the correct way
-		if (facingDirection > 2 * PI)//Check if we are in the good range [0-2PI]
-			facingDirection -= 2 * PI;
-		else if (facingDirection < 0)
-			facingDirection += 2 * PI;
+		facingDirection.add(rotatingSpeed * angleSign);//Rotate the correct way
 	}
 	if (directionAngle == facingDirection) {//If the turn is finished, we declare it as such
 		return true;
@@ -133,8 +126,8 @@ void LifeForm::attack(LifeForm* lifeForm) {
 			isAttacking = true;
 		}
 		else {
-			double angle = position.angle(lifeForm->getPosition());
-			if (angle - deltaAngle > facingDirection || angle + deltaAngle < facingDirection) {
+			Angle angle = position.angle(lifeForm->getPosition());
+			if (angle.get() - deltaAngle > facingDirection.get() || angle.get() + deltaAngle < facingDirection.get()) {
 				setDestination(lifeForm);
 				isAttacking = true;
 			}
@@ -146,8 +139,9 @@ void LifeForm::attack(LifeForm* lifeForm) {
 
 bool LifeForm::isInSight(const Position<double>& entity) const {
 	constexpr double PI = 3.14159265;
-	double angleEntityPlayer = Position<>::reajustAngle(position.angle(entity) - facingDirection);
-	return (angleEntityPlayer <= sightArea || angleEntityPlayer >= 2 * PI - sightArea);
+	Angle angleEntityPlayer = facingDirection.difference(position.angle(entity));
+	angleEntityPlayer.add(0);
+	return (angleEntityPlayer.get() <= sightArea || angleEntityPlayer.get() >= 2 * PI - sightArea);
 }
 
 bool LifeForm::takeDamage(int amount) {

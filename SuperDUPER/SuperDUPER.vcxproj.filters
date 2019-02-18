@@ -122,6 +122,9 @@
     <ClCompile Include="BasicSword.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
+    <ClCompile Include="BasicBow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -195,6 +198,9 @@
     </ClInclude>
     <ClInclude Include="BasicSword.h">
       <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicBow.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

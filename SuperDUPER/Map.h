@@ -1,5 +1,4 @@
 #pragma once
-//#include "Chunk.h"
 #include "Camera.h"
 #include <vector>
 #include <memory>
@@ -10,20 +9,19 @@ class Map
 {
 public:
 	Map();
-	void render(SDL_Renderer* renderer, const Camera& viewport) const;
-	constexpr static int chunkSize{ 100 };
-	constexpr static int nbrOfTile{ chunkSize * chunkSize };
+	void render(SDL_Renderer* renderer, const Camera& camera) const;
+	constexpr static int chunkSize{ 100 };//Number of tile per line in the chunk
 	~Map();
 private:
 	class Chunk {
 	public:
 		Chunk(int x, int y);
-		void render(SDL_Renderer* renderer, const Camera& viewport) const;
+		void render(SDL_Renderer* renderer, const Camera& camera) const;
 	private:
 		const Position<> position;
-		std::array<std::shared_ptr<Tile>, nbrOfTile> tiles;
+		std::array<std::array<std::shared_ptr<Tile>, chunkSize>, chunkSize> tiles;
 	};
 
-	std::vector<Chunk> chunks;
+	std::vector<std::vector<Chunk>> chunks{ 1 };
 };
 

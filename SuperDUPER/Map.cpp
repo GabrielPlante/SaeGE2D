@@ -1,16 +1,15 @@
 #include "Map.h"
+#include <iostream>
 
 Map::Map()
 {
-	chunks.emplace_back(0, 0);
+	chunks[0].emplace_back(0, 0);
 }
 
-void Map::render(SDL_Renderer* renderer, const Camera& viewport) const {
-	int nbrOfChunk = chunks.size();
-	if (nbrOfChunk) {
-		const typename Map::Chunk* chunkPtr = &chunks[0];
-		for (int i = 0; i != nbrOfChunk; i++) {
-			chunkPtr[i].render(renderer, viewport);
+void Map::render(SDL_Renderer* renderer, const Camera& camera) const {
+	for (auto it = chunks.begin(); it != chunks.end(); it++) {
+		for (auto id = it->begin(); id != it->end(); id++) {
+			id->render(renderer, camera);
 		}
 	}
 }

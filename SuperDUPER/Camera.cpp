@@ -32,10 +32,6 @@ void Camera::resize(int w, int h) {
 	camera.h = h;
 }
 
-bool Camera::isInCamera(const Rectangle& object) const {
-	return camera.overlap(object);
-}
-
 Camera::~Camera()
 {
 }

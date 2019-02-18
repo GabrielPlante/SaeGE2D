@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicBow.cpp" />
     <ClCompile Include="BasicSword.cpp" />
     <ClCompile Include="BedRock.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BasicBow.h" />
     <ClInclude Include="BasicSword.h" />
     <ClInclude Include="BedRock.h" />
     <ClInclude Include="Character.h" />

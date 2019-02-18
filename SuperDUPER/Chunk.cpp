@@ -9,15 +9,17 @@ Map::Chunk::Chunk(int x, int y)
 	constexpr int tilePosChange = chunkSize * Tile::tileSize;
 	for (int i = 0; i != chunkSize; i++) {
 		for (int j = 0; j != chunkSize; j++) {
-			tiles[i*chunkSize + j] = std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
+			tiles[i][j] = std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
 		}
 	}
 }
 
-void Map::Chunk::render(SDL_Renderer* renderer, const Camera& viewport) const {
-	if (viewport.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
-		for (int i = 0; i != nbrOfTile; i++) {
-			tiles[i]->render(renderer, viewport);
+void Map::Chunk::render(SDL_Renderer* renderer, const Camera& camera) const {
+	if (camera.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
+		for (auto it = tiles.begin(); it != tiles.end(); it++) {
+			for (auto id = it->begin(); id != it->end(); id++) {
+				(**id).render(renderer, camera);
+			}
 		}
 	}
 }

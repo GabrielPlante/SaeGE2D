@@ -15,7 +15,7 @@ public:
 	void resize(double deltaW, double deltaH);
 	void resize(int w, int h);
 	//Take absolute coordinate
-	bool isInCamera(const Rectangle& object) const;
+	bool isInCamera(const Rectangle& object) const { return camera.overlap(object); };
 	~Camera();
 private:
 	Rectangle camera;

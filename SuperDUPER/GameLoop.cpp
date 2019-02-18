@@ -24,6 +24,7 @@ bool GameLoop::update() {
 	gameWindow.clear();//Then clear the screen
 	//Then put everything in the renderer
 
+
 	map.render(gameWindow.getRenderer(), gameWindow.getCamera());
 
 	renderEntities(gameWindow.getRenderer(), gameWindow.getCamera());

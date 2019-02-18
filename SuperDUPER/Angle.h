@@ -32,13 +32,6 @@ struct Angle
 	bool operator==(const Angle other) const {
 		return angle == other.get();
 	}
-
-	double operator+(const Angle other) const {
-		Angle newAngle{ angle };
-		newAngle.add(other);
-		return newAngle.get();
-	}
-
 private:
 	double angle;
 };

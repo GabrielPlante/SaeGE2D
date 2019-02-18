@@ -59,7 +59,7 @@ bool LifeForm::refresh() {
 
 		}
 	}
-	return false;
+	return !isAlive();
 }
 
 bool LifeForm::rawMovement(const Destination& destination, const int speed, const long long deltaTime) {
@@ -146,7 +146,7 @@ bool LifeForm::isInSight(const Position<double>& entity) const {
 
 bool LifeForm::takeDamage(int amount) {
 	healthPoint -= amount;
-	return isAlive();
+	return !isAlive();
 }
 
 LifeForm::~LifeForm()

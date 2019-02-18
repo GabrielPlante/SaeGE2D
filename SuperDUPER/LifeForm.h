@@ -15,7 +15,7 @@ public:
 	LifeForm(double x, double y, int speed, int healthPoint, int radius, Friendliness friendliness = Friendliness::Neutral,
 		double facingDirection = 0, double rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
-	bool refresh() override;//Method to call each frame
+	bool refresh() override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//void move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
 	//void rotate(double directionAngle, double rotatingSpeed);//Same as move but for the rotation
 	bool rawMovement(const Destination& destination, const int speed, const long long deltaTime);//Raw mean that the method doesn't change any boolean attribute

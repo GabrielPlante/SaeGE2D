@@ -2,8 +2,8 @@
 
 
 
-Projectile::Projectile(double speed, Angle facingDirection, int range, Position<double> position)
-	:speed{ speed }, facingDirection{ facingDirection }, range{ range }, position{ position }
+Projectile::Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<double> position)
+	: Item{ name, encumbrance }, facingDirection{ facingDirection }, position{ position }
 {
 }
 

@@ -2,21 +2,23 @@
 #include <SDL.h>
 #include "Camera.h"
 #include "Angle.h"
-class Projectile
+#include "Item.h"
+#include <vector>
+#include <memory>
+class Map;
+class LifeForm;
+class Projectile :
+	public Item
 {
 public:
-	Projectile(double speed, Angle facingDirection, int range, Position<double> position);
+	Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<double> position);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
-	virtual bool refresh() = 0;//Return true if the projectile doesn't exist anymore
+	virtual bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float speed, int range) = 0;//Return true if the projectile doesn't exist anymore
 	const Position<double>& getPosition() const { return position; }
 	Angle getFacingDirection() const { return facingDirection; }
 	~Projectile();
 private:
-	double speed;
 	Angle facingDirection;
-	int range;
 	Position<double> position;
-
-
 };
 

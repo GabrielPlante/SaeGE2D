@@ -123,7 +123,7 @@
       <Filter>Source Files\Item</Filter>
     </ClCompile>
     <ClCompile Include="BasicBow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +200,7 @@
       <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="BasicBow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

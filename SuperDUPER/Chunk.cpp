@@ -9,16 +9,16 @@ Map::Chunk::Chunk(int x, int y)
 	constexpr int tilePosChange = chunkSize * Tile::tileSize;
 	for (int i = 0; i != chunkSize; i++) {
 		for (int j = 0; j != chunkSize; j++) {
-			tiles[i][j] = std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
+			tiles[i].insert(std::make_pair(j, std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange })));
 		}
 	}
 }
 
 void Map::Chunk::render(SDL_Renderer* renderer, const Camera& camera) const {
 	if (camera.isInCamera(Rectangle(position.x, position.y, chunkSize*Tile::tileSize, chunkSize*Tile::tileSize))) {
-		for (auto it = tiles.begin(); it != tiles.end(); it++) {
-			for (auto id = it->begin(); id != it->end(); id++) {
-				(**id).render(renderer, camera);
+		for (auto const& it : tiles) {
+			for (auto const& id : it.second) {
+				id.second->render(renderer, camera);
 			}
 		}
 	}

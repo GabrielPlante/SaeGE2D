@@ -6,14 +6,6 @@ BedRock::BedRock(int x, int y)
 {
 }
 
-bool BedRock::isDestructible() {
-	return false;
-}
-
-bool BedRock::isWalkable() {
-	return false;
-}
-
 BedRock::~BedRock()
 {
 }

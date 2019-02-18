@@ -5,8 +5,9 @@ class DefaultTile :
 {
 public:
 	DefaultTile(int x, int y);
-	bool isWalkable() override;
-	bool isDestructible() override;
+	bool isWalkable() override { return true; }
+	bool isDestructible() override { return false; }
+	bool isTraversable() override { return true; }
 	~DefaultTile();
 };
 

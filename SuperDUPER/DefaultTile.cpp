@@ -7,14 +7,6 @@ DefaultTile::DefaultTile(int x, int y)
 {
 }
 
-bool DefaultTile::isWalkable() {
-	return true;
-}
-
-bool DefaultTile::isDestructible() {
-	return false;
-}
-
 DefaultTile::~DefaultTile()
 {
 }

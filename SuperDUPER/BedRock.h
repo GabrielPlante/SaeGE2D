@@ -5,8 +5,9 @@ class BedRock :
 {
 public:
 	BedRock(int x, int y);
-	bool isWalkable() override;
-	bool isDestructible() override;
+	bool isWalkable() override { return false; }
+	bool isDestructible() override { return false; }
+	bool isTraversable() override { return false; }
 	~BedRock();
 };
 

@@ -35,10 +35,8 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 		inHandWeapon->refresh(map, lifeForms, deltaTime);
 
 	if (isTurning) {//Treat hard turn (turning without moving)
-		const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
-		if (rawRotation(directionAngle.get(), rotatingSpeed, deltaTime))
+		if (facingDirection.rotate(directionAngle, rotatingSpeed, deltaTime))
 			isTurning = false;
-		timeAtLastMovement = std::chrono::high_resolution_clock::now();
 	}
 	//Turning prevent from moving
 	else if (!(destination.getCoordinate() == position)) {
@@ -52,19 +50,15 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 			Angle angle = position.angle(destination.getCoordinate());
 			if (angle.get() < facingDirection.get() - deltaAngle && angle.get() > facingDirection.get() + deltaAngle)
 				facingDirection = angle;
-			const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
 			rawMovement(destination, actualSpeed, deltaTime);
-			timeAtLastMovement = std::chrono::high_resolution_clock::now();
-
 		}
 	}
 	return !isAlive();
 }
 
-bool LifeForm::rawMovement(const Destination& destination, const int speed, const long long deltaTime) {
-	constexpr float dividingSpeedFactor{ 1000 * 1000 };//This will divide the speed of every lifeform in the game;
+bool LifeForm::rawMovement(const Destination& destination, const int speed, float deltaTime) {
 	//The division of the operation to get the movement according to x and y
-	const float dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2)) * dividingSpeedFactor;
+	const float dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2));
 	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
 	const float movementX = (destination.getCoordinate().x - position.x) * deltaTime * speed / dividingMovementFactor;
 	if (movementX > abs(destination.getCoordinate().x - position.x)) {//If the destination.getCoordinate() is reached
@@ -79,29 +73,6 @@ bool LifeForm::rawMovement(const Destination& destination, const int speed, cons
 	}
 }
 
-bool LifeForm::rawRotation(Angle directionAngle, float rotatingSpeed, const long long deltaTime) {
-	constexpr float PI{ 3.14159265f };
-	constexpr float dividingRotateFactor{ 10*1000 };
-	rotatingSpeed *= deltaTime / dividingRotateFactor;
-
-	float angleDifference = directionAngle.difference(facingDirection);
-
-	int angleSign = 1;//Sign of the angle (1 or -1)
-	if (angleDifference != 0)
-		angleSign = static_cast<int>(abs(angleDifference) / angleDifference);
-
-	if (abs(angleDifference) < rotatingSpeed) {//check if the lifeform finish rotating
-		facingDirection.set(directionAngle);
-	}
-	else {
-		facingDirection.add(rotatingSpeed * angleSign);//Rotate the correct way
-	}
-	if (directionAngle == facingDirection) {//If the turn is finished, we declare it as such
-		return true;
-	}
-	return false;
-}
-
 void LifeForm::setDestination(const Destination& destination) {
 	if (position == destination.getCoordinate())
 		return;
@@ -112,7 +83,6 @@ void LifeForm::setDestination(const Destination& destination) {
 void LifeForm::setRotatingDestination(const Destination& destination) {
 	if (position == destination.getCoordinate())
 		return;
-	timeAtLastMovement = std::chrono::high_resolution_clock::now();
 	directionAngle = position.angle(destination.getCoordinate());
 	isTurning = true;
 }

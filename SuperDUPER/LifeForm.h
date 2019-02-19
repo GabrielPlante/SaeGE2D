@@ -20,8 +20,7 @@ public:
 	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//void move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
 	//void rotate(float directionAngle, float rotatingSpeed);//Same as move but for the rotation
-	bool rawMovement(const Destination& destination, const int speed, const long long deltaTime);//Raw mean that the method doesn't change any boolean attribute
-	bool rawRotation(Angle directionAngle, float rotatingSpeed, const long long deltaTime);
+	bool rawMovement(const Destination& destination, const int speed, float deltaTime);//Raw mean that the method doesn't change any boolean attribute
 	void setDestination(const Destination& destination);
 	void setRotatingDestination(const Destination& destination);
 	void attack(Position<> pointOfAttack);
@@ -56,8 +55,6 @@ private:
 	Destination destination = Destination(this);
 	bool isTurning = false;
 	bool isAttacking = false;
-	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastMovement;
-	//std::vector<std::unique_ptr<Item>> backpack;
 	std::unique_ptr<Weapon> inHandWeapon;//Item 
 	int maxEncumbrance;
 	Friendliness friendliness;

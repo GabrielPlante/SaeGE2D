@@ -30,9 +30,9 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 		inHandWeapon->render(renderer, camera, *this);
 }
 
-bool LifeForm::refresh() {
+bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms) {
 	if (inHandWeapon)
-		inHandWeapon->refresh();
+		inHandWeapon->refresh(map, lifeForms);
 
 	if (isTurning) {//Treat hard turn (turning without moving)
 		const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
@@ -44,8 +44,7 @@ bool LifeForm::refresh() {
 	else if (!(destination.getCoordinate() == position)) {
 		//If it's moving or attacking and out of range
 		if (isAttacking && inHandWeapon && position.distanceSquared(destination.getCoordinate()) < pow(inHandWeapon->getRange(), 2)) {
-			if (destination.getEntity())
-				attack(destination.getEntity());
+			attack(Position<>{static_cast<long>(destination.getCoordinate().x), static_cast<long>(destination.getCoordinate().y)});
 			isAttacking = false;
 			clearDestination();
 		}
@@ -118,17 +117,17 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 	isTurning = true;
 }
 
-void LifeForm::attack(LifeForm* lifeForm) {
+void LifeForm::attack(Position<> pointOfAttack) {
 	if (inHandWeapon) {
 		//If the target is out of range
-		if (position.distanceSquared(lifeForm->getPosition()) > pow(inHandWeapon->getRange(), 2)){
-			setDestination(lifeForm);
+		if (position.distanceSquared(pointOfAttack) > pow(inHandWeapon->getRange(), 2)){
+			setDestination(pointOfAttack);
 			isAttacking = true;
 		}
 		else {
-			Angle angle = position.angle(lifeForm->getPosition());
+			Angle angle = position.angle(Position<double>{static_cast<double>(pointOfAttack.x), static_cast<double>(pointOfAttack.y)});
 			if (angle.get() - deltaAngle > facingDirection.get() || angle.get() + deltaAngle < facingDirection.get()) {
-				setDestination(lifeForm);
+				setDestination(pointOfAttack);
 				isAttacking = true;
 			}
 			else {

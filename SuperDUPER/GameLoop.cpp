@@ -10,7 +10,7 @@ GameLoop::GameLoop()
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	player.takeWeaponInHand(std::unique_ptr<Weapon> {new BasicBow{ map, lifeForms }});
+	player.takeWeaponInHand(std::unique_ptr<Weapon> {new BasicBow{}});
 }
 
 bool GameLoop::update() {
@@ -49,10 +49,10 @@ void GameLoop::refreshEntities() {
 	if (lifeFormsSize) {
 		std::unique_ptr<LifeForm>* lifeFormsPtr = &lifeForms[0];
 		for (int i = 0; i != lifeFormsSize; i++) {
-			lifeFormsPtr[i]->refresh();
+			lifeFormsPtr[i]->refresh(map, lifeForms);
 		}
 	}
-	player.refresh();
+	player.refresh(map, lifeForms);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {

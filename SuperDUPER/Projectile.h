@@ -22,5 +22,6 @@ public:
 private:
 	Angle facingDirection;
 	Position<double> position;
+	Position<double> startingPosition;
 };
 

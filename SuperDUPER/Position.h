@@ -33,6 +33,9 @@ struct Position
 	int distanceSquared(const Position<double> destination) const {
 		return static_cast<int>(pow(x - destination.x, 2) + pow(y - destination.y, 2));
 	}
+	int distanceSquared(const Position<> destination) const {
+		return distanceSquared(Position<double>{static_cast<double>(destination.x), static_cast<double>(destination.y)});
+	}
 	bool operator==(const Position<T>& other) {
 		return x == other.x && y == other.y;
 	}

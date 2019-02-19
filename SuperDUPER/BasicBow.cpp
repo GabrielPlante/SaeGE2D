@@ -4,8 +4,8 @@
 
 
 
-BasicBow::BasicBow(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms)
-	:RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, 300, map, lifeForms }
+BasicBow::BasicBow()
+	:RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, 300 }
 {
 }
 

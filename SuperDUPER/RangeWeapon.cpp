@@ -1,8 +1,8 @@
 #include "RangeWeapon.h"
 
 
-RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed, const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms)
-	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileSpeed{ projectileSpeed }, map{ map }, lifeForms{ lifeForms }
+RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed)
+	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileSpeed{ projectileSpeed }
 {
 	timeAtLastFrame = std::chrono::high_resolution_clock::now();
 }
@@ -14,7 +14,7 @@ void RangeWeapon::render(SDL_Renderer* renderer, const Camera& camera, const Lif
 	}
 }
 
-bool RangeWeapon::refresh() {
+bool RangeWeapon::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms) {
 	long long deltaTime;
 	if (!projectiles.empty())
 		deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastFrame).count();

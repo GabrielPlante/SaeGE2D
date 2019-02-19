@@ -20,14 +20,13 @@ void Event::mouseEvent(Character* player, const Camera& camera, const std::vecto
 		int x, y;
 		SDL_GetMouseState(&x, &y);//Get the position of the mouse
 		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };//Convert x & y to absolute position
+		if (event.button.button == SDL_BUTTON_LEFT)
+			player->attack(absolutePosition);
 		bool clickedOnEntity = false;
 		for (auto it = lifeFormsList.begin(); it != lifeFormsList.end(); it++) {
 			if ((**it).pointIsOnThis(absolutePosition) && player->isInSight((**it).getPosition())) {
 				if (event.button.button == SDL_BUTTON_RIGHT) {
 					player->setDestination(&(**it));
-				}
-				else {
-					player->attack(&(**it));
 				}
 				clickedOnEntity = true;
 				break;

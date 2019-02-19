@@ -6,7 +6,7 @@ class BasicSword :
 public:
 	BasicSword();
 	void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const override;
-	bool refresh() override { return false; }
+	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms) override { return false; }
 	~BasicSword();
 };
 

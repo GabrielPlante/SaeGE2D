@@ -7,11 +7,13 @@ MeleeWeapon::MeleeWeapon(const std::string& name, int encumbrance, int baseDamag
 {
 }
 
-bool MeleeWeapon::attack(LifeForm* lifeForm) {
-	if (!Weapon::attack(lifeForm))
+bool MeleeWeapon::attack(LifeForm* owner) {
+	if (!Weapon::attack(owner))
 		return false;
-	lifeForm->takeDamage(getBaseDamage());
+	/*lifeForm->takeDamage(getBaseDamage());
 	return true;
+	**TODO Need to be changed to a slice in front of the owner and a check to everything it touch
+	*/
 }
 
 MeleeWeapon::~MeleeWeapon()

@@ -126,7 +126,7 @@
       <Filter>Source Files\Item</Filter>
     </ClCompile>
     <ClCompile Include="BasicArrow.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +209,7 @@
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
     <ClInclude Include="BasicArrow.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

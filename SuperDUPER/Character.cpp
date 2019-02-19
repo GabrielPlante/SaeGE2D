@@ -14,8 +14,8 @@ void Character::render(SDL_Renderer* renderer, const Camera& camera) const {
 	}
 }
 
-bool Character::refresh() {
-	LifeForm::refresh();
+bool Character::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms) {
+	LifeForm::refresh(map, lifeForms);
 	return false;
 }
 

@@ -4,7 +4,7 @@ class BasicBow :
 	public RangeWeapon
 {
 public:
-	BasicBow(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms);
+	BasicBow();
 	void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const override;
 	bool attack(LifeForm* lifeForm) override;
 	~BasicBow();

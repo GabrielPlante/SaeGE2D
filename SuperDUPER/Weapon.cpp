@@ -7,7 +7,7 @@ Weapon::Weapon(const std::string& name, int encumbrance, int baseDamage, int ran
 {
 }
 
-bool Weapon::attack(LifeForm* lifeForm) {
+bool Weapon::attack(LifeForm* owner) {
 	const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastHit).count() };
 	if (deltaTime < static_cast<long long>(fireRate * 1000 * 1000))
 		return false;

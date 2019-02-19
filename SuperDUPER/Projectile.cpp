@@ -6,6 +6,8 @@
 Projectile::Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<double> position)
 	: Item{ name, encumbrance }, facingDirection{ facingDirection }, position{ position }
 {
+	startingPosition.x = static_cast<long>(position.x);
+	startingPosition.y = static_cast<long>(position.y);
 }
 
 bool Projectile::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float speed, int range,
@@ -24,6 +26,9 @@ bool Projectile::refresh(const Map& map, const std::vector<std::unique_ptr<LifeF
 	}
 	position.x = x;
 	position.y = y;
+	//Check the range
+	if (position.distanceSquared(startingPosition) > pow(range, 2))
+		return true;
 	return false;
 }
 

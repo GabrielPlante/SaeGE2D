@@ -1,8 +1,8 @@
 #pragma once
-constexpr double PI = 3.14159265;
+constexpr float PI = 3.14159265f;
 struct Angle
 {
-	Angle(double angle = 0) : angle{ angle } {
+	Angle(float angle = 0) : angle{ angle } {
 		if (angle < 0 || angle > 2 * PI)
 			add(0);
 	}
@@ -13,15 +13,15 @@ struct Angle
 		while (angle > 2 * PI)
 			angle -= 2 * PI;
 	}
-	double get() const { return angle; }
-	double toDegree() const { return 180 * angle / PI; }
+	float get() const { return angle; }
+	float toDegree() const { return 180 * angle / PI; }
 	void set(Angle angle) {
 		this->angle = angle.get();
 		if (angle.get() < 0 || angle.get() > 2 * PI)
 			add(0);
 	}
-	double difference(const Angle other) const {//Result in [-PI;PI]
-		double angleDifference = angle - other.get();
+	float difference(const Angle other) const {//Result in [-PI;PI]
+		float angleDifference = angle - other.get();
 		if (angleDifference < -PI)//Make 4 cases 2
 			angleDifference += 2 * PI;
 		else if (angleDifference > PI)
@@ -33,6 +33,6 @@ struct Angle
 		return angle == other.get();
 	}
 private:
-	double angle;
+	float angle;
 };
 

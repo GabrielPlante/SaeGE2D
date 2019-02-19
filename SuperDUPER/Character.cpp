@@ -3,7 +3,7 @@
 
 
 Character::Character(int x, int y, Color color)
-	:LifeForm(x, y, 300, 500, 10) {
+	:LifeForm(static_cast<float>(x), static_cast<float>(y), 300, 500, 10) {
 	shape = std::unique_ptr<Renderable>{ new Circle(x, y, radius, color) };
 }
 
@@ -14,8 +14,8 @@ void Character::render(SDL_Renderer* renderer, const Camera& camera) const {
 	}
 }
 
-bool Character::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms) {
-	LifeForm::refresh(map, lifeForms);
+bool Character::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+	LifeForm::refresh(map, lifeForms, deltaTime);
 	return false;
 }
 

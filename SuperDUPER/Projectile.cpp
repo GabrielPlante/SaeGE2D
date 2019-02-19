@@ -3,31 +3,26 @@
 
 
 
-Projectile::Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<double> position)
-	: Item{ name, encumbrance }, facingDirection{ facingDirection }, position{ position }
+Projectile::Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<float> position)
+	: Item{ name, encumbrance }, movement{ position, facingDirection }
 {
-	startingPosition.x = static_cast<long>(position.x);
-	startingPosition.y = static_cast<long>(position.y);
+	startingPosition.x = static_cast<float>(position.x);
+	startingPosition.y = static_cast<float>(position.y);
 }
 
 bool Projectile::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float speed, int range,
-	long long deltaTime, int damage) {
+	float deltaTime, int damage) {
 	//First calculate where the projectile will land
-	const double multiplyingFactor = speed * deltaTime / (1000 * 1000);
-	const double x = cos(facingDirection.get())*multiplyingFactor + position.x;
-	const double y = sin(facingDirection.get())*multiplyingFactor + position.y;
+	movement.move(speed, deltaTime);
 	//check for everything
 	for (auto it = lifeForms.begin(); it != lifeForms.end(); it++) {
-		if (position.lineIntersectWithCircle(Position<>(x, y), Position<>(static_cast<long>((**it).getPosition().x), static_cast<long>((**it).getPosition().y))
-			, (**it).getRadius())) {
+		if ((**it).pointIsOnThis(Position<>{static_cast<long>(movement.getPosition().x), static_cast<long>(movement.getPosition().y)})) {
 			(**it).takeDamage(damage);
 			return true;
 		}
 	}
-	position.x = x;
-	position.y = y;
 	//Check the range
-	if (position.distanceSquared(startingPosition) > pow(range, 2))
+	if (movement.getPosition().distanceSquared(startingPosition) > pow(range, 2))
 		return true;
 	return false;
 }

@@ -5,7 +5,7 @@ class BasicArrow :
 	public Projectile
 {
 public:
-	BasicArrow(Angle facingDirection, Position<double> position);
+	BasicArrow(Angle facingDirection, Position<float> position);
 	void render(SDL_Renderer* renderer, const Camera& camera) const;
 	~BasicArrow();
 };

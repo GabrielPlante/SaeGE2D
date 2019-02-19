@@ -211,6 +211,9 @@
     <ClInclude Include="BasicArrow.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\codemirror-3.01\mode\xml.js">

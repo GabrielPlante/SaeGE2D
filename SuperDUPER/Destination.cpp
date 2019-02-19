@@ -14,11 +14,11 @@ Destination::Destination(LifeForm* entity)
 {
 }
 
-Position<double> Destination::getCoordinate() const {
+Position<float> Destination::getCoordinate() const {
 	if (entity != nullptr)
 		return entity->getPosition();
 	else//There is surely something better to do
-		return Position<double>{static_cast<double>(coordinate.x), static_cast<double>(coordinate.y)};
+		return Position<float>{static_cast<float>(coordinate.x), static_cast<float>(coordinate.y)};
 }
 
 Destination::~Destination()

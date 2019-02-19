@@ -2,7 +2,7 @@
 
 
 
-BasicArrow::BasicArrow(Angle facingDirection, Position<double> position)
+BasicArrow::BasicArrow(Angle facingDirection, Position<float> position)
 	:Projectile{ "Basic Arrow", 5, facingDirection, position }
 {
 }

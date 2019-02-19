@@ -6,6 +6,7 @@ constexpr int SCREEH_HEIGHT{ 600 };
 GameLoop::GameLoop()
 	:map{}, player{ 100, 100, Color(0, 0, 255) }, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
 {
+	timeAtLastFrame = std::chrono::high_resolution_clock::now();
 	//test
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
@@ -45,14 +46,17 @@ bool GameLoop::handleEvent(Event& event) {
 }
 
 void GameLoop::refreshEntities() {
+	float deltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastFrame).count())
+		/ (1000 * 1000);
+	timeAtLastFrame = std::chrono::high_resolution_clock::now();
 	int lifeFormsSize = lifeForms.size();
 	if (lifeFormsSize) {
 		std::unique_ptr<LifeForm>* lifeFormsPtr = &lifeForms[0];
 		for (int i = 0; i != lifeFormsSize; i++) {
-			lifeFormsPtr[i]->refresh(map, lifeForms);
+			lifeFormsPtr[i]->refresh(map, lifeForms, deltaTime);
 		}
 	}
-	player.refresh(map, lifeForms);
+	player.refresh(map, lifeForms, deltaTime);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {

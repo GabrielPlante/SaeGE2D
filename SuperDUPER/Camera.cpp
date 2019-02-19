@@ -22,7 +22,7 @@ Position<> Camera::absoluteToRelative(long int x, long int y) const {
 	return Position<>{ x - camera.x, y - camera.y };
 }
 
-void Camera::resize(double deltaW, double deltaH) {
+void Camera::resize(float deltaW, float deltaH) {
 	camera.w = static_cast<int>(camera.w*deltaW);
 	camera.h = static_cast<int>(camera.h*deltaH);
 }

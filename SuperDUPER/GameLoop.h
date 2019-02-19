@@ -22,5 +22,6 @@ private:
 	std::vector<std::unique_ptr<LifeForm>> lifeForms;
 	Character player;
 	Uint32 timeSinceGameStart;
+	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastFrame;
 };
 

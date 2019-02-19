@@ -7,7 +7,7 @@ public:
 	Destination();
 	Destination(Position<> coordinate);
 	Destination(LifeForm* entity);
-	Position<double> getCoordinate() const;
+	Position<float> getCoordinate() const;
 	LifeForm* getEntity() const { return entity; }
 	~Destination();
 private:

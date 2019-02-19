@@ -1,13 +1,13 @@
 #include "LifeForm.h"
 
-constexpr float deltaAngle = 0.1f;
+constexpr float deltaAngle = 0.001f;
 
 int LifeForm::idCount = 0;
 
-LifeForm::LifeForm(double x, double y, int speed, int healthPoint, int radius, Friendliness friendliness,
-	double directionAngle, double rotatingSpeed, int sightRange, float sightArea)
+LifeForm::LifeForm(float x, float y, int speed, int healthPoint, int radius, Friendliness friendliness,
+	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
 	:Entity(x, y), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint }, radius{ radius }, friendliness{ friendliness },
-	facingDirection{ facingDirection }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
+	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
 	sightArea{ sightArea }, id{ idCount }
 {
 	idCount++;
@@ -30,9 +30,9 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 		inHandWeapon->render(renderer, camera, *this);
 }
 
-bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms) {
+bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
 	if (inHandWeapon)
-		inHandWeapon->refresh(map, lifeForms);
+		inHandWeapon->refresh(map, lifeForms, deltaTime);
 
 	if (isTurning) {//Treat hard turn (turning without moving)
 		const long long deltaTime{ std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastMovement).count() };
@@ -62,11 +62,11 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 }
 
 bool LifeForm::rawMovement(const Destination& destination, const int speed, const long long deltaTime) {
-	constexpr double dividingSpeedFactor{ 1000 * 1000 };//This will divide the speed of every lifeform in the game;
+	constexpr float dividingSpeedFactor{ 1000 * 1000 };//This will divide the speed of every lifeform in the game;
 	//The division of the operation to get the movement according to x and y
-	const double dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2)) * dividingSpeedFactor;
+	const float dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2)) * dividingSpeedFactor;
 	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
-	const double movementX = (destination.getCoordinate().x - position.x) * deltaTime * speed / dividingMovementFactor;
+	const float movementX = (destination.getCoordinate().x - position.x) * deltaTime * speed / dividingMovementFactor;
 	if (movementX > abs(destination.getCoordinate().x - position.x)) {//If the destination.getCoordinate() is reached
 		position.x = destination.getCoordinate().x;
 		position.y = destination.getCoordinate().y;
@@ -79,12 +79,12 @@ bool LifeForm::rawMovement(const Destination& destination, const int speed, cons
 	}
 }
 
-bool LifeForm::rawRotation(Angle directionAngle, double rotatingSpeed, const long long deltaTime) {
-	constexpr double PI{ 3.14159265 };
-	constexpr double dividingRotateFactor{ 10*1000 };
+bool LifeForm::rawRotation(Angle directionAngle, float rotatingSpeed, const long long deltaTime) {
+	constexpr float PI{ 3.14159265f };
+	constexpr float dividingRotateFactor{ 10*1000 };
 	rotatingSpeed *= deltaTime / dividingRotateFactor;
 
-	double angleDifference = directionAngle.difference(facingDirection);
+	float angleDifference = directionAngle.difference(facingDirection);
 
 	int angleSign = 1;//Sign of the angle (1 or -1)
 	if (angleDifference != 0)
@@ -125,7 +125,7 @@ void LifeForm::attack(Position<> pointOfAttack) {
 			isAttacking = true;
 		}
 		else {
-			Angle angle = position.angle(Position<double>{static_cast<double>(pointOfAttack.x), static_cast<double>(pointOfAttack.y)});
+			Angle angle = position.angle(Position<float>{static_cast<float>(pointOfAttack.x), static_cast<float>(pointOfAttack.y)});
 			if (angle.get() - deltaAngle > facingDirection.get() || angle.get() + deltaAngle < facingDirection.get()) {
 				setDestination(pointOfAttack);
 				isAttacking = true;
@@ -137,8 +137,8 @@ void LifeForm::attack(Position<> pointOfAttack) {
 	}
 }
 
-bool LifeForm::isInSight(const Position<double>& entity) const {
-	constexpr double PI = 3.14159265;
+bool LifeForm::isInSight(const Position<float>& entity) const {
+	constexpr float PI = 3.14159265f;
 	Angle angleEntityPlayer = facingDirection.difference(position.angle(entity));
 	angleEntityPlayer.add(0);
 	return (angleEntityPlayer.get() <= sightArea || angleEntityPlayer.get() >= 2 * PI - sightArea);
@@ -147,8 +147,4 @@ bool LifeForm::isInSight(const Position<double>& entity) const {
 bool LifeForm::takeDamage(int amount) {
 	healthPoint -= amount;
 	return !isAlive();
-}
-
-LifeForm::~LifeForm()
-{
 }

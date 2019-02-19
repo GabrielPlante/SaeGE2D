@@ -2,7 +2,7 @@
 #include "Map.h"
 
 
-Entity::Entity(double x, double y)
+Entity::Entity(float x, float y)
 {
 	position.x = x;
 	position.y = y;

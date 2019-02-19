@@ -131,8 +131,9 @@ void LifeForm::attack(LifeForm* lifeForm) {
 				setDestination(lifeForm);
 				isAttacking = true;
 			}
-			else
-				inHandWeapon->attack(lifeForm);
+			else {
+				inHandWeapon->attack(this);
+			}
 		}
 	}
 }

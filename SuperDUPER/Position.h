@@ -36,5 +36,13 @@ struct Position
 	bool operator==(const Position<T>& other) {
 		return x == other.x && y == other.y;
 	}
+	bool lineIntersectWithCircle(Position<> endLine, Position<> circlePos, int circleRad) {
+		long x1 = static_cast<long>(x);
+		long y1 = static_cast<long>(y);
+		if (x1 != endLine.x || y1 != endLine.y)
+			return pow((endLine.x - x1)*circlePos.x + (y1 - endLine.y)*circlePos.y + (x1 - endLine.x)*circlePos.y + (endLine.y - y1)*x1, 2)
+				/ (pow(endLine.x - x1, 2) + pow(y1 - endLine.y, 2)) <= pow(circleRad, 2);
+		return pow(x1 - circlePos.x, 2) + pow(y1 - circlePos.y, 2) <= pow(circleRad, 2);
+	}
 };
 

@@ -1,9 +1,11 @@
 #include "BasicBow.h"
+#include "LifeForm.h"
+#include "BasicArrow.h"
 
 
 
 BasicBow::BasicBow(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms)
-	:RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, 1000, map, lifeForms }
+	:RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, 300, map, lifeForms }
 {
 }
 
@@ -11,12 +13,11 @@ void BasicBow::render(SDL_Renderer* renderer, const Camera& camera, const LifeFo
 	RangeWeapon::render(renderer, camera, owner);
 }
 
-
-bool BasicBow::refresh() {
-	return RangeWeapon::refresh();
-}
-
 bool BasicBow::attack(LifeForm* lifeForm) {
+	if (!Weapon::attack(lifeForm))
+		return false;
+	std::unique_ptr<Projectile> arrow{ new BasicArrow(lifeForm->getFacingDirection(), lifeForm->getPosition()) };
+	projectiles.push_back(std::move(arrow));
 	return false;
 }
 

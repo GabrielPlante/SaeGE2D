@@ -1,10 +1,10 @@
 #include "RangeWeapon.h"
 
 
-
 RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed, const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms)
 	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileSpeed{ projectileSpeed }, map{ map }, lifeForms{ lifeForms }
 {
+	timeAtLastFrame = std::chrono::high_resolution_clock::now();
 }
 
 //Render all the projectiles
@@ -15,9 +15,13 @@ void RangeWeapon::render(SDL_Renderer* renderer, const Camera& camera, const Lif
 }
 
 bool RangeWeapon::refresh() {
+	long long deltaTime;
+	if (!projectiles.empty())
+		deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastFrame).count();
+	timeAtLastFrame = std::chrono::high_resolution_clock::now();
 	auto it = projectiles.begin();
 	while (it != projectiles.end()) {
-		if ((**it).refresh(map, lifeForms, projectileSpeed, getRange()))//Refresh the projectile and check if it's still alive
+		if ((**it).refresh(map, lifeForms, projectileSpeed, getRange(), deltaTime, getBaseDamage()))//Refresh the projectile and check if it's still alive
 			it = projectiles.erase(it);
 		else
 			it++;

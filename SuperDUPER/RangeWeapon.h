@@ -12,14 +12,13 @@
 class RangeWeapon :
 	public Weapon
 {
-public:
-	RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed, std::unique_ptr<Projectile> projectileType);
+public://TODO unduplicate range and damage information
+	RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, std::unique_ptr<Projectile> projectileType);
 	void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const;
 	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float);
 	bool attack(LifeForm* lifeForm) override;
 	~RangeWeapon();
 private:
-	float projectileSpeed;
 	std::list<std::unique_ptr<Projectile>> projectiles;
 	//This projectile is used as a model and is cloned each time the player fire
 	std::unique_ptr<Projectile> projectileType;

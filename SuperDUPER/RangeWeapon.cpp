@@ -3,8 +3,8 @@
 #include "LifeForm.h"
 
 
-RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed, std::unique_ptr<Projectile> projectileType)
-	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileSpeed{ projectileSpeed }, projectileType{ std::move(projectileType) }
+RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, std::unique_ptr<Projectile> projectileType)
+	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileType{ std::move(projectileType) }
 {
 }
 
@@ -18,7 +18,7 @@ void RangeWeapon::render(SDL_Renderer* renderer, const Camera& camera, const Lif
 bool RangeWeapon::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
 	auto it = projectiles.begin();
 	while (it != projectiles.end()) {
-		if ((**it).refresh(map, lifeForms, projectileSpeed, getRange(), deltaTime, getBaseDamage()))//Refresh the projectile and check if it's still alive
+		if ((**it).refresh(map, lifeForms, deltaTime))//Refresh the projectile and check if it's still alive
 			it = projectiles.erase(it);
 		else
 			it++;
@@ -29,7 +29,7 @@ bool RangeWeapon::refresh(const Map& map, const std::vector<std::unique_ptr<Life
 bool RangeWeapon::attack(LifeForm* lifeForm) {
 	if (!Weapon::attack(lifeForm))
 		return false;
-	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition()));
+	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition(), projectileType->getSpeed(), projectileType->getRange(), projectileType->getDamage()));
 	return false;
 }
 

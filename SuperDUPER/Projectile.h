@@ -9,21 +9,29 @@
 #include "Movement.h"
 class Map;
 class LifeForm;
+/*
+ * Projectile is derived in different type of projectile (arrow-like, grenade-like...), each have to implement render and clone
+*/
 class Projectile :
 	public Item
 {
 public:
-	Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<float> position);
+	Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<float> position, unsigned short speed, unsigned short range, unsigned short damage);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
-	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, int speed, int range,
-		float deltaTime, int damage);//Return true if the projectile doesn't exist anymore
-	virtual std::unique_ptr<Projectile> clone(Angle facingDirection, Position<float> position) const = 0;
+	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime);//Return true if the projectile doesn't exist anymore
+	virtual std::unique_ptr<Projectile> clone(Angle facingDirection, Position<float> position, unsigned short speed, unsigned short range, unsigned short damage) const = 0;
 	const Position<float> getPosition() const { return movement.getPosition(); }
+	unsigned short getSpeed() const { return speed; }
+	unsigned short getRange() const { return range; }
+	unsigned short getDamage() const { return damage; }
 	Angle getFacingDirection() const { return movement.getFacingDirection(); }
 	~Projectile();
 private:
 	Movement movement;
+	unsigned short speed;
+	unsigned short range;
+	unsigned short damage;
 	Position<float> startingPosition;
 };
 

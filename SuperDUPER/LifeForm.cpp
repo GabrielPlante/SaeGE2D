@@ -14,6 +14,7 @@ LifeForm::LifeForm(float x, float y, int speed, int healthPoint, int radius, Fri
 }
 
 void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
+	Entity::render(renderer, camera);
 	constexpr int halfLenght{ 40 };
 	constexpr int height{ 30 };
 

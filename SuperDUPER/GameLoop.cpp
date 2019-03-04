@@ -1,5 +1,6 @@
 #include "GameLoop.h"
-#include "BasicBow.h"
+#include "RangeWeapon.h"
+#include "BasicArrow.h"
 constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
 
@@ -11,7 +12,7 @@ GameLoop::GameLoop()
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	player.takeWeaponInHand(std::unique_ptr<Weapon> {new BasicBow{}});
+	player.takeWeaponInHand(std::unique_ptr<Weapon> {new RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, 300, std::unique_ptr<Projectile>{new BasicArrow{0, Position<float>{0, 0}}} }});
 }
 
 bool GameLoop::update() {

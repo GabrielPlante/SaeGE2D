@@ -15,6 +15,10 @@ void BasicArrow::render(SDL_Renderer* renderer, const Camera& camera) const {
 	SDL_RenderDrawLine(renderer, rear.x, rear.y, front.x, front.y);
 }
 
+std::unique_ptr<Projectile> BasicArrow::clone(Angle facingDirection, Position<float> position) const {
+	return std::unique_ptr<Projectile> {new BasicArrow{ facingDirection, position }};
+}
+	
 BasicArrow::~BasicArrow()
 {
 }

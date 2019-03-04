@@ -122,9 +122,6 @@
     <ClCompile Include="BasicSword.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="BasicBow.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
     <ClCompile Include="BasicArrow.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
@@ -200,9 +197,6 @@
       <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="BasicSword.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicBow.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="Angle.h">

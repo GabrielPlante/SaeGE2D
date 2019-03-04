@@ -1,8 +1,10 @@
 #include "RangeWeapon.h"
+#include "BasicArrow.h"
+#include "LifeForm.h"
 
 
-RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed)
-	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileSpeed{ projectileSpeed }
+RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, float projectileSpeed, std::unique_ptr<Projectile> projectileType)
+	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileSpeed{ projectileSpeed }, projectileType{ std::move(projectileType) }
 {
 }
 
@@ -21,6 +23,13 @@ bool RangeWeapon::refresh(const Map& map, const std::vector<std::unique_ptr<Life
 		else
 			it++;
 	}
+	return false;
+}
+
+bool RangeWeapon::attack(LifeForm* lifeForm) {
+	if (!Weapon::attack(lifeForm))
+		return false;
+	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition()));
 	return false;
 }
 

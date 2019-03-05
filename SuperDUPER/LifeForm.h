@@ -5,8 +5,11 @@
 #include "Weapon.h"
 #include <chrono>
 #include <vector>
+#include <queue>
 
 enum class Friendliness {Neutral, Friend, Enemy};
+
+enum class Action { Move, Turn, Attack };
 
 class LifeForm :
 	public Entity
@@ -17,8 +20,7 @@ public:
 		float facingDirection = 0, float rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
-	//void move(const Destination& destination, const int speed);//Move toward a direction at a certain speed, instantaneous, call setDestination to have a repercution
-	//void rotate(float directionAngle, float rotatingSpeed);//Same as move but for the rotation
+	//Return true if the destination is reached
 	bool rawMovement(const Destination& destination, const int speed, float deltaTime);//Raw mean that the method doesn't change any boolean attribute
 	void setDestination(const Destination& destination);
 	void setRotatingDestination(const Destination& destination);
@@ -38,12 +40,13 @@ public:
 	bool takeDamage(int amount);//Return true if the lifeform is alive 
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }
 	void clearDestination() { destination = Destination(this); }
+	void clearAction() { actionQueue = std::queue<Action>(); }
 private:
 	const int id;
 	static int idCount;//Each lifeForm has a unique ID
 	int actualSpeed;
-	int sightRange;//Between 0 (don't see anything) and PI (see everything)
-	float sightArea;
+	int sightRange;
+	float sightArea;//Between 0 (don't see anything) and PI (see everything)
 	int baseSpeed;//Speed unit is : pixel/sec
 	float rotatingSpeed;
 	int healthPoint;
@@ -52,11 +55,10 @@ private:
 	Angle directionAngle;//The direction the lifeform want to turn to
 	Angle facingDirection;//The direction the lifeform currently face
 	Destination destination = Destination(this);
-	bool isTurning = false;
-	bool isAttacking = false;
 	std::unique_ptr<Weapon> inHandWeapon;//Item 
 	int maxEncumbrance;
 	Friendliness friendliness;
+	std::queue<Action> actionQueue;
 protected:
 	int radius;
 };

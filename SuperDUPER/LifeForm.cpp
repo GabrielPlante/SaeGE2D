@@ -35,25 +35,25 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 	if (inHandWeapon)
 		inHandWeapon->refresh(map, lifeForms, deltaTime);
 
-	if (isTurning) {//Treat hard turn (turning without moving)
-		if (facingDirection.rotate(directionAngle, rotatingSpeed, deltaTime))
-			isTurning = false;
-	}
-	//Turning prevent from moving
-	else if (!(destination.getCoordinate() == position)) {
-		//If it's moving or attacking and out of range
-		if (isAttacking && inHandWeapon && position.distanceSquared(destination.getCoordinate()) < pow(inHandWeapon->getRange(), 2)) {
-			attack(Position<>{static_cast<long>(destination.getCoordinate().x), static_cast<long>(destination.getCoordinate().y)});
-			isAttacking = false;
-			clearDestination();
-		}
-		else {
-			Angle angle = position.angle(destination.getCoordinate());
-			if (angle.get() < facingDirection.get() - deltaAngle && angle.get() > facingDirection.get() + deltaAngle)
-				facingDirection = angle;
-			rawMovement(destination, actualSpeed, deltaTime);
+	if (actionQueue.empty())
+		return !isAlive();
+	else if (actionQueue.front() == Action::Turn) {//Treat hard turn (turning without moving)
+		if (facingDirection.rotate(directionAngle, rotatingSpeed, deltaTime)) {
+			actionQueue.pop();
 		}
 	}
+	else if (actionQueue.front() == Action::Attack && inHandWeapon) {
+		inHandWeapon->attack(this);
+		actionQueue.pop();
+	}
+	else if (actionQueue.front() == Action::Move) {
+		Angle angle = position.angle(destination.getCoordinate());
+		if (angle.get() < facingDirection.get() - deltaAngle && angle.get() > facingDirection.get() + deltaAngle)
+			facingDirection = angle;
+		if (rawMovement(destination, actualSpeed, deltaTime))
+			actionQueue.pop();
+	}
+
 	return !isAlive();
 }
 
@@ -79,31 +79,30 @@ void LifeForm::setDestination(const Destination& destination) {
 		return;
 	this->destination = destination;
 	setRotatingDestination(destination);
+
+	actionQueue.push(Action::Move);
 }
 
 void LifeForm::setRotatingDestination(const Destination& destination) {
 	if (position == destination.getCoordinate())
 		return;
 	directionAngle = position.angle(destination.getCoordinate());
-	isTurning = true;
+
+	clearAction();
+	actionQueue.push(Action::Turn);
 }
 
+//The life form attack if it is facing the good direction
 void LifeForm::attack(Position<> pointOfAttack) {
 	if (inHandWeapon) {
-		//If the target is out of range
-		if (position.distanceSquared(pointOfAttack) > pow(inHandWeapon->getRange(), 2)){
-			setDestination(pointOfAttack);
-			isAttacking = true;
+		Angle angle = position.angle(Position<float>{static_cast<float>(pointOfAttack.x), static_cast<float>(pointOfAttack.y)});
+		//If the target isn't in front of the life form
+		if (angle.get() - deltaAngle > facingDirection.get() || angle.get() + deltaAngle < facingDirection.get()) {
+			setRotatingDestination(pointOfAttack);
+			actionQueue.push(Action::Attack);
 		}
 		else {
-			Angle angle = position.angle(Position<float>{static_cast<float>(pointOfAttack.x), static_cast<float>(pointOfAttack.y)});
-			if (angle.get() - deltaAngle > facingDirection.get() || angle.get() + deltaAngle < facingDirection.get()) {
-				setDestination(pointOfAttack);
-				isAttacking = true;
-			}
-			else {
-				inHandWeapon->attack(this);
-			}
+			inHandWeapon->attack(this);
 		}
 	}
 }
@@ -111,7 +110,6 @@ void LifeForm::attack(Position<> pointOfAttack) {
 bool LifeForm::isInSight(const Position<float>& entity) const {
 	constexpr float PI = 3.14159265f;
 	Angle angleEntityPlayer = facingDirection.difference(position.angle(entity));
-	angleEntityPlayer.add(0);
 	return (angleEntityPlayer.get() <= sightArea || angleEntityPlayer.get() >= 2 * PI - sightArea);
 }
 

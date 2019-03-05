@@ -5,7 +5,6 @@
 #include "Weapon.h"
 #include <chrono>
 #include <vector>
-#include "Movement.h"
 
 enum class Friendliness {Neutral, Friend, Enemy};
 

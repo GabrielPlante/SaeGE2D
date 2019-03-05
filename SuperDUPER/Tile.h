@@ -13,6 +13,7 @@ public:
 	~Tile();
 	constexpr static int tileSize = 10;
 private:
+	Position<> position;
 	Rect tileGraphic;
 };
 

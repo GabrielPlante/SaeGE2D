@@ -9,8 +9,7 @@ Entity::Entity(float x, float y)
 }
 
 void Entity::render(SDL_Renderer* renderer, const Camera& camera) const {
-	shape->setPosition(static_cast<int>(position.x), static_cast<int>(position.y));
-	shape->render(renderer, camera);
+	shape->render(renderer, camera, Position<>{static_cast<long>(position.x), static_cast<long>(position.y)});
 }
 
 /*Position<> Entity::chunkPosition() const {

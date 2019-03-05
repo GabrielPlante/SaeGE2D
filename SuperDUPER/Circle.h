@@ -6,13 +6,13 @@
 class Circle : public Renderable
 {
 public:
-	Circle(int x, int y, int radius, Color color);
-	void render(SDL_Renderer* renderer, const Camera& viewport) const override;
-	bool pointIsIn(Position<> point) const override;
+	Circle(short radius, Color color);
+	void render(SDL_Renderer* renderer, const Camera& viewport, const Position<>& position) const override;
+	bool pointIsIn(const Position<>& point, const Position<>& position) const override;
 	~Circle();
 protected:
 	Color color;
 private:
-	int radius;
+	short radius;
 };
 

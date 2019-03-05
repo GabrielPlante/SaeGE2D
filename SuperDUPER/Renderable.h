@@ -5,13 +5,9 @@
 class Renderable
 {
 public:
-	Renderable(int x, int y);
-	virtual void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
-	void setPosition(long int x, long int y);
-	Position<> getRelativePosition(const Camera& camera) const;
-	virtual bool pointIsIn(Position<> point) const = 0;
+	Renderable();
+	virtual void render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const = 0;
+	virtual bool pointIsIn(const Position<>& point, const Position<>& position) const = 0;
 	~Renderable();
-protected:
-	Position<> position;
 };
 

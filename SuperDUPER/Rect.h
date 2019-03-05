@@ -6,12 +6,13 @@
 class Rect : public Renderable
 {
 public:
-	Rect(int x, int y, int w, int h, Color color);
-	void render(SDL_Renderer* renderer, const Camera& viewport) const override;
-	bool pointIsIn(Position<> point) const override;
+	Rect(short w, short h, Color color);
+	void render(SDL_Renderer* renderer, const Camera& viewport, const Position<>& position) const override;
+	bool pointIsIn(const Position<>& point, const Position<>& position) const override;
 	~Rect();
 protected:
-	Rectangle rect;
+	short w;
+	short h;
 	Color color;
 };
 

@@ -18,7 +18,7 @@ public:
 	virtual bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) = 0;//Return true if the entity doesn't exist anymore, else false
 	//Position<> chunkPosition() const;
 	Position<float> getPosition() const { return position; }
-	bool pointIsOnThis(Position<> point) const { return shape->pointIsIn(point); }
+	bool pointIsOnThis(Position<> point) const { return shape->pointIsIn(point, Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}); }
 	~Entity();
 protected:
 	std::unique_ptr<Renderable> shape;

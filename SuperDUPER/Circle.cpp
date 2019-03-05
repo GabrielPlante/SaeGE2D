@@ -1,18 +1,18 @@
 #include "Circle.h"
 
 
-Circle::Circle(int x, int y, int radius, Color color)
-	: Renderable(x, y), color{ color }, radius{ radius }
+Circle::Circle(short radius, Color color)
+	: Renderable(), color{ color }, radius{ radius }
 {
 }
 
-void Circle::render(SDL_Renderer* renderer, const Camera& camera) const {
+void Circle::render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const {
 	if (camera.isInCamera(Rectangle(position.x - radius, position.y - radius, radius * 2, radius * 2))) {
 		//This color will be the one of the circle
 		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
 		
 		//The position relative to the screen is used to render the circle
-		Position<> relativePosition{ getRelativePosition(camera) };
+		Position<> relativePosition{ camera.absoluteToRelative(position.x, position.y) };
 		//The middle point algorithm
 		int rad = radius;
 		int x = rad - 1;
@@ -45,7 +45,7 @@ void Circle::render(SDL_Renderer* renderer, const Camera& camera) const {
 }
 
 //Optimised way to find if a point is in the circle
-bool Circle::pointIsIn(Position<> point) const {
+bool Circle::pointIsIn(const Position<>& point, const Position<>& position) const {
 	const int dx = abs(point.x - position.x);
 	if (dx > radius) return false;
 	const int dy = abs(point.y - position.y);

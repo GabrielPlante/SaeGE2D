@@ -8,13 +8,14 @@ Character::Character(int x, int y, Color color)
 }
 
 void Character::render(SDL_Renderer* renderer, const Camera& camera) const {
-	if (isAlive()) {
+	//if (isAlive()) {
 		LifeForm::render(renderer, camera);
-	}
+	//}
 }
 
 bool Character::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
-	LifeForm::refresh(map, lifeForms, deltaTime);
+	if (LifeForm::refresh(map, lifeForms, deltaTime))
+		return true;
 	return false;
 }
 

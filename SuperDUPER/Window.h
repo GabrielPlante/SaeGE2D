@@ -7,10 +7,13 @@ class Window
 {
 public:
 	Window(const int screenWith, const int screenHeight);
-	void clear();
-	void update();
-	SDL_Renderer* getRenderer();
-	Camera& getCamera();
+	void clear() {
+		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
+		SDL_RenderClear(gRenderer);
+	}
+	void update() { SDL_RenderPresent(gRenderer); }
+	SDL_Renderer* getRenderer() { return gRenderer; }
+	Camera& getCamera() { return camera; }
 	~Window();
 private:
 	SDL_Window* gWindow{ nullptr };

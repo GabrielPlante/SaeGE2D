@@ -20,23 +20,6 @@ Window::Window(const int screenWith, const int screenHeight)
 	SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
 }
 
-void Window::clear() {
-	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
-	SDL_RenderClear(gRenderer);
-}
-
-void Window::update() {
-	SDL_RenderPresent(gRenderer);
-}
-
-SDL_Renderer* Window::getRenderer() {
-	return gRenderer;
-}
-
-Camera& Window::getCamera() {
-	return camera;
-}
-
 Window::~Window()
 {
 	//Destroy

@@ -11,7 +11,7 @@ public:
 	virtual bool isDestructible() = 0;
 	virtual bool isTraversable() = 0;//Indicate if a projectile can get past the tile
 	~Tile();
-	constexpr static int tileSize = 10;
+	constexpr static int tileSize = 30;
 private:
 	Position<> position;
 	Rect tileGraphic;

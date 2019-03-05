@@ -50,26 +50,21 @@ void GameLoop::refreshEntities() {
 	float deltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastFrame).count())
 		/ (1000 * 1000);
 	timeAtLastFrame = std::chrono::high_resolution_clock::now();
-	int lifeFormsSize = lifeForms.size();
-	if (lifeFormsSize) {
-		std::unique_ptr<LifeForm>* lifeFormsPtr = &lifeForms[0];
-		for (int i = 0; i != lifeFormsSize; i++) {
-			lifeFormsPtr[i]->refresh(map, lifeForms, deltaTime);
-		}
+	auto it = lifeForms.begin();
+	while (it != lifeForms.end()) {
+		if ((**it).refresh(map, lifeForms, deltaTime))
+			it = lifeForms.erase(it);
+		else
+			it++;
 	}
 	player.refresh(map, lifeForms, deltaTime);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
-	int lifeFormsSize = lifeForms.size();
-	if (lifeFormsSize) {
-		std::unique_ptr<LifeForm>* lifeFormsPtr = &lifeForms[0];
-		for (int i = 0; i != lifeFormsSize; i++) {
-			//Render only if the player can see it
-			if (player.isInSight(lifeFormsPtr[i]->getPosition()))
-				lifeFormsPtr[i]->render(renderer, camera);//Put all the lifeForms
-		}
-	}
+	for (auto it = lifeForms.begin(); it != lifeForms.end(); it++)
+		//Render only if the player can see it
+		if (player.isInSight((**it).getPosition()))
+			(**it).render(renderer, camera);//Put all the lifeForms
 	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(player.getPosition().x), static_cast<int>(player.getPosition().y)) };
 	//Render the limited vision
 	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection().get()+player.getSightArea())),

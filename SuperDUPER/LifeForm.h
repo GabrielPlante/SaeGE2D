@@ -22,9 +22,7 @@ public:
 	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//Return true if the destination is reached
 	bool rawMovement(const Destination& destination, const int speed, float deltaTime);//Raw mean that the method doesn't change any boolean attribute
-	void setDestination(const Destination& destination);
 	void setRotatingDestination(const Destination& destination);
-	void attack(Position<> pointOfAttack);
 
 	//---External information---
 	bool isInSight(const Position<float>& position) const;//return true if a position is in sight
@@ -37,6 +35,8 @@ public:
 	bool isAlive() const { return healthPoint > 0; }
 
 	//---External order---
+	void setDestination(const Destination& destination);
+	void attack(Position<> pointOfAttack);
 	bool takeDamage(int amount);//Return true if the lifeform is alive 
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }
 	void clearDestination() { destination = Destination(this); }

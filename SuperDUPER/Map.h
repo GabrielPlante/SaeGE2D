@@ -11,7 +11,7 @@ class Map
 public:
 	Map();
 	void render(SDL_Renderer* renderer, const Camera& camera) const;
-	constexpr static int chunkSize{ 100 };//Number of tile per line in the chunk
+	constexpr static int chunkSize{ 20 };//Number of tile per line in the chunk
 	const Tile& getTile(const Position<>& tilePosition) const {//Position in absolute in pixel
 		Position<short> chunkPosition{ static_cast<short>(tilePosition.x / (chunkSize*Tile::tileSize)), static_cast<short>(tilePosition.y / (chunkSize*Tile::tileSize)) };
 		return chunks.at(chunkPosition.x).at(chunkPosition.y).getTile(Position<short>{static_cast<short>(tilePosition.x - chunkPosition.x), static_cast<short>(tilePosition.y - chunkPosition.y)});

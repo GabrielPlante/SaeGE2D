@@ -12,7 +12,7 @@ public:
 	Position<> relativeToAbsolute(int x, int y) const { return Position<>{ x + camera.x, y + camera.y }; }
 	//Convert a absolute in-game position to a position relative to the screen
 	Position<> absoluteToRelative(long int x, long int y) const { return Position<>{ x - camera.x, y - camera.y }; }
-	void resize(float deltaW, float deltaH);
+	void zoom(float deltaW, float deltaH);
 	void resize(int w, int h);
 	//Take absolute coordinate
 	bool isInCamera(const Rectangle& object) const { return camera.overlap(object); };

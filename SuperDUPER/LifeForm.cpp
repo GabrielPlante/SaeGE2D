@@ -30,6 +30,15 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 	//Render the weapon
 	if (inHandWeapon)
 		inHandWeapon->render(renderer, camera, *this);
+
+
+	//Test
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	for (int i = -1; i < 2; i += 2) {
+		for (int j = -1; j < 2; j += 2) {
+			SDL_RenderDrawPoint(renderer, relativePosition.x + radius * i, relativePosition.y + radius * j);
+		}
+	}
 }
 
 bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
@@ -100,7 +109,7 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 void LifeForm::checkCollision(const Map& map, Position<> position, short radius) {
 	for (int i = -1; i < 2; i += 2) {
 		for (int j = -1; j < 2; j += 2) {
-			Position<> pointToCheck{ position.x + radius * i, position.y + radius * j };
+			Position<> pointToCheck{ position.x + radius * i + radius, position.y + radius * j + radius /2 };
 			Position<> tilePosition{ map.getTile(pointToCheck).getPosition() };
 			if (!map.getTile(pointToCheck).isWalkable()/* && position.rectIntersectCircle(tilePosition, Tile::tileSize, Tile::tileSize, radius)*/) {
 				position.x = static_cast<float>(previousPosition.x);

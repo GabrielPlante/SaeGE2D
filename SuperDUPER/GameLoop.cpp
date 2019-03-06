@@ -5,7 +5,7 @@ constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
 
 GameLoop::GameLoop()
-	:map{}, player{ 200, 100, Color(0, 0, 255) }, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
+	:map{}, player{ 100, 0, Color(0, 0, 255) }, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
 {
 	timeAtLastFrame = std::chrono::high_resolution_clock::now();
 	//test

@@ -12,7 +12,7 @@ void Camera::move(int deltaX, int deltaY) {
 	camera.y += deltaY;
 }
 
-void Camera::resize(float deltaW, float deltaH) {
+void Camera::zoom(float deltaW, float deltaH) {
 	camera.w = static_cast<int>(camera.w*deltaW);
 	camera.h = static_cast<int>(camera.h*deltaH);
 }

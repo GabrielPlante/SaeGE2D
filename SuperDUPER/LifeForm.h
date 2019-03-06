@@ -60,7 +60,7 @@ private:
 	int maxEncumbrance;
 	Friendliness friendliness;
 	std::queue<Action> actionQueue;
-	Position<> previousPosition;
+	Position<float> previousPosition;
 protected:
 	short radius;
 };

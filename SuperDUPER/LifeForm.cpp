@@ -9,7 +9,7 @@ LifeForm::LifeForm(float x, float y, int speed, int healthPoint, short radius, F
 	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
 	:Entity(x, y), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
-	sightArea{ sightArea }, id{ idCount }, previousPosition{ static_cast<long>(x), static_cast<long>(y) }
+	sightArea{ sightArea }, id{ idCount }, previousPosition{ x, y }
 {
 	idCount++;
 }
@@ -30,15 +30,6 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 	//Render the weapon
 	if (inHandWeapon)
 		inHandWeapon->render(renderer, camera, *this);
-
-
-	//Test
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	for (int i = -1; i < 2; i += 2) {
-		for (int j = -1; j < 2; j += 2) {
-			SDL_RenderDrawPoint(renderer, relativePosition.x + radius * i, relativePosition.y + radius * j);
-		}
-	}
 }
 
 bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
@@ -68,8 +59,8 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 }
 
 bool LifeForm::rawMovement(const Destination& destination, const int speed, float deltaTime) {
-	previousPosition.x = static_cast<long>(position.x);
-	previousPosition.y = static_cast<long>(position.y);
+	previousPosition.x = position.x;
+	previousPosition.y = position.y;
 	//The division of the operation to get the movement according to x and y
 	const float dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2));
 	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
@@ -109,9 +100,12 @@ void LifeForm::checkCollision(const Map& map, Position<> position, short radius)
 		for (int j = -1; j < 2; j += 2) {
 			Position<> pointToCheck{ position.x + radius * i, position.y + radius * j };
 			Position<> tilePosition{ map.getTile(pointToCheck).getPosition() };
-			if (!map.getTile(pointToCheck).isWalkable()/* && position.rectIntersectCircle(tilePosition, Tile::tileSize, Tile::tileSize, radius)*/) {
-				position.x = static_cast<float>(previousPosition.x);
-				position.y = static_cast<float>(previousPosition.y);
+			if (!map.getTile(pointToCheck).isWalkable() && position.rectIntersectCircle(
+				//Adapt the tile position : original in the upper left corner, wanted in the middle of the tile
+				Position<>{ tilePosition.x - Tile::tileSize / 2, tilePosition.y - Tile::tileSize / 2 }, Tile::tileSize, Tile::tileSize, radius)) {
+
+				this->position.x = previousPosition.x;
+				this->position.y = previousPosition.y;
 				if (!actionQueue.empty() && actionQueue.front() == Action::Move)
 					actionQueue.pop();
 				return;

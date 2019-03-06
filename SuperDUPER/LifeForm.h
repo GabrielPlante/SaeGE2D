@@ -16,13 +16,14 @@ class LifeForm :
 {
 public:
 	//---Internal processing---
-	LifeForm(float x, float y, int speed, int healthPoint, int radius, Friendliness friendliness = Friendliness::Neutral,
+	LifeForm(float x, float y, int speed, int healthPoint, short radius, Friendliness friendliness = Friendliness::Neutral,
 		float facingDirection = 0, float rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//Return true if the destination is reached
 	bool rawMovement(const Destination& destination, const int speed, float deltaTime);//Raw mean that the method doesn't change any boolean attribute
 	void setRotatingDestination(const Destination& destination);
+	void checkCollision(const Map& map, Position<> position, short radius);
 
 	//---External information---
 	bool isInSight(const Position<float>& position) const;//return true if a position is in sight
@@ -59,7 +60,8 @@ private:
 	int maxEncumbrance;
 	Friendliness friendliness;
 	std::queue<Action> actionQueue;
+	Position<> previousPosition;
 protected:
-	int radius;
+	short radius;
 };
 

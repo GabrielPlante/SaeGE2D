@@ -5,9 +5,9 @@ class BedRock :
 {
 public:
 	BedRock(int x, int y);
-	bool isWalkable() override { return false; }
-	bool isDestructible() override { return false; }
-	bool isTraversable() override { return false; }
+	bool isWalkable() const override { return false; }
+	bool isDestructible() const override { return false; }
+	bool isTraversable() const override { return false; }
 	~BedRock();
 };
 

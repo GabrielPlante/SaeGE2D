@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "DefaultTile.h"
+#include "BedRock.h"
 
 
 Map::Chunk::Chunk(int x, int y)
@@ -9,7 +10,10 @@ Map::Chunk::Chunk(int x, int y)
 	constexpr int tilePosChange = chunkSize * Tile::tileSize;
 	for (int i = 0; i != chunkSize; i++) {
 		for (int j = 0; j != chunkSize; j++) {
-			tiles[i].insert(std::make_pair(j, std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange })));
+			if (j != i)
+				tiles[i].insert(std::make_pair(j, std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange })));
+			else
+				tiles[i].insert(std::make_pair(j, std::shared_ptr<Tile>(new BedRock{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange })));
 		}
 	}
 }

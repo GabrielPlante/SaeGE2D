@@ -1,6 +1,17 @@
 #pragma once
 #include <SDL.h>
 #include "Angle.h"
+
+template <typename P>
+P min(P arg1, P arg2) {
+	return arg1 > arg2 ? arg2 : arg1;
+}
+
+template <typename P>
+P max(P arg1, P arg2) {
+	return arg1 < arg2 ? arg2 : arg1;
+}
+
 template <typename T = long int>
 struct Position
 {

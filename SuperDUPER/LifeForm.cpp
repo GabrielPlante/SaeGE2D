@@ -1,14 +1,15 @@
 #include "LifeForm.h"
+#include "Map.h"
 
 constexpr float deltaAngle = 0.001f;
 
 int LifeForm::idCount = 0;
 
-LifeForm::LifeForm(float x, float y, int speed, int healthPoint, int radius, Friendliness friendliness,
+LifeForm::LifeForm(float x, float y, int speed, int healthPoint, short radius, Friendliness friendliness,
 	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
 	:Entity(x, y), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
-	sightArea{ sightArea }, id{ idCount }
+	sightArea{ sightArea }, id{ idCount }, previousPosition{ static_cast<long>(x), static_cast<long>(y) }
 {
 	idCount++;
 }
@@ -54,10 +55,14 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 			actionQueue.pop();
 	}
 
+	checkCollision(map, Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}, radius);
+
 	return !isAlive();
 }
 
 bool LifeForm::rawMovement(const Destination& destination, const int speed, float deltaTime) {
+	previousPosition.x = static_cast<long>(position.x);
+	previousPosition.y = static_cast<long>(position.y);
 	//The division of the operation to get the movement according to x and y
 	const float dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2));
 	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
@@ -90,6 +95,22 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 
 	clearAction();
 	actionQueue.push(Action::Turn);
+}
+
+void LifeForm::checkCollision(const Map& map, Position<> position, short radius) {
+	for (int i = -1; i < 2; i += 2) {
+		for (int j = -1; j < 2; j += 2) {
+			Position<> pointToCheck{ position.x + radius * i, position.y + radius * j };
+			Position<> tilePosition{ map.getTile(pointToCheck).getPosition() };
+			if (!map.getTile(pointToCheck).isWalkable()/* && position.rectIntersectCircle(tilePosition, Tile::tileSize, Tile::tileSize, radius)*/) {
+				position.x = static_cast<float>(previousPosition.x);
+				position.y = static_cast<float>(previousPosition.y);
+				if (actionQueue.front() == Action::Move)
+					actionQueue.pop();
+				return;
+			}
+		}
+	}
 }
 
 //The life form attack if it is facing the good direction

@@ -45,8 +45,7 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 	if (inHandWeapon)
 		inHandWeapon->refresh(map, lifeForms, deltaTime);
 
-	if (actionQueue.empty())
-		return !isAlive();
+	if (actionQueue.empty());
 	else if (actionQueue.front() == Action::Turn) {//Treat hard turn (turning without moving)
 		if (facingDirection.rotate(directionAngle, rotatingSpeed, deltaTime)) {
 			actionQueue.pop();
@@ -62,9 +61,8 @@ bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeFor
 			facingDirection = angle;
 		if (rawMovement(destination, actualSpeed, deltaTime))
 			actionQueue.pop();
+		checkCollision(map, Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}, radius);
 	}
-
-	checkCollision(map, Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}, radius);
 
 	return !isAlive();
 }
@@ -109,12 +107,12 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 void LifeForm::checkCollision(const Map& map, Position<> position, short radius) {
 	for (int i = -1; i < 2; i += 2) {
 		for (int j = -1; j < 2; j += 2) {
-			Position<> pointToCheck{ position.x + radius * i + radius, position.y + radius * j + radius /2 };
+			Position<> pointToCheck{ position.x + radius * i, position.y + radius * j };
 			Position<> tilePosition{ map.getTile(pointToCheck).getPosition() };
 			if (!map.getTile(pointToCheck).isWalkable()/* && position.rectIntersectCircle(tilePosition, Tile::tileSize, Tile::tileSize, radius)*/) {
 				position.x = static_cast<float>(previousPosition.x);
 				position.y = static_cast<float>(previousPosition.y);
-				if (actionQueue.front() == Action::Move)
+				if (!actionQueue.empty() && actionQueue.front() == Action::Move)
 					actionQueue.pop();
 				return;
 			}

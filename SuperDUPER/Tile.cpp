@@ -3,7 +3,7 @@
 
 
 Tile::Tile(int x, int y, Color color)
-	:position{ x, y }, tileGraphic { tileSize, tileSize, color }
+	:position{ x+tileSize/2, y+tileSize/2 }, tileGraphic { tileSize, tileSize, color }
 {
 }
 

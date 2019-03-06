@@ -3,6 +3,7 @@
 #include "Color.h"
 
 //The graphic representation of a rectangle
+//The position of the rectanle is the position of the left upper corner
 class Rect : public Renderable
 {
 public:

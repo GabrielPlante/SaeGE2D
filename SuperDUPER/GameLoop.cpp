@@ -23,6 +23,8 @@ bool GameLoop::update() {
 
 	refreshEntities();
 
+	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(player.getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(player.getPosition().y)-SCREEH_HEIGHT/2});
+
 	gameWindow.clear();//Then clear the screen
 	//Then put everything in the renderer
 

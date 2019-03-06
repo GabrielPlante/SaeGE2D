@@ -102,7 +102,7 @@ void LifeForm::checkCollision(const Map& map, Position<> position, short radius)
 			Position<> tilePosition{ map.getTile(pointToCheck).getPosition() };
 			if (!map.getTile(pointToCheck).isWalkable() && position.rectIntersectCircle(
 				//Adapt the tile position : original in the upper left corner, wanted in the middle of the tile
-				Position<>{ tilePosition.x - Tile::tileSize / 2, tilePosition.y - Tile::tileSize / 2 }, Tile::tileSize, Tile::tileSize, radius)) {
+				Position<>{ tilePosition.x, tilePosition.y }, Tile::tileSize, Tile::tileSize, radius)) {
 
 				this->position.x = previousPosition.x;
 				this->position.y = previousPosition.y;

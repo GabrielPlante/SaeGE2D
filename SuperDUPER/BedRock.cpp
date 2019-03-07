@@ -1,8 +1,8 @@
 #include "BedRock.h"
 
 
-BedRock::BedRock(int x, int y)
-	:Tile(x, y, Color(128, 128, 128))
+BedRock::BedRock(long x, long y)
+	:Tile(x, y, Color(200, 200, 200))
 {
 }
 

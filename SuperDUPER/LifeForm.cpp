@@ -95,6 +95,7 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 	actionQueue.push(Action::Turn);
 }
 
+//Method to check collision, /!\ Only work if the player is smaller than a tile
 void LifeForm::checkCollision(const Map& map, Position<> position, short radius) {
 	for (int i = -1; i < 2; i += 2) {
 		for (int j = -1; j < 2; j += 2) {

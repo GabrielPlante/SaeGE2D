@@ -21,14 +21,15 @@ public:
 private:
 	class Chunk {
 	public:
-		Chunk(int x, int y);//Position in chunk
+		Chunk(short x, short y);//Position in chunk
+		Chunk(short x, short y, std::array<unsigned char, chunkSize*chunkSize> chunkMap);//Create a chunk with predefined map
 		void render(SDL_Renderer* renderer, const Camera& camera) const;
 		const Tile& getTile(const Position<short>& tilePosition) const {//Position in pixel relative to the chunk
-			return *tiles.at(tilePosition.x / Tile::tileSize).at(tilePosition.y / Tile::tileSize);
+			return *tiles[tilePosition.x / Tile::tileSize][tilePosition.y / Tile::tileSize];
 		}
 	private:
 		const Position<short> position;
-		std::map<short, std::map<short, std::shared_ptr<Tile>>> tiles;
+		std::array<std::array<std::shared_ptr<Tile>, chunkSize>, chunkSize> tiles;
 	};
 
 	std::map<short, std::map<short, Chunk>> chunks;

@@ -2,7 +2,7 @@
 
 
 
-Tile::Tile(int x, int y, Color color)
+Tile::Tile(long x, long y, Color color)
 	:position{ x, y }, tileGraphic { tileSize, tileSize, color }
 {
 }

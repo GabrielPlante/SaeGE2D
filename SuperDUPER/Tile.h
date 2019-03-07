@@ -5,7 +5,7 @@ class Tile
 {
 public:
 	//The x and y are position in pixel of top left of the tile
-	Tile(int x, int y, Color color);
+	Tile(long x, long y, Color color);
 	void render(SDL_Renderer* renderer, const Camera& viewport) const;
 	virtual bool isWalkable() const = 0;//Indicate if a life form can walk on the tile
 	virtual bool isDestructible() const = 0;

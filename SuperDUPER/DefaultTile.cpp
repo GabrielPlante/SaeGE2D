@@ -2,7 +2,7 @@
 
 
 
-DefaultTile::DefaultTile(int x, int y)
+DefaultTile::DefaultTile(long x, long y)
 	:Tile(x, y, Color(0, 128, 0))
 {
 }

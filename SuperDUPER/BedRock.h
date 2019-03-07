@@ -4,7 +4,7 @@ class BedRock :
 	public Tile
 {
 public:
-	BedRock(int x, int y);
+	BedRock(long x, long y);
 	bool isWalkable() const override { return false; }
 	bool isDestructible() const override { return false; }
 	bool isTraversable() const override { return false; }

@@ -1,13 +1,13 @@
 #pragma once
 #include "Tile.h"
-class DefaultTile :
+class ErrorTile :
 	public Tile
 {
 public:
-	DefaultTile(long x, long y);
+	ErrorTile(long x, long y);
 	bool isWalkable() const override { return true; }
 	bool isDestructible() const override { return false; }
 	bool isTraversable() const override { return true; }
-	~DefaultTile();
+	~ErrorTile();
 };
 

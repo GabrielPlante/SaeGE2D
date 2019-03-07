@@ -5,14 +5,18 @@ constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
 
 GameLoop::GameLoop()
-	:map{}, player{ 100, 0, Color(0, 0, 255) }, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
+	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
 {
+	//Start the frame clock
 	timeAtLastFrame = std::chrono::high_resolution_clock::now();
+
+	//Create the player
+	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
 	//test
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	player.takeWeaponInHand(std::unique_ptr<Weapon> {new RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, std::unique_ptr<Projectile>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 100}} } } );
+	lifeForms[0]->takeWeaponInHand(std::unique_ptr<Weapon> {new RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, std::unique_ptr<Projectile>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 100, lifeForms[0]->getId()}} } } );
 }
 
 bool GameLoop::update() {
@@ -23,7 +27,7 @@ bool GameLoop::update() {
 
 	refreshEntities();
 
-	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(player.getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(player.getPosition().y)-SCREEH_HEIGHT/2});
+	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(lifeForms[0]->getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(lifeForms[0]->getPosition().y)-SCREEH_HEIGHT/2});
 
 	gameWindow.clear();//Then clear the screen
 	//Then put everything in the renderer
@@ -42,7 +46,8 @@ bool GameLoop::handleEvent(Event& event) {
 		if (event.getEventType() == EventType::QUIT)
 			return false;
 		else if (event.getEventType() == EventType::MOUSE) {
-			event.mouseEvent(&player, gameWindow.getCamera(), lifeForms);
+			//TODO change event to not take the actual player by pointer
+			event.mouseEvent(&(*lifeForms[0]), gameWindow.getCamera(), lifeForms);
 		}
 	}
 	return true;
@@ -59,24 +64,23 @@ void GameLoop::refreshEntities() {
 		else
 			it++;
 	}
-	player.refresh(map, lifeForms, deltaTime);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	for (auto it = lifeForms.begin(); it != lifeForms.end(); it++)
 		//Render only if the player can see it
-		if (player.isInSight((**it).getPosition()))
+		if (lifeForms[0]->isInSight((**it).getPosition()) || it == lifeForms.begin())
 			(**it).render(renderer, camera);//Put all the lifeForms
-	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(player.getPosition().x), static_cast<int>(player.getPosition().y)) };
+	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(lifeForms[0]->getPosition().x), static_cast<int>(lifeForms[0]->getPosition().y)) };
 	//Render the limited vision
-	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection().get()+player.getSightArea())),
-		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection().get()+player.getSightArea()))) };
-	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(player.getPosition().x + player.getSightRange() * cos(player.getFacingDirection().get()-player.getSightArea())),
-		static_cast<long int>(player.getPosition().y + player.getSightRange() * sin(player.getFacingDirection().get()-player.getSightArea()))) };
+	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(lifeForms[0]->getPosition().x + lifeForms[0]->getSightRange() * cos(lifeForms[0]->getFacingDirection().get()+lifeForms[0]->getSightArea())),
+		static_cast<long int>(lifeForms[0]->getPosition().y + lifeForms[0]->getSightRange() * sin(lifeForms[0]->getFacingDirection().get()+lifeForms[0]->getSightArea()))) };
+	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(lifeForms[0]->getPosition().x + lifeForms[0]->getSightRange() * cos(lifeForms[0]->getFacingDirection().get()-lifeForms[0]->getSightArea())),
+		static_cast<long int>(lifeForms[0]->getPosition().y + lifeForms[0]->getSightRange() * sin(lifeForms[0]->getFacingDirection().get()-lifeForms[0]->getSightArea()))) };
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line1.x, line1.y);
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);
-	player.render(renderer, camera);//Put the player last so he is above everything else
+	//player.render(renderer, camera);//Put the player last so he is above everything else
 }
 
 GameLoop::~GameLoop()

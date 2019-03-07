@@ -29,7 +29,7 @@ bool RangeWeapon::refresh(const Map& map, const std::vector<std::unique_ptr<Life
 bool RangeWeapon::attack(LifeForm* lifeForm) {
 	if (!Weapon::attack(lifeForm))
 		return false;
-	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition(), projectileType->getSpeed(), projectileType->getRange(), projectileType->getDamage()));
+	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition(), projectileType->getSpeed(), projectileType->getRange(), projectileType->getDamage(), lifeForm->getId()));
 	return false;
 }
 

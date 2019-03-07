@@ -6,7 +6,7 @@ class Character :
 {
 public:
 	Character(int x, int y, Color color);
-	void render(SDL_Renderer* renderer, const Camera& camera) const;
+	void render(SDL_Renderer* renderer, const Camera& camera) const override;
 	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;
 	~Character();
 private:

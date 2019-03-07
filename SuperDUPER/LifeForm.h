@@ -34,6 +34,9 @@ public:
 	Friendliness getFriendliness() const { return friendliness; }
 	int getRadius() const { return radius; }
 	bool isAlive() const { return healthPoint > 0; }
+	int getId() const { return id; }
+	bool operator==(const LifeForm& other) const { return id == other.getId(); }
+	bool operator!=(const LifeForm& other) const { return id != other.getId(); }
 
 	//---External order---
 	void setDestination(const Destination& destination);

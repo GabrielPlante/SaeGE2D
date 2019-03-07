@@ -20,6 +20,8 @@ Map::Chunk::Chunk(short x, short y)
  * Constructor with a map of what the chunk is composed of
  * 0 == Default tile
  * 1 == BedRock
+
+ * Wrong number || 255 == ErrorTile
  */
 Map::Chunk::Chunk(short x, short y, std::array<unsigned char, Map::chunkSize*Map::chunkSize> chunkMap) {
 	constexpr int tilePosChange = chunkSize * Tile::tileSize;
@@ -29,8 +31,11 @@ Map::Chunk::Chunk(short x, short y, std::array<unsigned char, Map::chunkSize*Map
 			{
 			case 0:
 				tiles[i][j] = std::shared_ptr<Tile>(new DefaultTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
+				break;
 			case 1:
 				tiles[i][j] = std::shared_ptr<Tile>(new BedRock{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
+				break;
+			case 255:
 			default:
 				tiles[i][j] = std::shared_ptr<Tile>(new ErrorTile{ i*Tile::tileSize + x * tilePosChange, j*Tile::tileSize + y * tilePosChange });
 				break;

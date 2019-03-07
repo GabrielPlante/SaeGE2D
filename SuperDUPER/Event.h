@@ -10,8 +10,8 @@ public:
 	Event();
 	bool pollEvent() { return SDL_PollEvent(&event); };
 	EventType getEventType();
-	void playerEvent(Character* player);
-	void mouseEvent(Character* player, const Camera& camera, const std::vector<std::unique_ptr<LifeForm>>& lifeFormsList);
+	void playerEvent(LifeForm* player);
+	void mouseEvent(LifeForm* player, const Camera& camera, const std::vector<std::unique_ptr<LifeForm>>& lifeFormsList);
 	~Event();
 private:
 	SDL_Event event;

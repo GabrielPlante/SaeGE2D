@@ -33,12 +33,16 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 }
 
 bool LifeForm::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+	//First all the status effects are applied
 	for (auto it = statusEffectList.begin(); it != statusEffectList.end();) {
 		if (it->refresh(this, deltaTime))
 			it = statusEffectList.erase(it);
 		else
 			it++;
 	}
+
+	//Then the tile effect is applied
+	map.getTile(Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}).effectOnLifeForm(this);
 
 	if (inHandWeapon)
 		inHandWeapon->refresh(map, lifeForms, deltaTime);

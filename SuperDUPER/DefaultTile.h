@@ -8,6 +8,7 @@ public:
 	bool isWalkable() const override { return true; }
 	bool isDestructible() const override { return false; }
 	bool isTraversable() const override { return true; }
+	void effectOnLifeForm(LifeForm* lifeForm) const override {}
 	~DefaultTile();
 };
 

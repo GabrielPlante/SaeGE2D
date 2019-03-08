@@ -131,14 +131,14 @@
     <ClCompile Include="BasicArrow.cpp">
       <Filter>Source Files\Item</Filter>
     </ClCompile>
-    <ClCompile Include="ErrorTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StatusEffect.cpp">
       <Filter>Source Files\StatusEffect</Filter>
     </ClCompile>
+    <ClCompile Include="ErrorTile.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
     <ClCompile Include="TempStatusEffect.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\StatusEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,14 +223,14 @@
     <ClInclude Include="Movement.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="ErrorTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StatusEffect.h">
       <Filter>Header Files\StatusEffect</Filter>
     </ClInclude>
+    <ClInclude Include="ErrorTile.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
     <ClInclude Include="TempStatusEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\StatusEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

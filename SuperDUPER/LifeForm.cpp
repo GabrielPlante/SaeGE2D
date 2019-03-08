@@ -33,6 +33,13 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 }
 
 bool LifeForm::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+	for (auto it = statusEffectList.begin(); it != statusEffectList.end();) {
+		if (it->refresh(this, deltaTime))
+			it = statusEffectList.erase(it);
+		else
+			it++;
+	}
+
 	if (inHandWeapon)
 		inHandWeapon->refresh(map, lifeForms, deltaTime);
 

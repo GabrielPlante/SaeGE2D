@@ -3,6 +3,7 @@
 #include <math.h>
 #include "Destination.h"
 #include "Weapon.h"
+#include "StatusEffect.h"
 #include <chrono>
 #include <vector>
 #include <queue>
@@ -63,6 +64,7 @@ private:
 	int maxEncumbrance;
 	Friendliness friendliness;
 	std::queue<Action> actionQueue;
+	std::vector<StatusEffect> statusEffectList;
 	Position<float> previousPosition;
 protected:
 	short radius;

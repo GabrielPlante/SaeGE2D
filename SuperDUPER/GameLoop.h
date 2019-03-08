@@ -4,7 +4,7 @@
 #include "Circle.h"
 #include "Map.h"
 #include "Character.h"
-#include <vector>
+#include <list>
 
 class GameLoop
 {
@@ -19,7 +19,7 @@ private:
 	Window gameWindow;
 	Map map;
 	Event event;
-	std::vector<std::unique_ptr<LifeForm>> lifeForms;
+	std::list<std::unique_ptr<LifeForm>> lifeForms;
 	Uint32 timeSinceGameStart;
 	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastFrame;
 };

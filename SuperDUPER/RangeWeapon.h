@@ -1,7 +1,6 @@
 #pragma once
 #include "Weapon.h"
 #include "Projectile.h"
-#include <list>
 #include <vector>
 #include <memory>
 
@@ -15,7 +14,7 @@ class RangeWeapon :
 public://TODO unduplicate range and damage information
 	RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, std::unique_ptr<Projectile> projectileType);
 	void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const;
-	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float);
+	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float);
 	bool attack(LifeForm* lifeForm) override;
 	~RangeWeapon();
 private:

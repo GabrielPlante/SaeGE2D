@@ -10,7 +10,7 @@ Projectile::Projectile(const std::string& name, int encumbrance, Angle facingDir
 	startingPosition.y = static_cast<float>(position.y);
 }
 
-bool Projectile::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+bool Projectile::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
 	//First calculate where the projectile will land
 	movement.move(speed, deltaTime);
 	//check for everything

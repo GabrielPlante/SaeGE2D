@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "Position.h"
 #include <vector>
+#include <list>
 class Map;
 class LifeForm;
 class Weapon :
@@ -13,7 +14,7 @@ class Weapon :
 public:
 	Weapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
-	virtual bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) = 0;
+	virtual bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) = 0;
 	virtual bool attack(LifeForm* owner) = 0;//Return true if the attack occur
 	int getBaseDamage() const { return baseDamage; }
 	float getFireRate() const { return fireRate; }

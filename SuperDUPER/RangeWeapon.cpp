@@ -15,7 +15,7 @@ void RangeWeapon::render(SDL_Renderer* renderer, const Camera& camera, const Lif
 	}
 }
 
-bool RangeWeapon::refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+bool RangeWeapon::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
 	auto it = projectiles.begin();
 	while (it != projectiles.end()) {
 		if ((**it).refresh(map, lifeForms, deltaTime))//Refresh the projectile and check if it's still alive

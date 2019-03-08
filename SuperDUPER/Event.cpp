@@ -15,7 +15,7 @@ EventType Event::getEventType() {
 void Event::playerEvent(LifeForm* player) {
 }
 
-void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::vector<std::unique_ptr<LifeForm>>& lifeFormsList) {
+void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) {
 	if (event.type == SDL_MOUSEBUTTONDOWN/* && event.button.button == SDL_BUTTON_RIGHT*/) {
 		int x, y;
 		SDL_GetMouseState(&x, &y);//Get the position of the mouse

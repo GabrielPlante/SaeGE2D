@@ -20,7 +20,7 @@ public:
 	LifeForm(float x, float y, int speed, int healthPoint, short radius, Friendliness friendliness = Friendliness::Neutral,
 		float facingDirection = 0, float rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
-	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
+	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//Return true if the destination is reached
 	bool rawMovement(const Destination& destination, const int speed, float deltaTime);//Raw mean that the method doesn't change any boolean attribute
 	void setRotatingDestination(const Destination& destination);

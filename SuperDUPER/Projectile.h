@@ -7,6 +7,7 @@
 #include <memory>
 #include <chrono>
 #include "Movement.h"
+#include <list>
 class Map;
 class LifeForm;
 /*
@@ -19,7 +20,7 @@ public:
 	Projectile(const std::string& name, int encumbrance, Angle facingDirection, Position<float> position, unsigned short speed, unsigned short range, unsigned short damage, int ownerId);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
-	bool refresh(const Map& map, const std::vector<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime);//Return true if the projectile doesn't exist anymore
+	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime);//Return true if the projectile doesn't exist anymore
 	virtual std::unique_ptr<Projectile> clone(Angle facingDirection, Position<float> position, unsigned short speed, unsigned short range, unsigned short damage, int ownerId) const = 0;
 	const Position<float> getPosition() const { return movement.getPosition(); }
 	unsigned short getSpeed() const { return speed; }

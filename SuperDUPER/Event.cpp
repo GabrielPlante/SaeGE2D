@@ -17,11 +17,15 @@ void Event::playerEvent(LifeForm* player) {
 
 void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) {
 	if (event.type == SDL_MOUSEBUTTONDOWN/* && event.button.button == SDL_BUTTON_RIGHT*/) {
+		//First get the mouse position
 		int x, y;
 		SDL_GetMouseState(&x, &y);//Get the position of the mouse
+		//Convert it in absolute position
 		Position<> absolutePosition{ camera.relativeToAbsolute(x, y) };//Convert x & y to absolute position
+		//If it's a left click, attack (temporary hard coded solution)
 		if (event.button.button == SDL_BUTTON_LEFT)
 			player->attack(absolutePosition);
+		//Then deal with right click, to see if the player clicked on an entity
 		bool clickedOnEntity = false;
 		for (auto it = lifeFormsList.begin(); it != lifeFormsList.end(); it++) {
 			if ((**it).pointIsOnThis(absolutePosition) && player->isInSight((**it).getPosition())) {

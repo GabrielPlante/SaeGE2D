@@ -140,6 +140,9 @@
     <ClCompile Include="TempStatusEffect.cpp">
       <Filter>Source Files\StatusEffect</Filter>
     </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -231,6 +234,9 @@
     </ClInclude>
     <ClInclude Include="TempStatusEffect.h">
       <Filter>Header Files\StatusEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@ public:
 	void render(SDL_Renderer* renderer) const;
 	~Text();
 private:
+	Text(const Text&) {}
 	std::string text;
 	Color color;
 	Rectangle position;

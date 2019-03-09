@@ -5,6 +5,7 @@
 #include "Map.h"
 #include "Character.h"
 #include <list>
+#include "TextOnRect.h"
 
 class GameLoop
 {
@@ -22,5 +23,6 @@ private:
 	std::list<std::unique_ptr<LifeForm>> lifeForms;
 	Uint32 timeSinceGameStart;
 	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastFrame;
+	std::unique_ptr<TextOnRect> textTest;
 };
 

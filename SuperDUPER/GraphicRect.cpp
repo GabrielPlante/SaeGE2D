@@ -15,6 +15,11 @@ void GraphicRect::render(SDL_Renderer* renderer, const Camera& camera, const Pos
 	}
 }
 
+void GraphicRect::renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position) const {
+	SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
+	SDL_RenderFillRect(renderer, &Rectangle{ position.x, position.y, w, h }.toSDL_Rect());
+}
+
 bool GraphicRect::pointIsIn(const Position<>& point, const Position<>& position) const {
 	if (abs(point.x - position.x) > w)
 		return false;

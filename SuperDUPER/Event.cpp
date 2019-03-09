@@ -9,6 +9,8 @@ EventType Event::getEventType() {
 		return EventType::QUIT;
 	else if (event.type == SDL_MOUSEBUTTONDOWN)
 		return EventType::MOUSE;
+	else if (event.type == SDL_KEYDOWN)
+		return EventType::KEYBOARD;
 	return EventType::NONE;
 }
 
@@ -40,6 +42,10 @@ void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<s
 			player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
 		}
 	}
+}
+
+void Event::keyboardEvent(LifeForm* player) {
+	keyActionMap.executeAction(event.key.keysym.sym, player);
 }
 
 Event::~Event()

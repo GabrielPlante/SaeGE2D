@@ -2,8 +2,9 @@
 #include <SDL.h>
 #include "Character.h"
 #include <list>
+#include "KeyActionMap.h"
 
-enum class EventType {QUIT, PLAYER, MOUSE, NONE};
+enum class EventType {QUIT, PLAYER, MOUSE, KEYBOARD, NONE};
 
 class Event
 {
@@ -13,9 +14,11 @@ public:
 	EventType getEventType();
 	void playerEvent(LifeForm* player);
 	void mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList);
+	void keyboardEvent(LifeForm* player);
 	~Event();
 private:
 	SDL_Event event;
 	const Uint8* state = SDL_GetKeyboardState(NULL);
+	KeyActionMap keyActionMap;
 };
 

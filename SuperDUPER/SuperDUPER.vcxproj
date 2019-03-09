@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\user\Documents\SDL2-2.0.8\include;D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\user\Documents\SDL2-2.0.8\lib\x86;D:\Documents\SDL2-2.0.9\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Documents\SDL2-2.0.9\SDL2_ttf-2.0.15\include;C:\Users\user\Documents\SDL2-2.0.8\include;D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Documents\SDL2-2.0.9\lib\x86;C:\Users\user\Documents\SDL2-2.0.8\lib\x86;D:\Documents\SDL2-2.0.9\SDL2_ttf-2.0.15\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>D:\Documents\SDL2-2.0.9\include;$(IncludePath)</IncludePath>
@@ -86,7 +86,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -155,6 +155,7 @@
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="TempStatusEffect.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="TempStatusEffect.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Weapon.h" />

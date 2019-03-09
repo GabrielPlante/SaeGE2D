@@ -57,6 +57,12 @@
     <Filter Include="Header Files\StatusEffect">
       <UniqueIdentifier>{e3e471bb-671a-4a9a-bc86-950e7c15352b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Renderable\UI">
+      <UniqueIdentifier>{a6b2ccaf-3143-46e6-af17-8ceec5ccb854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderable\UI">
+      <UniqueIdentifier>{7b02ab7b-940e-4f45-ad13-abaa9c9e3a23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -142,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="KeyActionMap.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +249,9 @@
     </ClInclude>
     <ClInclude Include="KeyActionMap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -142,6 +142,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ErrorTile.cpp" />
     <ClCompile Include="Event.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyActionMap.cpp" />
@@ -151,11 +152,12 @@
     <ClCompile Include="MeleeWeapon.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="RangeWeapon.cpp" />
-    <ClCompile Include="Rect.cpp" />
+    <ClCompile Include="GraphicRect.cpp" />
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="TempStatusEffect.cpp" />
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextOnRect.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -174,6 +176,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ErrorTile.h" />
     <ClInclude Include="Event.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Key.h" />
@@ -185,12 +188,13 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="RangeWeapon.h" />
-    <ClInclude Include="Rect.h" />
+    <ClInclude Include="GraphicRect.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="TempStatusEffect.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="TextOnRect.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Weapon.h" />

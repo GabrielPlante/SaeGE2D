@@ -1,12 +1,12 @@
-#include "Rect.h"
+#include "GraphicRect.h"
 #include "Rectangle.h"
 
-Rect::Rect(short w, short h, Color color)
+GraphicRect::GraphicRect(short w, short h, Color color)
 	:Renderable(), w{ w }, h{ h }, color{ color }
 {
 }
 
-void Rect::render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const {
+void GraphicRect::render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const {
 	if (camera.isInCamera(Rectangle{ position, w, h })) {
 		SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
 		//Converting the coordinate to relative position
@@ -15,7 +15,7 @@ void Rect::render(SDL_Renderer* renderer, const Camera& camera, const Position<>
 	}
 }
 
-bool Rect::pointIsIn(const Position<>& point, const Position<>& position) const {
+bool GraphicRect::pointIsIn(const Position<>& point, const Position<>& position) const {
 	if (abs(point.x - position.x) > w)
 		return false;
 	if (abs(point.y - position.y) > h)
@@ -23,6 +23,6 @@ bool Rect::pointIsIn(const Position<>& point, const Position<>& position) const 
 	return true;
 }
 
-Rect::~Rect()
+GraphicRect::~GraphicRect()
 {
 }

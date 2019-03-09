@@ -92,9 +92,6 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Rect.cpp">
-      <Filter>Source Files\Renderable</Filter>
-    </ClCompile>
     <ClCompile Include="Renderable.cpp">
       <Filter>Source Files\Renderable</Filter>
     </ClCompile>
@@ -152,6 +149,15 @@
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextOnRect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicRect.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -176,9 +182,6 @@
       <Filter>Header Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="Renderable.h">
-      <Filter>Header Files\Renderable</Filter>
-    </ClInclude>
-    <ClInclude Include="Rect.h">
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
     <ClInclude Include="Circle.h">
@@ -252,6 +255,15 @@
     </ClInclude>
     <ClInclude Include="Text.h">
       <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextOnRect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicRect.h">
+      <Filter>Header Files\Renderable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

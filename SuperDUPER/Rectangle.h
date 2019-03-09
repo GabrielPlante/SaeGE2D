@@ -21,7 +21,7 @@ struct Rectangle{
 		:x{ x }, y{ y }, w{ w }, h{ h }
 	{
 	}
-	SDL_Rect toSDL_Rect() {
+	SDL_Rect toSDL_Rect() const {
 		SDL_Rect rect;
 		rect.x = x;
 		rect.y = y;

@@ -4,13 +4,13 @@
 
 //The graphic representation of a rectangle
 //The position of the rectanle is the position of the left upper corner
-class Rect : public Renderable
+class GraphicRect : public Renderable
 {
 public:
-	Rect(short w, short h, Color color);
+	GraphicRect(short w, short h, Color color);
 	void render(SDL_Renderer* renderer, const Camera& viewport, const Position<>& position) const override;
 	bool pointIsIn(const Position<>& point, const Position<>& position) const override;
-	~Rect();
+	~GraphicRect();
 protected:
 	short w;
 	short h;

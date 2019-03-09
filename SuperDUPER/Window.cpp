@@ -1,4 +1,5 @@
 #include "Window.h"
+#include <SDL_ttf.h>
 
 
 
@@ -7,9 +8,9 @@ Window::Window(const int screenWith, const int screenHeight)
 {
 	//Initialise SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		throw std::runtime_error("SDL_INIT_VIDEO failed");
+		throw std::runtime_error("SDL_Init failed");
 	//Create window
-	gWindow = SDL_CreateWindow("My super game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWith, screenHeight, SDL_WINDOW_SHOWN);
+	gWindow = SDL_CreateWindow("Ianagd", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenWith, screenHeight, SDL_WINDOW_SHOWN);
 	if (!gWindow)
 		throw std::runtime_error("SDL_CreateWindow failed");
 	//Create renderer
@@ -18,10 +19,15 @@ Window::Window(const int screenWith, const int screenHeight)
 		throw std::runtime_error("SDL_CreateRenderer failed");
 	SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255);
 	SDL_SetRenderDrawBlendMode(gRenderer, SDL_BLENDMODE_BLEND);
+
+	//Temporary solution : initialise ttf in the window
+	if (TTF_Init() < 0)
+		throw std::runtime_error("TTF_Init failed");
 }
 
 Window::~Window()
 {
+	TTF_Quit();
 	//Destroy
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);

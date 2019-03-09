@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL.h>
-#include "Rect.h"
+#include "GraphicRect.h"
 class LifeForm;
 class Tile
 {
@@ -17,6 +17,6 @@ public:
 	constexpr static int tileSize = 30;
 private:
 	Position<> position;
-	Rect tileGraphic;
+	GraphicRect tileGraphic;
 };
 

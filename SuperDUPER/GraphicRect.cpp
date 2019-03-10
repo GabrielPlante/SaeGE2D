@@ -20,14 +20,6 @@ void GraphicRect::renderWithoutCamera(SDL_Renderer* renderer, const Position<>& 
 	SDL_RenderFillRect(renderer, &Rectangle{ position.x, position.y, w, h }.toSDL_Rect());
 }
 
-bool GraphicRect::pointIsIn(const Position<>& point, const Position<>& position) const {
-	if (abs(point.x - position.x) > w)
-		return false;
-	if (abs(point.y - position.y) > h)
-		return false;
-	return true;
-}
-
 GraphicRect::~GraphicRect()
 {
 }

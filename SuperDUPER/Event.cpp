@@ -11,13 +11,15 @@ EventType Event::getEventType() {
 		return EventType::MOUSE;
 	else if (event.type == SDL_KEYDOWN)
 		return EventType::KEYBOARD;
+	else if (event.type == SDL_MOUSEMOTION)
+		return EventType::MOUSEMOVE;
 	return EventType::NONE;
 }
 
-void Event::playerEvent(LifeForm* player) {
+void Event::playerEvent(LifeForm* player) const {
 }
 
-void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) {
+void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) const {
 	if (event.type == SDL_MOUSEBUTTONDOWN/* && event.button.button == SDL_BUTTON_RIGHT*/) {
 		//First get the mouse position
 		int x, y;
@@ -41,6 +43,14 @@ void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<s
 		if (!clickedOnEntity && event.button.button == SDL_BUTTON_RIGHT) {
 			player->setDestination(Position<>(absolutePosition.x, absolutePosition.y));
 		}
+	}
+}
+
+void Event::mouseMoveEvent(const std::vector<std::unique_ptr<Button>>& buttonList) const {
+	int x, y;
+	SDL_GetMouseState(&x, &y);
+	for (auto it = buttonList.begin(); it != buttonList.end(); it++) {
+		(**it).checkIfHovering(Position<>{static_cast<long>(x), static_cast<long>(y)});
 	}
 }
 

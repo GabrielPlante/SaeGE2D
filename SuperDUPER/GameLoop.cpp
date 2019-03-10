@@ -19,7 +19,8 @@ GameLoop::GameLoop()
 	(**lifeForms.begin()).takeWeaponInHand(std::unique_ptr<Weapon> {new RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, std::unique_ptr<Projectile>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 100, (**lifeForms.begin()).getId()}} } });
 
 	//Test
-	textTest = std::unique_ptr<TextOnRect>{ new TextOnRect{GraphicRect{100, 50, Color{0, 0, 180, 180}}, "TEST", gameWindow.getRenderer(), Position<>{50, 50} } };
+	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{GraphicRect{100, 50, Color{0, 0, 180, 180}}, "TEST", gameWindow.getRenderer(), Position<>{50, 50} } };
+	buttonList.push_back(std::move(textTest));
 }
 
 bool GameLoop::update() {
@@ -53,6 +54,8 @@ bool GameLoop::handleEvent(Event& event) {
 		}
 		else if (event.getEventType() == EventType::KEYBOARD)
 			event.keyboardEvent(&(**lifeForms.begin()));
+		else if (event.getEventType() == EventType::MOUSEMOVE)
+			event.mouseMoveEvent(buttonList);
 	}
 	return true;
 }
@@ -86,7 +89,8 @@ void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);
 	//player.render(renderer, camera);//Put the player last so he is above everything else
 
-	textTest->render(renderer);
+	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
+		(**it).render(renderer);
 }
 
 GameLoop::~GameLoop()

@@ -2,9 +2,11 @@
 #include <iostream>
 
 
-Text::Text(std::string text, Color color, Rectangle position, SDL_Renderer* renderer, const Font& font)
+Text::Text(std::string text, Color color, Rectangle position, SDL_Renderer* renderer, const std::string& fontFileName)
 	:text{ text }, color{ color }, position{ position }
 {
+	//Load the font with a good size
+	Font font{ static_cast<short>(position.h), fontFileName };
 	//Create the surface
 	SDL_Surface* surfaceText{ TTF_RenderText_Solid(font.getFont(), text.c_str(), color.toSDLColor()) };
 	if (!surfaceText)

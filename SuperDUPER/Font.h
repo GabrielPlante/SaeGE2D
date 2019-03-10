@@ -4,7 +4,7 @@
 class Font
 {
 public:
-	Font(const std::string& fontFileName);
+	Font(short fontSize, const std::string& fontFileName = "mainFont.ttf");
 	TTF_Font* getFont() const { return font; }
 	~Font();
 private:

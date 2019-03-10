@@ -11,6 +11,8 @@ public:
 	void render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const override;
 	void renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position) const;
 	bool pointIsIn(const Position<>& point, const Position<>& position) const override;
+	short getW() const { return w; }
+	short getH() const { return h; }
 	~GraphicRect();
 protected:
 	short w;

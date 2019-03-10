@@ -19,7 +19,7 @@ GameLoop::GameLoop()
 	(**lifeForms.begin()).takeWeaponInHand(std::unique_ptr<Weapon> {new RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, std::unique_ptr<Projectile>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 100, (**lifeForms.begin()).getId()}} } });
 
 	//Test
-	textTest = std::unique_ptr<TextOnRect>{ new TextOnRect{GraphicRect{100, 50, Color{0, 0, 180, 180}}, "TEST", Color{255, 255, 255}, Rectangle{50, 50, 100, 50}, gameWindow.getRenderer(), Font{"mainFont.ttf"}, Position<>{50, 50}} };
+	textTest = std::unique_ptr<TextOnRect>{ new TextOnRect{GraphicRect{100, 40, Color{0, 0, 180, 180}}, "TEST", gameWindow.getRenderer(), Position<>{50, 50} } };
 }
 
 bool GameLoop::update() {

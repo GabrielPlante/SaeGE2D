@@ -2,9 +2,9 @@
 
 
 
-Font::Font(const std::string& fontFileName)
+Font::Font(short fontSize, const std::string& fontFileName)
 {
-	font = TTF_OpenFont(fontFileName.c_str(), fontFileName.size());
+	font = TTF_OpenFont(fontFileName.c_str(), fontSize);
 }
 
 Font::~Font()

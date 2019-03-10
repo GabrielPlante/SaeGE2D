@@ -9,6 +9,7 @@ public:
 	TextOnRect(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 	void render(SDL_Renderer* renderer) const;
 	void changeColor(Color newColor) { graphicRect.changeColor(newColor); }
+	const Color& getColor() const { return graphicRect.getColor(); }
 	bool pointIsIn(Position<> point) { return graphicRect.pointIsIn(point, position); }
 	~TextOnRect();
 private:

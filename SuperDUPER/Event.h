@@ -4,6 +4,14 @@
 #include <list>
 #include "KeyActionMap.h"
 #include "Button.h"
+#include <unordered_map>
+
+/*TODO
+ * Pipeline of an event:
+ * GameLoop loop on pollEvent while it's != than NONE
+ * GameLoop call the right function with the right argument each loop depending on what pollEvent returned
+ * The function execute it's task
+ */
 
 enum class EventType {QUIT, PLAYER, MOUSE, KEYBOARD, MOUSEMOVE, NONE};
 
@@ -22,5 +30,7 @@ private:
 	SDL_Event event;
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 	KeyActionMap keyActionMap;
+	//The map 
+	std::unordered_map<int, EventType> eventToEventType;
 };
 

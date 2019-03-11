@@ -2,10 +2,16 @@
 
 Event::Event()
 {
+	eventToEventType[SDL_QUIT] = EventType::QUIT;
+	eventToEventType[SDL_MOUSEBUTTONDOWN] = EventType::MOUSE;
+	eventToEventType[SDL_KEYDOWN] = EventType::KEYBOARD;
+	eventToEventType[SDL_MOUSEMOTION] = EventType::MOUSEMOVE;
 }
 
 EventType Event::getEventType() {
-	if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
+	auto search = eventToEventType.find(event.type);
+	return search == eventToEventType.end() ? EventType::NONE : search->second;
+	/*if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
 		return EventType::QUIT;
 	else if (event.type == SDL_MOUSEBUTTONDOWN)
 		return EventType::MOUSE;
@@ -13,7 +19,7 @@ EventType Event::getEventType() {
 		return EventType::KEYBOARD;
 	else if (event.type == SDL_MOUSEMOTION)
 		return EventType::MOUSEMOVE;
-	return EventType::NONE;
+	return EventType::NONE;*/
 }
 
 void Event::playerEvent(LifeForm* player) const {

@@ -7,11 +7,11 @@
 class Command
 {
 public:
-	Command(std::string prefix = "");
+	Command(std::string name = "");
 	virtual void execute(GameLoop* gameLoop, const std::string& = "") = 0;
-	//virtual std::string& 
+	const std::string& getName() const { return name; }
 	~Command();
 private:
-	std::string prefix;
+	std::string name;
 };
 

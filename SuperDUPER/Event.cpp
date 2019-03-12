@@ -1,15 +1,22 @@
 #include "Event.h"
 #include "Quit.h"
+#include "Attack.h"
+#include "Move.h"
 #include "GameLoop.h"
 
 Event::Event()
 {
 	eventToEventType[SDL_QUIT] = std::unique_ptr<Command>{ new Quit() };
+	keyToEventType[SDLK_ESCAPE] = std::unique_ptr<Command>{ new Quit() };
+	keyToEventType[static_cast<Uint8>(SDL_BUTTON_LEFT)] = std::unique_ptr<Command>{ new Attack() };
+	keyToEventType[static_cast<Uint8>(SDL_BUTTON_RIGHT)] = std::unique_ptr<Command>{ new Move() };
 }
 
 void Event::handleEvent(GameLoop* gameLoop) {
 	if (event.type == SDL_KEYDOWN || event.type == SDL_MOUSEBUTTONDOWN)
 		keyboardEvent(gameLoop);
+	else if (event.type == SDL_MOUSEMOTION)
+		mouseMoveEvent(*gameLoop->getButtonList());
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
@@ -18,8 +25,19 @@ void Event::handleEvent(GameLoop* gameLoop) {
 }
 
 void Event::keyboardEvent(GameLoop* gameLoop) {
-	auto search = keyToEventType.find(event.key.keysym.sym);
-	if (search != keyToEventType.end())
+	auto search = event.type == SDL_KEYDOWN ? keyToEventType.find(event.key.keysym.sym) : keyToEventType.find(event.button.button);
+	//If nothing is found we exit early
+	if (search == keyToEventType.end())
+		return;
+	//Those function need special arguments
+	else if (search->second->getName() == "pl_attack") {
+		Attack::execute(gameLoop, event.motion.x, event.motion.y);
+	}
+	else if (search->second->getName() == "pl_move") {
+		Move::execute(gameLoop, event.motion.x, event.motion.y);
+	}
+	//Generic function that can be treated with only gameloop
+	else
 		search->second->execute(gameLoop);
 }
 

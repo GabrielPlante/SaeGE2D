@@ -174,10 +174,13 @@
       <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="Attack.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
     <ClCompile Include="StringSplit.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files\Command</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,7 +299,10 @@
       <Filter>Header Files\Command</Filter>
     </ClInclude>
     <ClInclude Include="Attack.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files\Command</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,8 +2,8 @@
 
 
 
-Command::Command(std::string prefix)
-	:prefix{ prefix }
+Command::Command(std::string name)
+	:name{ name }
 {
 }
 

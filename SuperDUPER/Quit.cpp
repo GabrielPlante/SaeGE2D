@@ -3,6 +3,7 @@
 
 
 Quit::Quit()
+	:Command("quit")
 {
 }
 

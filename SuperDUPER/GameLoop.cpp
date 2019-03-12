@@ -52,8 +52,6 @@ bool GameLoop::handleEvent(Event& event) {
 		else if (event.getEventType() == EventType::MOUSE) {
 			event.mouseEvent(&(**lifeForms.begin()), gameWindow.getCamera(), lifeForms);
 		}
-		else if (event.getEventType() == EventType::KEYBOARD)
-			event.keyboardEvent(&(**lifeForms.begin()));
 		else if (event.getEventType() == EventType::MOUSEMOVE)
 			event.mouseMoveEvent(buttonList);
 	}

@@ -6,20 +6,22 @@ Event::Event()
 	eventToEventType[SDL_MOUSEBUTTONDOWN] = EventType::MOUSE;
 	eventToEventType[SDL_KEYDOWN] = EventType::KEYBOARD;
 	eventToEventType[SDL_MOUSEMOTION] = EventType::MOUSEMOVE;
+
+	keyToEventType[SDLK_ESCAPE] = EventType::QUIT;
 }
 
 EventType Event::getEventType() {
 	auto search = eventToEventType.find(event.type);
-	return search == eventToEventType.end() ? EventType::NONE : search->second;
-	/*if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
-		return EventType::QUIT;
-	else if (event.type == SDL_MOUSEBUTTONDOWN)
-		return EventType::MOUSE;
-	else if (event.type == SDL_KEYDOWN)
-		return EventType::KEYBOARD;
-	else if (event.type == SDL_MOUSEMOTION)
-		return EventType::MOUSEMOVE;
-	return EventType::NONE;*/
+	if (search == eventToEventType.end())
+		return EventType::NONE;
+	if (search->second == EventType::KEYBOARD)
+		return keyboardEvent();
+	return search->second;
+}
+
+EventType Event::keyboardEvent() {
+	auto search = keyToEventType.find(event.key.keysym.sym);
+	return search == keyToEventType.end() ? EventType::NONE : search->second;
 }
 
 void Event::playerEvent(LifeForm* player) const {
@@ -53,15 +55,9 @@ void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<s
 }
 
 void Event::mouseMoveEvent(const std::vector<std::unique_ptr<Button>>& buttonList) const {
-	int x, y;
-	SDL_GetMouseState(&x, &y);
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++) {
-		(**it).checkIfHovering(Position<>{static_cast<long>(x), static_cast<long>(y)});
+		(**it).checkIfHovering(Position<>{static_cast<long>(event.motion.x), static_cast<long>(event.motion.y)});
 	}
-}
-
-void Event::keyboardEvent(LifeForm* player) {
-	keyActionMap.executeAction(event.key.keysym.sym, player);
 }
 
 Event::~Event()

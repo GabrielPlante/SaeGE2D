@@ -146,7 +146,6 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="KeyActionMap.cpp" />
     <ClCompile Include="LifeForm.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -182,7 +181,6 @@
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Key.h" />
-    <ClInclude Include="KeyActionMap.h" />
     <ClInclude Include="LifeForm.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MeleeWeapon.h" />

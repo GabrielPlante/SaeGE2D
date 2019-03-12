@@ -143,9 +143,6 @@
     <ClCompile Include="TempStatusEffect.cpp">
       <Filter>Source Files\StatusEffect</Filter>
     </ClCompile>
-    <ClCompile Include="KeyActionMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Text.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
@@ -251,9 +248,6 @@
       <Filter>Header Files\StatusEffect</Filter>
     </ClInclude>
     <ClInclude Include="Key.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyActionMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Text.h">

@@ -8,7 +8,7 @@ public:
 		Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 	Button(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer, Position<> position, Color offSetOnHovering = Color{ 30, 30, 30 }, Color textColor = Color{ 0, 0, 0 },
 		const std::string& fontFileName = "mainFont.ttf");
-	//Take the mouse position and check and apply effect
+	//Take the mouse position and check and apply effect and return true if the mouse is hovering
 	bool checkIfHovering(const Position<>& mousePosition);
 	//Apply effect of the mouse overing
 	void onHovering();

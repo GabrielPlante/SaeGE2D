@@ -16,7 +16,7 @@ void Event::handleEvent(GameLoop* gameLoop) {
 	if (event.type == SDL_KEYDOWN || event.type == SDL_MOUSEBUTTONDOWN)
 		keyboardEvent(gameLoop);
 	else if (event.type == SDL_MOUSEMOTION)
-		mouseMoveEvent(*gameLoop->getButtonList());
+		mouseMoveEvent(gameLoop);
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
@@ -68,9 +68,21 @@ void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<s
 	}
 }
 
-void Event::mouseMoveEvent(const std::vector<std::unique_ptr<Button>>& buttonList) const {
-	for (auto it = buttonList.begin(); it != buttonList.end(); it++) {
-		(**it).checkIfHovering(Position<>{static_cast<long>(event.motion.x), static_cast<long>(event.motion.y)});
+void Event::mouseMoveEvent(GameLoop* gameLoop) {
+	//If at the last mouse movement the mouse was on a button
+	if (buttonHovering) {
+		//Check if the mouse is still on the button
+		if (!buttonHovering->checkIfHovering(Position<>{static_cast<long>(event.motion.x), static_cast<long>(event.motion.y)}))
+			buttonHovering = nullptr;
+	}
+	//Else we check every button again
+	else {
+		for (auto it = gameLoop->getButtonList()->begin(); it != gameLoop->getButtonList()->end(); it++) {
+			if ((**it).checkIfHovering(Position<>{static_cast<long>(event.motion.x), static_cast<long>(event.motion.y)})) {
+				buttonHovering = &(**it);
+				break;
+			}
+		}
 	}
 }
 

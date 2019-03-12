@@ -27,7 +27,7 @@ public:
 	//Internal function to treat keyboard event, return false if the program need to stop
 	void keyboardEvent(GameLoop* gameLoop);
 	void mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) const;
-	void mouseMoveEvent(const std::vector<std::unique_ptr<Button>>& buttonList) const;
+	void mouseMoveEvent(GameLoop* gameLoop);
 	~Event();
 private:
 	SDL_Event event;
@@ -36,4 +36,7 @@ private:
 	std::unordered_map<int, std::unique_ptr<Command>> eventToEventType;
 	//Used to find what command to call for a key or mouse button event
 	std::map<Key, std::unique_ptr<Command>> keyToEventType;
+
+	//Test to see if this work well
+	Button* buttonHovering = nullptr;
 };

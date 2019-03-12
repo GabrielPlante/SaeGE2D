@@ -26,8 +26,7 @@ GameLoop::GameLoop()
 bool GameLoop::update() {
 	timeSinceGameStart = SDL_GetTicks();
 	//First, see if there is any input from the user
-	if (!handleEvent(event))
-		return false;
+	handleEvent(event);
 
 	refreshEntities();
 
@@ -42,20 +41,13 @@ bool GameLoop::update() {
 	renderEntities(gameWindow.getRenderer(), gameWindow.getCamera());
 
 	gameWindow.update();//Then print it
-	return true;
+	return keepGoing;
 }
 
-bool GameLoop::handleEvent(Event& event) {
+void GameLoop::handleEvent(Event& event) {
 	while (event.pollEvent()) {
-		if (event.getEventType() == EventType::QUIT)
-			return false;
-		else if (event.getEventType() == EventType::MOUSE) {
-			event.mouseEvent(&(**lifeForms.begin()), gameWindow.getCamera(), lifeForms);
-		}
-		else if (event.getEventType() == EventType::MOUSEMOVE)
-			event.mouseMoveEvent(buttonList);
+		event.handleEvent(this);
 	}
-	return true;
 }
 
 void GameLoop::refreshEntities() {

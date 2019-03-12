@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL.h>
-#include <functional>
 struct Key
 {
 	Key(SDL_Keycode key) : key{ key }, isKey{ true } {}

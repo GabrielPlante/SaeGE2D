@@ -18,4 +18,3 @@ private:
 	Color offSetOnHovering;
 	bool isHovering = false;
 };
-

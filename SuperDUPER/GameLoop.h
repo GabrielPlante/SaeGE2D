@@ -12,9 +12,16 @@ class GameLoop
 public:
 	GameLoop();
 	bool update();
-	bool handleEvent(Event& event);
+	void handleEvent(Event& event);
 	void refreshEntities();
 	void renderEntities(SDL_Renderer* renderer, Camera& camera);
+	Window* getGameWindow() { return &gameWindow; }
+	Map* getMap() { return &map; }
+	std::list<std::unique_ptr<LifeForm>>* getLifeForms() { return &lifeForms; }
+	std::vector<std::unique_ptr<Button>>* getButtonList() { return &buttonList; }
+	LifeForm* getPlayer() { return &(**lifeForms.begin()); }
+	Camera* getCamera() { return &(gameWindow.getCamera()); }
+	void quit() { keepGoing = false; }
 	~GameLoop();
 private:
 	Window gameWindow;
@@ -24,5 +31,6 @@ private:
 	Uint32 timeSinceGameStart;
 	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastFrame;
 	std::vector<std::unique_ptr<Button>> buttonList;
+	bool keepGoing = true;
 };
 

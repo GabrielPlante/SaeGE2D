@@ -1,30 +1,26 @@
 #include "Event.h"
+#include "Quit.h"
+#include "GameLoop.h"
 
 Event::Event()
 {
-	eventToEventType[SDL_QUIT] = EventType::QUIT;
-	eventToEventType[SDL_MOUSEBUTTONDOWN] = EventType::MOUSE;
-	eventToEventType[SDL_KEYDOWN] = EventType::KEYBOARD;
-	eventToEventType[SDL_MOUSEMOTION] = EventType::MOUSEMOVE;
-
-	keyToEventType[SDLK_ESCAPE] = EventType::QUIT;
+	eventToEventType[SDL_QUIT] = std::unique_ptr<Command>{ new Quit() };
 }
 
-EventType Event::getEventType() {
-	auto search = eventToEventType.find(event.type);
-	if (search == eventToEventType.end())
-		return EventType::NONE;
-	if (search->second == EventType::KEYBOARD)
-		return keyboardEvent();
-	return search->second;
+void Event::handleEvent(GameLoop* gameLoop) {
+	if (event.type == SDL_KEYDOWN || event.type == SDL_MOUSEBUTTONDOWN)
+		keyboardEvent(gameLoop);
+	else {
+		auto search = eventToEventType.find(event.type);
+		if (search != eventToEventType.end())
+			search->second->execute(gameLoop);
+	}
 }
 
-EventType Event::keyboardEvent() {
+void Event::keyboardEvent(GameLoop* gameLoop) {
 	auto search = keyToEventType.find(event.key.keysym.sym);
-	return search == keyToEventType.end() ? EventType::NONE : search->second;
-}
-
-void Event::playerEvent(LifeForm* player) const {
+	if (search != keyToEventType.end())
+		search->second->execute(gameLoop);
 }
 
 void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) const {

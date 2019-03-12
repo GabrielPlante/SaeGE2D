@@ -6,34 +6,34 @@
 #include "Key.h"
 #include <unordered_map>
 #include <map>
+#include <memory>
 
 /*TODO
  * Pipeline of an event:
- * GameLoop loop on pollEvent while it's != than NONE
- * Internally the Event class check if the event is and react to it, if it's a keyboard or mouse event another function is needed to treat it
- * GameLoop call the right function with the right argument each loop depending on what pollEvent returned
- * The function execute it's task
+ * GameLoop loop on pollEvent while there is event left
+ * for each event, gameloop give himself back to Event who treat the event
  */
 
 enum class EventType {QUIT, PLAYER, MOUSE, KEYBOARD, MOUSEMOVE, NONE};
 
+class GameLoop;
+class Command;
 class Event
 {
 public:
 	Event();
 	bool pollEvent() { return SDL_PollEvent(&event); };
-	EventType getEventType();
-	//Internal function to treat keyboard event
-	EventType keyboardEvent();
-	void playerEvent(LifeForm* player) const;
+	void handleEvent(GameLoop* gameLoop);
+	//Internal function to treat keyboard event, return false if the program need to stop
+	void keyboardEvent(GameLoop* gameLoop);
 	void mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) const;
 	void mouseMoveEvent(const std::vector<std::unique_ptr<Button>>& buttonList) const;
 	~Event();
 private:
 	SDL_Event event;
 	const Uint8* state = SDL_GetKeyboardState(NULL);
-	//This map is used to transform an SDL_Event into an EventType
-	std::unordered_map<int, EventType> eventToEventType;
-	//This one is used when the eventType found with the map above is related to a key, so we need more information (what key, what does it do)
-	std::map<Key, EventType> keyToEventType;
+	//Used to find what command to call for a general event
+	std::unordered_map<int, std::unique_ptr<Command>> eventToEventType;
+	//Used to find what command to call for a key or mouse button event
+	std::map<Key, std::unique_ptr<Command>> keyToEventType;
 };

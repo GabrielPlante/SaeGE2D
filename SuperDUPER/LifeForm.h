@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include <math.h>
-#include "Destination.h"
+#include "AdvancedMovement.h"
 #include "Weapon.h"
 #include "StatusEffect.h"
 #include <chrono>
@@ -22,7 +22,6 @@ public:
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//Return true if the destination is reached
-	bool rawMovement(const Destination& destination, const int speed, float deltaTime);//Raw mean that the method doesn't change any boolean attribute
 	void setRotatingDestination(const Destination& destination);
 	void checkCollision(const Map& map, Position<> position, short radius);
 
@@ -44,7 +43,7 @@ public:
 	void attack(Position<> pointOfAttack);
 	bool takeDamage(int amount);//Return true if the lifeform is alive 
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }
-	void clearDestination() { destination = Destination(this); }
+	void clearDestination() { movement.setDestination(Destination(this)); }
 	void clearAction() { actionQueue = std::queue<Action>(); }
 private:
 	const int id;
@@ -59,7 +58,7 @@ private:
 	//All angle are in radian, in [0-2PI]
 	Angle directionAngle;//The direction the lifeform want to turn to
 	Angle facingDirection;//The direction the lifeform currently face
-	Destination destination = Destination(this);
+	AdvancedMovement movement = AdvancedMovement{ Destination{this} };
 	std::unique_ptr<Weapon> inHandWeapon;//Item 
 	int maxEncumbrance;
 	Friendliness friendliness;

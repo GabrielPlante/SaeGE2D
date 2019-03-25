@@ -58,10 +58,12 @@ bool LifeForm::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>
 		actionQueue.pop();
 	}
 	else if (actionQueue.front() == Action::Move) {
-		Angle angle = position.angle(destination.getCoordinate());
+		Angle angle = position.angle(movement.getDestination().getCoordinate());
 		if (angle.get() < facingDirection.get() - deltaAngle && angle.get() > facingDirection.get() + deltaAngle)
 			facingDirection = angle;
-		if (rawMovement(destination, actualSpeed, deltaTime))
+		previousPosition.x = position.x;
+		previousPosition.y = position.y;
+		if (movement.move(&position, actualSpeed, deltaTime))
 			actionQueue.pop();
 		checkCollision(map, Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}, radius);
 	}
@@ -69,29 +71,10 @@ bool LifeForm::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>
 	return !isAlive();
 }
 
-bool LifeForm::rawMovement(const Destination& destination, const int speed, float deltaTime) {
-	previousPosition.x = position.x;
-	previousPosition.y = position.y;
-	//The division of the operation to get the movement according to x and y
-	const float dividingMovementFactor = sqrt(pow(destination.getCoordinate().x - position.x, 2) + pow(destination.getCoordinate().y - position.y, 2));
-	//We fist calculate the x movement so we can check if the destination.getCoordinate() is reached
-	const float movementX = (destination.getCoordinate().x - position.x) * deltaTime * speed / dividingMovementFactor;
-	if (movementX > abs(destination.getCoordinate().x - position.x)) {//If the destination.getCoordinate() is reached
-		position.x = destination.getCoordinate().x;
-		position.y = destination.getCoordinate().y;
-		return true;
-	}
-	else {
-		position.x += movementX;
-		position.y += (destination.getCoordinate().y - position.y) * deltaTime * speed / dividingMovementFactor;
-		return false;
-	}
-}
-
 void LifeForm::setDestination(const Destination& destination) {
 	if (position == destination.getCoordinate())
 		return;
-	this->destination = destination;
+	movement.setDestination(destination);
 	setRotatingDestination(destination);
 
 	actionQueue.push(Action::Move);
@@ -108,10 +91,12 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 
 //Method to check collision, /!\ Only work if the player is smaller than a tile
 void LifeForm::checkCollision(const Map& map, Position<> position, short radius) {
+	//Check the "four corners" of the circle
 	for (int i = -1; i < 2; i += 2) {
 		for (int j = -1; j < 2; j += 2) {
 			Position<> pointToCheck{ position.x + radius * i, position.y + radius * j };
 			Position<> tilePosition{ map.getTile(pointToCheck).getPosition() };
+			//Check if tile under the corner is walkable and if so check if the tile actually intersect the circle
 			if (!map.getTile(pointToCheck).isWalkable() && position.rectIntersectCircle(
 				//Adapt the tile position : original in the upper left corner, wanted in the middle of the tile
 				Position<>{ tilePosition.x, tilePosition.y }, Tile::tileSize, Tile::tileSize, radius)) {

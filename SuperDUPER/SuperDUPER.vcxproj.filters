@@ -304,6 +304,9 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
+    <ClInclude Include="AdvancedMovement.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\codemirror-3.01\mode\xml.js">

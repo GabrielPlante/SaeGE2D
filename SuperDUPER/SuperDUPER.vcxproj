@@ -170,6 +170,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdvancedMovement.h" />
     <ClInclude Include="Angle.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="BasicArrow.h" />

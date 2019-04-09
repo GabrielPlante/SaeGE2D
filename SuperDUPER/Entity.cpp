@@ -2,7 +2,8 @@
 #include "Map.h"
 
 
-Entity::Entity(float x, float y)
+Entity::Entity(float x, float y, short mass)
+	:mass{ mass }
 {
 	position.x = x;
 	position.y = y;

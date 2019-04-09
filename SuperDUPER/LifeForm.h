@@ -2,11 +2,11 @@
 #include "Entity.h"
 #include <math.h>
 #include "AdvancedMovement.h"
-#include "Weapon.h"
 #include "StatusEffect.h"
 #include <chrono>
 #include <vector>
 #include <queue>
+#include "Weapon.h"
 
 enum class Friendliness {Neutral, Friend, Enemy};
 
@@ -17,7 +17,7 @@ class LifeForm :
 {
 public:
 	//---Internal processing---
-	LifeForm(float x, float y, int speed, int healthPoint, short radius, Friendliness friendliness = Friendliness::Neutral,
+	LifeForm(float x, float y, int speed, int healthPoint, short radius, short mass = 0, Friendliness friendliness = Friendliness::Neutral,
 		float facingDirection = 0, float rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
@@ -27,6 +27,7 @@ public:
 
 	//---External information---
 	bool isInSight(const Position<float>& position) const;//return true if a position is in sight
+	short getStrength() const { return strength; }
 	int getHealthPoint() const { return healthPoint; }
 	int getSightRange() const { return sightRange; }
 	float getSightArea() const { return sightArea; }
@@ -49,6 +50,7 @@ private:
 	const int id;
 	static int idCount;//Each lifeForm has a unique ID
 	int actualSpeed;
+	short strength = 50;
 	int sightRange;
 	float sightArea;//Between 0 (don't see anything) and PI (see everything)
 	int baseSpeed;//Speed unit is : pixel/sec

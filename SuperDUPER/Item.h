@@ -3,11 +3,12 @@
 class Item
 {
 public:
-	Item(const std::string& name, int encumbrance);
-	int getEncumbrance() const { return encumbrance; }
+	Item(const std::string& name, short mass = 0);
+	void setMass(short newMass) { mass = newMass; }
+	short getMass() const { return mass; }
 	~Item();
 private:
-	int encumbrance;
 	std::string name;
+	short mass;
 };
 

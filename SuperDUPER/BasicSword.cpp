@@ -3,7 +3,7 @@
 
 
 BasicSword::BasicSword()
-	:MeleeWeapon{ "Basic Sword", 100, 100, 30, 0.5f }
+	:MeleeWeapon{ "Basic Sword", 100, 100, 30, 1, 0.5f }
 {
 }
 

@@ -12,18 +12,21 @@ class Weapon :
 	public Item
 {
 public:
-	Weapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate);
+	Weapon(const std::string& name, short mass, int damageMultiplier, int range, float fireRate, float sharpness);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
 	virtual bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) = 0;
 	virtual bool attack(LifeForm* owner) = 0;//Return true if the attack occur
-	int getBaseDamage() const { return baseDamage; }
+	int getDamageMultiplier() const { return damageMultiplier; }
+	short getBluntDamage() const;
+	short getSharpDamage(const LifeForm& owner) const;
 	float getFireRate() const { return fireRate; }
 	int getRange() const { return range; }
 	~Weapon();
 private:
-	int baseDamage;
+	int damageMultiplier;
 	int range;
 	float fireRate;
+	float sharpness;
 	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastHit;
 };
 

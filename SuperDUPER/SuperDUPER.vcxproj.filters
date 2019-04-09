@@ -69,6 +69,12 @@
     <Filter Include="Source Files\Command">
       <UniqueIdentifier>{6d5e6ccb-0194-48da-8796-6cd1bdc0af73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Item\Weapon">
+      <UniqueIdentifier>{c279777e-88e1-4ab8-90ea-498aa908b55e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item\Weapon">
+      <UniqueIdentifier>{6bbcb180-b0d6-4893-b069-4a589b886c60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -119,27 +125,6 @@
     <ClCompile Include="Destination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Weapon.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="MeleeWeapon.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="RangeWeapon.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicSword.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicArrow.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
     <ClCompile Include="StatusEffect.cpp">
       <Filter>Source Files\StatusEffect</Filter>
     </ClCompile>
@@ -181,6 +166,27 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicArrow.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicSword.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="MeleeWeapon.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeWeapon.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,26 +244,8 @@
     <ClInclude Include="Item.h">
       <Filter>Header Files\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="MeleeWeapon.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="RangeWeapon.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicSword.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
     <ClInclude Include="Angle.h">
       <Filter>Header Files\Struct</Filter>
-    </ClInclude>
-    <ClInclude Include="BasicArrow.h">
-      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="Movement.h">
       <Filter>Header Files\Struct</Filter>
@@ -306,6 +294,24 @@
     </ClInclude>
     <ClInclude Include="AdvancedMovement.h">
       <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicArrow.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicSword.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="MeleeWeapon.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeWeapon.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Item\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

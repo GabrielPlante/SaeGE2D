@@ -2,8 +2,8 @@
 
 
 
-Item::Item(const std::string& name, int encumbrance)
-	: name{ name }
+Item::Item(const std::string& name, short mass)
+	: name{ name }, mass{ mass }
 {
 }
 

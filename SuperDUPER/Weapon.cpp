@@ -1,9 +1,9 @@
 #include "Weapon.h"
+#include "LifeForm.h"
 
 
-
-Weapon::Weapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate)
-	:Item{ name, encumbrance }, baseDamage{ baseDamage }, range{ range }, fireRate{ fireRate }
+Weapon::Weapon(const std::string& name, short mass, int damageMultiplier, int range, float fireRate, float sharpness)
+	:Item{ name, mass }, damageMultiplier{ damageMultiplier }, range{ range }, fireRate{ fireRate }, sharpness{ sharpness }
 {
 }
 
@@ -14,6 +14,15 @@ bool Weapon::attack(LifeForm* owner) {
 	timeAtLastHit = std::chrono::high_resolution_clock::now();
 	return true;
 }
+
+short Weapon::getBluntDamage() const {
+	return damageMultiplier * getMass();
+}
+
+short Weapon::getSharpDamage(const LifeForm& owner) const {
+	return static_cast<short>(damageMultiplier * owner.getStrength() * sharpness);
+}
+
 
 Weapon::~Weapon()
 {

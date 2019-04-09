@@ -26,6 +26,7 @@ public:
 	unsigned short getSpeed() const { return speed; }
 	unsigned short getRange() const { return range; }
 	unsigned short getDamage() const { return damage; }
+	unsigned short getBluntDamage() const { return damage; }
 	Angle getFacingDirection() const { return movement.getFacingDirection(); }
 	~Projectile();
 private:

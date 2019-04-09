@@ -2,8 +2,8 @@
 #include "LifeForm.h"
 
 
-MeleeWeapon::MeleeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate)
-	:Weapon{ name, encumbrance, baseDamage, range, fireRate }
+MeleeWeapon::MeleeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float sharpness, float fireRate)
+	:Weapon{ name, encumbrance, baseDamage, range, fireRate, sharpness }
 {
 }
 

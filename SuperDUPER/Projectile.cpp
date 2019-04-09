@@ -16,7 +16,7 @@ bool Projectile::refresh(const Map& map, const std::list<std::unique_ptr<LifeFor
 	//check for everything
 	for (auto it = lifeForms.begin(); it != lifeForms.end(); it++) {
 		if ((**it).getId() != ownerId && (**it).pointIsOnThis(Position<>{static_cast<long>(movement.getPosition().x), static_cast<long>(movement.getPosition().y)})) {
-			(**it).takeDamage(damage);
+			(**it).takeDamage(getDamage());
 			return true;
 		}
 	}

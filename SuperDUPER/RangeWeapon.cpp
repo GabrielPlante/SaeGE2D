@@ -4,7 +4,7 @@
 
 
 RangeWeapon::RangeWeapon(const std::string& name, int encumbrance, int baseDamage, int range, float fireRate, std::unique_ptr<Projectile> projectileType)
-	:Weapon{ name, encumbrance, baseDamage, range, fireRate }, projectileType{ std::move(projectileType) }
+	:Weapon{ name, encumbrance, baseDamage, range, fireRate, 0 }, projectileType{ std::move(projectileType) }
 {
 }
 

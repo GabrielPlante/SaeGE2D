@@ -170,16 +170,7 @@
     <ClCompile Include="BasicArrow.cpp">
       <Filter>Source Files\Item\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="BasicSword.cpp">
-      <Filter>Source Files\Item\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="MeleeWeapon.cpp">
-      <Filter>Source Files\Item\Weapon</Filter>
-    </ClCompile>
     <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files\Item\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="RangeWeapon.cpp">
       <Filter>Source Files\Item\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
@@ -187,6 +178,12 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponAttack.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,20 +295,17 @@
     <ClInclude Include="BasicArrow.h">
       <Filter>Header Files\Item\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="BasicSword.h">
-      <Filter>Header Files\Item\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="MeleeWeapon.h">
-      <Filter>Header Files\Item\Weapon</Filter>
-    </ClInclude>
     <ClInclude Include="Projectile.h">
-      <Filter>Header Files\Item\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="RangeWeapon.h">
       <Filter>Header Files\Item\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponAttack.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Header Files\Struct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

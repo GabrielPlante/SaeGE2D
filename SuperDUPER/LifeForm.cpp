@@ -5,9 +5,9 @@ constexpr float deltaAngle = 0.001f;
 
 int LifeForm::idCount = 0;
 
-LifeForm::LifeForm(float x, float y, int speed, int healthPoint, short radius, short mass, Friendliness friendliness,
+LifeForm::LifeForm(float x, float y, int speed, short healthPoint, short radius, short mass, Friendliness friendliness,
 	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
-	:Entity(x, y, mass), baseSpeed{ speed }, actualSpeed{ speed }, healthPoint{ healthPoint }, radius{ radius }, friendliness{ friendliness },
+	:Entity(x, y, healthPoint, mass), baseSpeed{ speed }, actualSpeed{ speed }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
 	sightArea{ sightArea }, id{ idCount }, previousPosition{ x, y }
 {

@@ -4,18 +4,21 @@
 #include <SDL.h>
 #include "Camera.h"
 #include "Position.h"
-#include <vector>
+#include "WeaponAttack.h"
+#include "Item.h"
 #include <list>
+#include "Clock.h"
 class Map;
 class LifeForm;
 class Weapon :
 	public Item
 {
 public:
-	Weapon(const std::string& name, short mass, int damageMultiplier, int range, float fireRate, float sharpness);
-	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
-	virtual bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) = 0;
-	virtual bool attack(LifeForm* owner) = 0;//Return true if the attack occur
+	Weapon(const std::string& name, short mass, int damageMultiplier, int range, float fireRate, float sharpness, std::unique_ptr<WeaponAttack> weaponAttackType);
+	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const;
+	//Return true if the weapon doesn't exist anymore
+	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime);
+	bool attack(LifeForm* owner);//Return true if the attack occur
 	int getDamageMultiplier() const { return damageMultiplier; }
 	short getBluntDamage() const;
 	short getSharpDamage(const LifeForm& owner) const;
@@ -23,10 +26,12 @@ public:
 	int getRange() const { return range; }
 	~Weapon();
 private:
+	std::list<std::unique_ptr<WeaponAttack>> weaponAttackList;
+	std::unique_ptr<WeaponAttack> weaponAttackType;
 	int damageMultiplier;
 	int range;
 	float fireRate;
 	float sharpness;
-	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastHit;
+	Clock clock;
 };
 

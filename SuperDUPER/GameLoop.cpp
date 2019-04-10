@@ -1,5 +1,5 @@
 #include "GameLoop.h"
-#include "RangeWeapon.h"
+#include "Weapon.h"
 #include "BasicArrow.h"
 constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
@@ -7,16 +7,14 @@ constexpr int SCREEH_HEIGHT{ 600 };
 GameLoop::GameLoop()
 	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
 {
-	//Start the frame clock
-	timeAtLastFrame = std::chrono::high_resolution_clock::now();
-
 	//Create the player
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
 	//test
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	(**lifeForms.begin()).takeWeaponInHand(std::unique_ptr<Weapon> {new RangeWeapon{ "Basic Bow", 100, 100, 1000, 0.5, std::unique_ptr<Projectile>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 100, (**lifeForms.begin()).getId()}} } });
+	(**lifeForms.begin()).takeWeaponInHand(std::unique_ptr<Weapon> {new Weapon{ "Basic Bow", 100, 100, 1000, 0.5, 1,
+		std::unique_ptr<WeaponAttack>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 0.2, 1, 1, (**lifeForms.begin()).getId()}} } });
 
 	//Test
 	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{GraphicRect{100, 50, Color{0, 0, 180, 180}}, "TEST", gameWindow.getRenderer(), Position<>{50, 50} } };
@@ -51,9 +49,7 @@ void GameLoop::handleEvent(Event& event) {
 }
 
 void GameLoop::refreshEntities() {
-	float deltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastFrame).count())
-		/ (1000 * 1000);
-	timeAtLastFrame = std::chrono::high_resolution_clock::now();
+	float deltaTime = static_cast<float>(static_cast<double>(clock.resetTime()) / (1000 * 1000));
 	auto it = lifeForms.begin();
 	while (it != lifeForms.end()) {
 		if ((**it).refresh(map, lifeForms, deltaTime))

@@ -75,6 +75,12 @@
     <Filter Include="Source Files\Item\Weapon">
       <UniqueIdentifier>{6bbcb180-b0d6-4893-b069-4a589b886c60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Command\CommandError">
+      <UniqueIdentifier>{0c6815b2-98b3-4660-af96-53134dfe3a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\CommandError">
+      <UniqueIdentifier>{3a8e54f0-88e3-4da5-998b-29d272f0b5ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -149,9 +155,6 @@
     <ClCompile Include="Command.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
-    <ClCompile Include="CommandError.cpp">
-      <Filter>Source Files\Command</Filter>
-    </ClCompile>
     <ClCompile Include="Quit.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
@@ -184,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="Clock.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandError.cpp">
+      <Filter>Source Files\Command\CommandError</Filter>
+    </ClCompile>
+    <ClCompile Include="InvalidNumArgs.cpp">
+      <Filter>Source Files\Command\CommandError</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -271,9 +280,6 @@
     <ClInclude Include="Command.h">
       <Filter>Header Files\Command</Filter>
     </ClInclude>
-    <ClInclude Include="CommandError.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="Key.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
@@ -305,6 +311,18 @@
       <Filter>Header Files\Item\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Clock.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="ValueChange.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandError.h">
+      <Filter>Header Files\Command\CommandError</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidNumArgs.h">
+      <Filter>Header Files\Command\CommandError</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTo.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
   </ItemGroup>

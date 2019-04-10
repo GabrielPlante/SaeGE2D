@@ -7,7 +7,8 @@
 class Command
 {
 public:
-	Command(std::string name = "");
+	Command(std::string name);
+	//The string given must be the arguments only, without the command name
 	virtual void execute(GameLoop* gameLoop, const std::string& = "") = 0;
 	const std::string& getName() const { return name; }
 	~Command();

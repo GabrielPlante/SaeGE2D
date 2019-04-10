@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3A45BFC7-5EAA-42A1-884E-CFFE7EE9D25A}</ProjectGuid>
     <RootNamespace>SuperDUPER</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -149,6 +149,7 @@
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameLoop.cpp" />
+    <ClCompile Include="InvalidNumArgs.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LifeForm.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Event.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameLoop.h" />
+    <ClInclude Include="InvalidNumArgs.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="LifeForm.h" />
@@ -202,11 +204,13 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="StatusEffect.h" />
+    <ClInclude Include="StringTo.h" />
     <ClInclude Include="TempStatusEffect.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextOnRect.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ValueChange.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="WeaponAttack.h" />
     <ClInclude Include="Window.h" />

@@ -139,6 +139,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Chunk.cpp" />
     <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Clock.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandError.cpp" />
     <ClCompile Include="DefaultTile.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Circle.h" />
+    <ClInclude Include="Clock.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandError.h" />

@@ -7,6 +7,7 @@
 #include "WeaponAttack.h"
 #include "Item.h"
 #include <list>
+#include "Clock.h"
 class Map;
 class LifeForm;
 class Weapon :
@@ -31,6 +32,6 @@ private:
 	int range;
 	float fireRate;
 	float sharpness;
-	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastHit;
+	Clock clock;
 };
 

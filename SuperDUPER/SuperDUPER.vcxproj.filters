@@ -182,6 +182,9 @@
     <ClCompile Include="WeaponAttack.cpp">
       <Filter>Source Files\Item\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -300,6 +303,9 @@
     </ClInclude>
     <ClInclude Include="WeaponAttack.h">
       <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Header Files\Struct</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

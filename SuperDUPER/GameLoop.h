@@ -6,6 +6,7 @@
 #include "Character.h"
 #include <list>
 #include "Button.h"
+#include "Clock.h"
 
 class GameLoop
 {
@@ -29,7 +30,7 @@ private:
 	Event event;
 	std::list<std::unique_ptr<LifeForm>> lifeForms;
 	Uint32 timeSinceGameStart;
-	std::chrono::time_point<std::chrono::high_resolution_clock> timeAtLastFrame;
+	Clock clock;
 	std::vector<std::unique_ptr<Button>> buttonList;
 	bool keepGoing = true;
 };

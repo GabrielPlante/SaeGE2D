@@ -7,9 +7,6 @@ constexpr int SCREEH_HEIGHT{ 600 };
 GameLoop::GameLoop()
 	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
 {
-	//Start the frame clock
-	timeAtLastFrame = std::chrono::high_resolution_clock::now();
-
 	//Create the player
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
 	//test
@@ -52,9 +49,7 @@ void GameLoop::handleEvent(Event& event) {
 }
 
 void GameLoop::refreshEntities() {
-	float deltaTime = static_cast<float>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - timeAtLastFrame).count())
-		/ (1000 * 1000);
-	timeAtLastFrame = std::chrono::high_resolution_clock::now();
+	float deltaTime = static_cast<float>(static_cast<double>(clock.resetTime()) / (1000 * 1000));
 	auto it = lifeForms.begin();
 	while (it != lifeForms.end()) {
 		if ((**it).refresh(map, lifeForms, deltaTime))

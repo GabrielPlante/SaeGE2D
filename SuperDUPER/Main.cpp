@@ -6,7 +6,7 @@
 int main(int argc, char* args[]) {
 	constexpr double maxFps = 60;
 	constexpr long int timeBetweenFrame{ static_cast<long int>(1000*1000 / maxFps) };
-
+	
 	GameLoop gameLoop;
 
 	auto timeAtLastFrame = std::chrono::high_resolution_clock::now();

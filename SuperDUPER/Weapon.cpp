@@ -20,7 +20,7 @@ short Weapon::getBluntDamage() const {
 }
 
 short Weapon::getSharpDamage(const LifeForm& owner) const {
-	return static_cast<short>(damageMultiplier * owner.getStrength() * sharpness);
+	return static_cast<short>(damageMultiplier * owner.getDamageMultiplier() * sharpness);
 }
 
 

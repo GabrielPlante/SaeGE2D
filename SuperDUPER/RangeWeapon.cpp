@@ -27,9 +27,9 @@ bool RangeWeapon::refresh(const Map& map, const std::list<std::unique_ptr<LifeFo
 }
 
 bool RangeWeapon::attack(LifeForm* lifeForm) {
-	if (!Weapon::attack(lifeForm))
+	if (!Weapon::attack(lifeForm))//Check for the attack cooldown
 		return false;
-	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition(), projectileType->getSpeed(), projectileType->getRange(), projectileType->getDamage(), lifeForm->getId()));
+	projectiles.push_back(projectileType->clone(lifeForm->getFacingDirection(), lifeForm->getPosition(), lifeForm->getId()));
 	return false;
 }
 

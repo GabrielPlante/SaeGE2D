@@ -134,7 +134,6 @@
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="BasicArrow.cpp" />
-    <ClCompile Include="BasicSword.cpp" />
     <ClCompile Include="BedRock.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -153,11 +152,9 @@
     <ClCompile Include="LifeForm.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="MeleeWeapon.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Quit.cpp" />
-    <ClCompile Include="RangeWeapon.cpp" />
     <ClCompile Include="GraphicRect.cpp" />
     <ClCompile Include="Renderable.cpp" />
     <ClCompile Include="StringSplit.h" />
@@ -168,6 +165,7 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WeaponAttack.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +173,6 @@
     <ClInclude Include="Angle.h" />
     <ClInclude Include="Attack.h" />
     <ClInclude Include="BasicArrow.h" />
-    <ClInclude Include="BasicSword.h" />
     <ClInclude Include="BedRock.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Character.h" />
@@ -194,13 +191,11 @@
     <ClInclude Include="Key.h" />
     <ClInclude Include="LifeForm.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Quit.h" />
-    <ClInclude Include="RangeWeapon.h" />
     <ClInclude Include="GraphicRect.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
@@ -211,6 +206,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WeaponAttack.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

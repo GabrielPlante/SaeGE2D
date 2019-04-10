@@ -9,7 +9,7 @@ Weapon::Weapon(const std::string& name, short mass, int damageMultiplier, int ra
 
 void Weapon::render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const {
 	for (auto it = weaponAttackList.begin(); it != weaponAttackList.end(); it++) {
-		(**it).render(renderer, camera);
+		(**it).render(renderer, camera, owner);
 	}
 }
 

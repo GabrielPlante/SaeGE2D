@@ -22,20 +22,19 @@ public:
 		unsigned short range, float damageMultiplier, unsigned short mass, float sharpness, int ownerId);
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
 	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Return true if the projectile doesn't exist anymore
+	~Projectile();
+protected:
 	const Position<float> getPosition() const { return movement.getPosition(); }
 	unsigned short getSpeed() const { return speed; }
-	unsigned short getRange() const { return range; }
 	unsigned short getBluntDamage() const { return static_cast<unsigned short>(damageMultiplier * mass * speed); }
 	unsigned short getSharpDamage() const { return static_cast<unsigned short>(damageMultiplier * sharpness * speed); }
 	unsigned short getMass() const { return mass; }
 	float getDamageMultiplier() const { return damageMultiplier; }
 	float getSharpness() const { return sharpness; }
 	Angle getFacingDirection() const { return movement.getFacingDirection(); }
-	~Projectile();
 private:
 	Movement movement;
 	unsigned short speed;
-	unsigned short range;
 	unsigned short mass;
 	float damageMultiplier;
 	float sharpness;

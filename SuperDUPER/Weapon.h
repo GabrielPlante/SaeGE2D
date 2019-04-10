@@ -6,7 +6,6 @@
 #include "Position.h"
 #include "WeaponAttack.h"
 #include "Item.h"
-#include <vector>
 #include <list>
 class Map;
 class LifeForm;

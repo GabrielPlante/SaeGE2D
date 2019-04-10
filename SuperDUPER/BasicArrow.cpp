@@ -8,7 +8,7 @@ BasicArrow::BasicArrow(Angle facingDirection, Position<float> position, unsigned
 {
 }
 
-void BasicArrow::render(SDL_Renderer* renderer, const Camera& camera) const {
+void BasicArrow::render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const {
 	constexpr int length = 50;
 	Position<> rear{ camera.absoluteToRelative(static_cast<long>(-cos(getFacingDirection().get()) * length+getPosition().x), static_cast<long>(-sin(getFacingDirection().get()) * length+getPosition().y)) };
 	Position<> front{ camera.absoluteToRelative(static_cast<long>(getPosition().x), static_cast<long>(getPosition().y)) };

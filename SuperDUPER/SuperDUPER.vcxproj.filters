@@ -194,6 +194,9 @@
     <ClCompile Include="InvalidNumArgs.cpp">
       <Filter>Source Files\Command\CommandError</Filter>
     </ClCompile>
+    <ClCompile Include="CommandList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -324,6 +327,9 @@
     </ClInclude>
     <ClInclude Include="StringTo.h">
       <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandList.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

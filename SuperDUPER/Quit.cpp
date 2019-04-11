@@ -7,7 +7,7 @@ Quit::Quit()
 {
 }
 
-void Quit::execute(GameLoop* gameLoop, const std::vector<float> args) {
+void Quit::execute(GameLoop* gameLoop, const std::vector<float>& args) const {
 	gameLoop->quit();
 }
 

@@ -5,7 +5,7 @@ class Move :
 {
 public:
 	Move();
-	void execute(GameLoop* gameLoop, const std::vector<float> args) override;
+	void execute(GameLoop* gameLoop, const std::vector<float>& args) const override;
 	~Move();
 };
 

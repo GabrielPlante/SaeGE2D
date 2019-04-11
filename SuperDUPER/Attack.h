@@ -5,7 +5,7 @@ class Attack :
 {
 public:
 	Attack();
-	void execute(GameLoop* gameLoop, const std::vector<float> args) override;
+	void execute(GameLoop* gameLoop, const std::vector<float>& args) const override;
 	~Attack();
 };
 

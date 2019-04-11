@@ -3,10 +3,9 @@
 
 
 Command::Command(std::string name)
-	:name{ name }
+	:name{ std::move(name) }
 {
 }
-
 
 Command::~Command()
 {

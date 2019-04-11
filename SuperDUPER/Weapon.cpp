@@ -25,9 +25,10 @@ bool Weapon::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>&
 }
 
 bool Weapon::attack(LifeForm* owner) {
-	auto deltaTime = clock.resetTime();
+	auto deltaTime = clock.getTime();
 	if (deltaTime < static_cast<long long>(fireRate * 1000 * 1000))
 		return false;
+	clock.resetTime();
 	weaponAttackList.push_back(weaponAttackType->clone(owner->getFacingDirection(), owner->getPosition(), owner->getId()));
 	return true;
 }

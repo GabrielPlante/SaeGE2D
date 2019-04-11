@@ -20,7 +20,7 @@ void Event::handleEvent(GameLoop* gameLoop) {
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
-			search->second->execute(gameLoop);
+			search->second->execute(gameLoop, std::vector<float>{});
 	}
 }
 
@@ -31,14 +31,14 @@ void Event::keyboardEvent(GameLoop* gameLoop) {
 		return;
 	//Those function need special arguments
 	else if (search->second->getName() == "pl_attack") {
-		Attack::execute(gameLoop, event.motion.x, event.motion.y);
+		search->second->execute(gameLoop, std::vector<float>{static_cast<float>(event.motion.x), static_cast<float>(event.motion.y)});
 	}
 	else if (search->second->getName() == "pl_move") {
-		Move::execute(gameLoop, event.motion.x, event.motion.y);
+		search->second->execute(gameLoop, std::vector<float>{static_cast<float>(event.motion.x), static_cast<float>(event.motion.y)});
 	}
 	//Generic function that can be treated with only gameloop
 	else
-		search->second->execute(gameLoop);
+		search->second->execute(gameLoop, std::vector<float>{});
 }
 
 void Event::mouseEvent(LifeForm* player, const Camera& camera, const std::list<std::unique_ptr<LifeForm>>& lifeFormsList) const {

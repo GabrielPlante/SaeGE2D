@@ -5,7 +5,7 @@ class Quit :
 {
 public:
 	Quit();
-	void execute(GameLoop* gameLoop, const std::string& arg = "") override;
+	void execute(GameLoop* gameLoop, const std::vector<float> args) override;
 	~Quit();
 };
 

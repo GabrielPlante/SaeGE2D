@@ -1,10 +1,11 @@
 #pragma once
-#include "GameLoop.h"
 #include <string>
 #include <vector>
 
+
 //enum class Prefix {None, Player };
 
+class GameLoop;
 class Command
 {
 public:

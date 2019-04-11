@@ -2,6 +2,7 @@
 #include "StringSplit.h"
 #include "CommandError.h"
 #include "InvalidNumArgs.h"
+#include "GameLoop.h"
 
 
 Move::Move()

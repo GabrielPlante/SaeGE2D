@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <map>
 #include <memory>
+#include "CommandList.h"
 
 /*TODO
  * Pipeline of an event:
@@ -32,10 +33,12 @@ private:
 	SDL_Event event;
 	const Uint8* state = SDL_GetKeyboardState(NULL);
 	//Used to find what command to call for a general event
-	std::unordered_map<int, std::shared_ptr<Command>> eventToEventType;
+	std::unordered_map<int, std::string> eventToEventType;
 	//Used to find what command to call for a key or mouse button event
-	std::map<Key, std::shared_ptr<Command>> keyToEventType;
-	std::vector<std::shared_ptr<Command>> eventList;
+	std::map<Key, std::string> keyToEventType;
+
+	CommandList commandList;
+
 
 	//Test to see if this work well, it keep the button the cursor is actually hovering to avoid checking them all
 	Button* buttonHovering = nullptr;

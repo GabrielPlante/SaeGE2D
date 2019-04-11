@@ -1,6 +1,7 @@
 #include "Attack.h"
 #include "StringSplit.h"
 #include "InvalidNumArgs.h"
+#include "GameLoop.h"
 
 
 Attack::Attack()

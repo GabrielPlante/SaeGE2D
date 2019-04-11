@@ -1,5 +1,5 @@
 #include "Command.h"
-
+#include "GameLoop.h"
 
 
 Command::Command(std::string name)

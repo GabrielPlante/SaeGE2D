@@ -1,20 +1,13 @@
 #include "Event.h"
-#include "Quit.h"
-#include "Attack.h"
-#include "Move.h"
 #include "GameLoop.h"
 
 Event::Event()
 {
-	//First create all the command
-	eventList.push_back(std::shared_ptr<Command>{new Quit()});
-	eventList.push_back(std::shared_ptr<Command>{new Attack()});
-	eventList.push_back(std::shared_ptr<Command>{new Move()});
 	//Then assign them
-	eventToEventType[SDL_QUIT] = eventList[0];
-	keyToEventType[SDLK_ESCAPE] = eventList[0];
-	keyToEventType[static_cast<Uint8>(SDL_BUTTON_LEFT)] = eventList[1];
-	keyToEventType[static_cast<Uint8>(SDL_BUTTON_RIGHT)] = eventList[2];
+	eventToEventType[SDL_QUIT] = "quit";
+	keyToEventType[SDLK_ESCAPE] = "quit";
+	keyToEventType[static_cast<Uint8>(SDL_BUTTON_LEFT)] = "pl_attack";
+	keyToEventType[static_cast<Uint8>(SDL_BUTTON_RIGHT)] = "pl_move";
 }
 
 void Event::handleEvent(GameLoop* gameLoop) {
@@ -25,7 +18,7 @@ void Event::handleEvent(GameLoop* gameLoop) {
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
-			search->second->execute(gameLoop);
+			commandList.executeCommand(search->second, gameLoop);
 	}
 }
 
@@ -37,12 +30,12 @@ void Event::keyboardEvent(GameLoop* gameLoop) {
 	if (search == keyToEventType.end())
 		return;
 	//Those function need special arguments
-	else if (search->second->getName() == "pl_attack" || search->second->getName() == "pl_move") {
-		search->second->execute(gameLoop, std::vector<float>{static_cast<float>(event.motion.x), static_cast<float>(event.motion.y)});
+	else if (search->second == "pl_attack" || search->second == "pl_move") {
+		commandList.executeCommand(search->second, gameLoop, std::vector<float>{ static_cast<float>(event.motion.x), static_cast<float>(event.motion.y) });
 	}
 	//Generic function that can be treated with only gameloop
 	else
-		search->second->execute(gameLoop);
+		commandList.executeCommand(search->second, gameLoop);
 }
 
 void Event::mouseMoveEvent(GameLoop* gameLoop) {

@@ -187,6 +187,7 @@
     <ClInclude Include="CommandError.h" />
     <ClInclude Include="CommandList.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="Damage.h" />
     <ClInclude Include="DefaultTile.h" />
     <ClInclude Include="Destination.h" />
     <ClInclude Include="Entity.h" />

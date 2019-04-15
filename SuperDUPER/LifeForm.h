@@ -1,4 +1,5 @@
 #pragma once
+#include "Damage.h"
 #include "Entity.h"
 #include <math.h>
 #include "AdvancedMovement.h"
@@ -42,7 +43,7 @@ public:
 	//---External order---
 	void setDestination(const Destination& destination);
 	void attack(Position<> pointOfAttack);
-	bool takeDamage(int amount);//Return true if the lifeform is alive 
+	bool takeDamage(const Damage& damage);//Return true if the lifeform is alive 
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }
 	void clearDestination() { movement.setDestination(Destination(this)); }
 	void clearAction() { actionQueue = std::queue<Action>(); }

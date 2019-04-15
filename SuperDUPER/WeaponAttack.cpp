@@ -2,7 +2,7 @@
 
 
 
-WeaponAttack::WeaponAttack(unsigned short range)
+WeaponAttack::WeaponAttack(short range)
 	:range{ range }
 {
 }

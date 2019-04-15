@@ -2,8 +2,8 @@
 
 
 
-BasicArrow::BasicArrow(Angle facingDirection, Position<float> position, unsigned short speed,
-	unsigned short range, float damageMultiplier, unsigned short mass, float sharpness, int ownerId)
+BasicArrow::BasicArrow(Angle facingDirection, Position<float> position, short speed,
+	short range, float damageMultiplier, short mass, float sharpness, int ownerId)
 	:Projectile{ "Basic Arrow", 5, facingDirection, position, speed, range, damageMultiplier, mass, sharpness, ownerId }
 {
 }

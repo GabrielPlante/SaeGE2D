@@ -132,7 +132,7 @@ bool LifeForm::isInSight(const Position<float>& entity) const {
 	return (angleEntityPlayer.get() <= sightArea || angleEntityPlayer.get() >= 2 * PI - sightArea);
 }
 
-bool LifeForm::takeDamage(int amount) {
-	healthPoint -= amount;
+bool LifeForm::takeDamage(const Damage& damage) {
+	healthPoint -= damage.getDamage(bluntDamageMultiplier, sharpDamageMultiplier);
 	return !isAlive();
 }

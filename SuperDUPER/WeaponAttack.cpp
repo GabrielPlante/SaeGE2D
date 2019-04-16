@@ -2,8 +2,8 @@
 
 
 
-WeaponAttack::WeaponAttack(short range)
-	:range{ range }
+WeaponAttack::WeaponAttack(short range, float damageMultiplier, float sharpness)
+	:range{ range }, damageMultiplier{ damageMultiplier }, sharpness{ sharpness }
 {
 }
 

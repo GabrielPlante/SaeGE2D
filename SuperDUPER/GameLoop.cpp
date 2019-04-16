@@ -14,7 +14,7 @@ GameLoop::GameLoop()
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
 	(**lifeForms.begin()).takeWeaponInHand(std::unique_ptr<Weapon> {new Weapon{ "Basic Bow", 100, 100, 1000, 0.5, 1,
-		std::unique_ptr<WeaponAttack>{new BasicArrow{0, Position<float>{0, 0}, 300, 1000, 0.2, 1, 1, (**lifeForms.begin()).getId()}} } });
+		std::unique_ptr<WeaponAttack>{new BasicArrow{0, 1, Position<float>{0, 0}, 300, 1000, 0.2, 1, (**lifeForms.begin()).getId()}} } });
 
 	//Test
 	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{GraphicRect{100, 50, Color{0, 0, 180, 180}}, "TEST", gameWindow.getRenderer(), Position<>{50, 50} } };

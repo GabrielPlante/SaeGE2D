@@ -3,7 +3,7 @@
 class Item
 {
 public:
-	Item(const std::string& name, short mass = 0);
+	Item(const std::string& name, short mass);
 	void setMass(short newMass) { mass = newMass; }
 	short getMass() const { return mass; }
 	~Item();

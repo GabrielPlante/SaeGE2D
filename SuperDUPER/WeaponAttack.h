@@ -8,7 +8,7 @@ class Map;
 class WeaponAttack
 {
 public:
-	WeaponAttack(short range);
+	WeaponAttack(short range, float damageMultiplier, float sharpness);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
 	//Return true if the projectile doesn't exist anymore
 	virtual bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) = 0;
@@ -16,6 +16,8 @@ public:
 	~WeaponAttack();
 protected:
 	short getRange() const { return range; }
+	float damageMultiplier;
+	float sharpness;
 private:
 	short range;
 };

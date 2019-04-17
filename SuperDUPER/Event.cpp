@@ -6,8 +6,10 @@ Event::Event()
 	//Then assign them
 	eventToEventType[SDL_QUIT] = "quit";
 	keyToEventType[SDLK_ESCAPE] = "quit";
+	keyToEventType[SDLK_a] = "co_open";
 	keyToEventType[static_cast<Uint8>(SDL_BUTTON_LEFT)] = "pl_attack";
 	keyToEventType[static_cast<Uint8>(SDL_BUTTON_RIGHT)] = "pl_move";
+	keyToEventType[SDLK_SPACE] = "pl_stop";
 }
 
 void Event::handleEvent(GameLoop* gameLoop) {
@@ -24,6 +26,11 @@ void Event::handleEvent(GameLoop* gameLoop) {
 
 //It's called keyboard event but it's mouse and keyboard event
 void Event::keyboardEvent(GameLoop* gameLoop) {
+	if (event.type == SDL_KEYDOWN && gameLoop->getConsole()->isOpened()) {
+		if (event.key.keysym.sym == SDLK_ESCAPE)
+			gameLoop->getConsole()->close();
+		return;
+	}
 	//Is it a mouse or keyboard event
 	auto search = event.type == SDL_KEYDOWN ? keyToEventType.find(event.key.keysym.sym) : keyToEventType.find(event.button.button);
 	//If nothing is found we exit early

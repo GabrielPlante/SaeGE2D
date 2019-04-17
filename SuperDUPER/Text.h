@@ -7,17 +7,15 @@
 class Text
 {
 public:
-	Text(std::string text, Color color, Rectangle position, SDL_Renderer* renderer, const std::string& fontFileName = "mainFont.ttf");
-	void changeText(std::string newText);
+	Text(const std::string& text, Color color, Rectangle position, SDL_Renderer* renderer, const std::string& fontFileName = "mainFont.ttf");
 	void render(SDL_Renderer* renderer) const;
+	const std::string& getText() const { return text; }
 	~Text();
 private:
 	Text(const Text&) {}
 	std::string text;
-	std::string fontFileName;
 	Color color;
 	Rectangle position;
 	SDL_Texture* texture = nullptr;
-	SDL_Renderer* renderer;
 };
 

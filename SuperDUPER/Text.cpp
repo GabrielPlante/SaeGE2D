@@ -1,15 +1,9 @@
 #include "Text.h"
-#include <iostream>
 
 
-Text::Text(std::string text, Color color, Rectangle position, SDL_Renderer* renderer, const std::string& fontFileName)
-	:color{ color }, position{ position }, fontFileName{ fontFileName }, renderer{ renderer }
+Text::Text(const std::string& text, Color color, Rectangle position, SDL_Renderer* renderer, const std::string& fontFileName)
+	:color{ color }, position{ position }
 {
-	changeText(text);
-}
-
-void Text::changeText(std::string newText) {
-	text = newText;
 	//Load the font with a good size
 	Font font{ static_cast<short>(position.h), fontFileName };
 	//Create the surface
@@ -25,8 +19,7 @@ void Text::changeText(std::string newText) {
 }
 
 void Text::render(SDL_Renderer* renderer) const {
-	if (SDL_RenderCopy(renderer, texture, NULL, &position.toSDL_Rect()) < 0)
-		std::cout << "OOOO " << SDL_GetError() << std::endl;
+	SDL_RenderCopy(renderer, texture, NULL, &position.toSDL_Rect());
 }
 
 Text::~Text()

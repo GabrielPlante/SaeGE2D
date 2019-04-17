@@ -157,10 +157,12 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Move.cpp" />
+    <ClCompile Include="OpenConsole.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Quit.cpp" />
     <ClCompile Include="GraphicRect.cpp" />
     <ClCompile Include="Renderable.cpp" />
+    <ClCompile Include="Stop.cpp" />
     <ClCompile Include="StringSplit.h" />
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="TempStatusEffect.cpp" />
@@ -203,6 +205,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Movement.h" />
+    <ClInclude Include="OpenConsole.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Quit.h" />
@@ -210,6 +213,7 @@
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
     <ClInclude Include="StatusEffect.h" />
+    <ClInclude Include="Stop.h" />
     <ClInclude Include="StringTo.h" />
     <ClInclude Include="TempStatusEffect.h" />
     <ClInclude Include="Text.h" />

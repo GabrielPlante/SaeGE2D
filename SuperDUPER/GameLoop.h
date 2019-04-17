@@ -7,6 +7,7 @@
 #include <list>
 #include "Button.h"
 #include "Clock.h"
+#include "Console.h"
 
 class GameLoop
 {
@@ -22,6 +23,7 @@ public:
 	std::vector<std::unique_ptr<Button>>* getButtonList() { return &buttonList; }
 	LifeForm* getPlayer() { return &(**lifeForms.begin()); }
 	Camera* getCamera() { return &(gameWindow.getCamera()); }
+	Console* getConsole() { return &console; }
 	void quit() { keepGoing = false; }
 	~GameLoop();
 private:
@@ -33,5 +35,6 @@ private:
 	Clock clock;
 	std::vector<std::unique_ptr<Button>> buttonList;
 	bool keepGoing = true;
+	Console console;
 };
 

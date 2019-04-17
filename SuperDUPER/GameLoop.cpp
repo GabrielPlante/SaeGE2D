@@ -5,7 +5,7 @@ constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
 
 GameLoop::GameLoop()
-	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }
+	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }, console{ Rectangle{700, 50, 400, 500} }
 {
 	//Create the player
 	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
@@ -77,6 +77,7 @@ void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 		(**it).render(renderer);
+	console.render(renderer);
 }
 
 GameLoop::~GameLoop()

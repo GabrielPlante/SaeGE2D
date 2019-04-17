@@ -165,6 +165,7 @@
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="TempStatusEffect.cpp" />
     <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextInput.cpp" />
     <ClCompile Include="TextOnRect.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="StringTo.h" />
     <ClInclude Include="TempStatusEffect.h" />
     <ClInclude Include="Text.h" />
+    <ClInclude Include="TextInput.h" />
     <ClInclude Include="TextOnRect.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Camera.h" />

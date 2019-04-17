@@ -10,9 +10,6 @@ int main(int argc, char* args[]) {
 
 	GameLoop gameLoop;
 
-	int a = 5;
-	ValueChange<int> test{ "test", &a };
-
 	Clock clock;
 
 	//What happen in the game each frame is in update(), what's inside the loop is only the frame capper

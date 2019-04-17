@@ -12,12 +12,12 @@ Button::Button(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer
 {}
 
 bool Button::checkIfHovering(const Position<>& mousePosition) {
-	if (!isHovering && pointIsIn(mousePosition)) {
+	if (!isHovering && pointIsIn(mousePosition, getPosition())) {
 		onHovering();
 		isHovering = true;
 		return true;
 	}
-	else if (isHovering && !pointIsIn(mousePosition)) {
+	else if (isHovering && !pointIsIn(mousePosition, getPosition())) {
 		unHovering();
 		isHovering = false;
 	}

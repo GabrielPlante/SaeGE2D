@@ -3,8 +3,13 @@
 
 
 Text::Text(std::string text, Color color, Rectangle position, SDL_Renderer* renderer, const std::string& fontFileName)
-	:text{ text }, color{ color }, position{ position }
+	:color{ color }, position{ position }, fontFileName{ fontFileName }, renderer{ renderer }
 {
+	changeText(text);
+}
+
+void Text::changeText(std::string newText) {
+	text = newText;
 	//Load the font with a good size
 	Font font{ static_cast<short>(position.h), fontFileName };
 	//Create the surface

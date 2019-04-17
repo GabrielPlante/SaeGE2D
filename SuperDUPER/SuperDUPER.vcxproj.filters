@@ -197,8 +197,11 @@
     <ClCompile Include="CommandList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Console.cpp">
+    <ClCompile Include="TextInput.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Source Files\Renderable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -334,11 +337,14 @@
     <ClInclude Include="CommandList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Damage.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Header Files\Renderable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

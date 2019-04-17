@@ -17,8 +17,8 @@ void Event::handleEvent(GameLoop* gameLoop) {
 		keyboardEvent(gameLoop);
 	else if (event.type == SDL_MOUSEMOTION)
 		mouseMoveEvent(gameLoop);
-	else if (event.type == SDL_TEXTINPUT)
-		gameLoop->getConsole()->addInputText(event.text.text, gameLoop->getGameWindow()->getRenderer());
+	else if (event.type == SDL_TEXTINPUT && gameLoop->getConsole()->isOpened())
+		gameLoop->getConsole()->addText(event.text.text);
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
@@ -29,8 +29,21 @@ void Event::handleEvent(GameLoop* gameLoop) {
 //It's called keyboard event but it's mouse and keyboard event
 void Event::keyboardEvent(GameLoop* gameLoop) {
 	if (event.type == SDL_KEYDOWN && gameLoop->getConsole()->isOpened()) {
+		//Handle closing the console
 		if (event.key.keysym.sym == SDLK_ESCAPE)
 			gameLoop->getConsole()->close();
+		//Handle backspace
+		else if (event.key.keysym.sym == SDLK_BACKSPACE)
+			gameLoop->getConsole()->popText();
+		//Handle paste
+		else if (event.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)
+			gameLoop->getConsole()->addText(SDL_GetClipboardText());
+		//Handle copy
+		else if (event.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)
+			SDL_SetClipboardText(gameLoop->getConsole()->getInputText().c_str());
+		else if (event.key.keysym.sym == SDLK_RETURN)
+			commandList.executeCommand(gameLoop->getConsole()->getInputText(), gameLoop);
+		//We dont want the event to affect the game
 		return;
 	}
 	//Is it a mouse or keyboard event

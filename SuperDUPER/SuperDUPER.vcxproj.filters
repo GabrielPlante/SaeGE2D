@@ -209,6 +209,9 @@
     <ClCompile Include="Stop.cpp">
       <Filter>Source Files\Command</Filter>
     </ClCompile>
+    <ClCompile Include="InputBar.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -357,6 +360,9 @@
     </ClInclude>
     <ClInclude Include="Stop.h">
       <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="InputBar.h">
+      <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

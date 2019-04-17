@@ -2,17 +2,16 @@
 #include "GraphicRect.h"
 #include "Text.h"
 class TextOnRect
-	:public GraphicRect
+	:public GraphicRect, Text
 {
 public:
 	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Rectangle textPosition, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
-	//Text on rect with the text in all the rect
+	//Text on rect with the text taking all the rectangle
 	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 	void render(SDL_Renderer* renderer) const;
 	const Position<>& getPosition() const { return position; }
 	~TextOnRect();
 private:
-	Text text;
 	Position<> position;
 };
 

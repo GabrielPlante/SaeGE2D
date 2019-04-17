@@ -17,6 +17,8 @@ void Event::handleEvent(GameLoop* gameLoop) {
 		keyboardEvent(gameLoop);
 	else if (event.type == SDL_MOUSEMOTION)
 		mouseMoveEvent(gameLoop);
+	else if (event.type == SDL_TEXTINPUT)
+		gameLoop->getConsole()->addInputText(event.text.text, gameLoop->getGameWindow()->getRenderer());
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())

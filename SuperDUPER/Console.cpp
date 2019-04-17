@@ -38,8 +38,15 @@ void Console::render(SDL_Renderer* renderer) const {
 }
 
 void Console::setInputText(const std::string& text, SDL_Renderer* renderer) {
+	constexpr int charWidth{ 10 };
+	inputText = text;
 	inputBar = std::unique_ptr<TextOnRect>{ new TextOnRect{GraphicRect{static_cast<short>(rectangle.w - 2 * borderSize), static_cast<short>(textHeight), backgroundColor},
-		text, renderer, Position<>{rectangle.x + borderSize, rectangle.y + rectangle.h - borderSize - textHeight}} };
+		text, renderer, Position<>{rectangle.x + borderSize, rectangle.y + rectangle.h - borderSize - textHeight},
+		Rectangle{rectangle.x + borderSize, rectangle.y + rectangle.h - borderSize - textHeight, static_cast<const int>(text.size()) * charWidth, textHeight}} };
+}
+
+void Console::addInputText(const std::string& text, SDL_Renderer* renderer) {
+	setInputText(inputText + text, renderer);
 }
 
 Console::~Console()

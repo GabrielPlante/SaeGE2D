@@ -10,7 +10,6 @@ public:
 	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 	void render(SDL_Renderer* renderer) const;
 	const Position<>& getPosition() const { return position; }
-	const std::string& getText() const { return text.getText(); }
 	~TextOnRect();
 private:
 	Text text;

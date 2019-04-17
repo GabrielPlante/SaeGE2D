@@ -121,6 +121,7 @@ void LifeForm::attack(Position<> pointOfAttack) {
 			actionQueue.push(Action::Attack);
 		}
 		else {
+			clearAction();
 			inHandWeapon->attack(this);
 		}
 	}

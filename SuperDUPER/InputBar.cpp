@@ -29,6 +29,20 @@ void InputBar::popText() {
 	}
 }
 
+void InputBar::open() {
+	if (!opened) {
+		opened = true;
+		textInput = std::unique_ptr<TextInput>{ new TextInput() };
+	}
+}
+
+void InputBar::close() {
+	if (opened) {
+		opened = false;
+		textInput.reset();
+	}
+}
+
 void InputBar::render(SDL_Renderer* renderer) {
 	if (needRendering) {
 		constexpr int charWidth{ 10 };

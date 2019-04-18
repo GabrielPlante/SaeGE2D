@@ -1,5 +1,6 @@
 #pragma once
 #include "TextOnRect.h"
+#include "TextInput.h"
 class InputBar
 {
 public:
@@ -8,7 +9,13 @@ public:
 	void addText(const std::string& text);
 	void setText(const std::string& text);
 	void popText();
+	void open();
+	void close();
+	bool isOpened() const { return opened; }
+	bool doesNeedRendering() const { return needRendering; }
 	const std::string& getInputText() const { return inputText; }
+	void clear() { inputText.clear(); graphicText.reset(); }
+	
 	~InputBar();
 private:
 	bool needRendering = false;
@@ -18,5 +25,7 @@ private:
 	Position<> position;
 	Color textColor;
 	std::string fontFileName;
+	std::unique_ptr<TextInput> textInput;
+	bool opened = false;
 };
 

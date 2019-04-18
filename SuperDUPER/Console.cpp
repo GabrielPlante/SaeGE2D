@@ -9,22 +9,8 @@ Console::Console(Rectangle rectangle, Color backgroundColor, Color borderColor, 
 {
 }
 
-void Console::open() {
-	if (!opened) {
-		opened = true;
-		textInput = std::unique_ptr<TextInput>{ new TextInput() };
-	}
-}
-
-void Console::close() {
-	if (opened) {
-		opened = false;
-		textInput.reset();
-	}
-}
-
 void Console::render(SDL_Renderer* renderer) {
-	if (opened) {
+	if (isOpened()) {
 		//First render the background
 		SDL_SetRenderDrawColor(renderer, backgroundColor.red, backgroundColor.green, backgroundColor.blue, backgroundColor.transparency);
 		SDL_RenderFillRect(renderer, &rectangle.toSDL_Rect());

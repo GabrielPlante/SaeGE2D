@@ -364,6 +364,9 @@
     <ClInclude Include="InputBar.h">
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
+    <ClInclude Include="TextToCommand.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\codemirror-3.01\mode\xml.js">

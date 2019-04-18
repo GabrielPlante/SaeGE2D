@@ -1,5 +1,6 @@
 #include "Event.h"
 #include "GameLoop.h"
+#include "TextToCommand.h"
 
 Event::Event()
 {
@@ -41,8 +42,11 @@ void Event::keyboardEvent(GameLoop* gameLoop) {
 		//Handle copy
 		else if (event.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)
 			SDL_SetClipboardText(gameLoop->getConsole()->getInputText().c_str());
-		else if (event.key.keysym.sym == SDLK_RETURN)
-			commandList.executeCommand(gameLoop->getConsole()->getInputText(), gameLoop);
+		else if (event.key.keysym.sym == SDLK_RETURN) {
+			TextToCommand textToCommand{ gameLoop->getConsole()->getCommand() };
+			commandList.executeCommand(textToCommand.getCommandName(), gameLoop, textToCommand.getArgs());
+			gameLoop->getConsole()->clear();
+		}
 		//We dont want the event to affect the game
 		return;
 	}

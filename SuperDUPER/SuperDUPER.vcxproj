@@ -221,6 +221,7 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="TextInput.h" />
     <ClInclude Include="TextOnRect.h" />
+    <ClInclude Include="TextToCommand.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ValueChange.h" />

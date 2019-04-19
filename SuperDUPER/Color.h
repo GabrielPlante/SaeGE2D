@@ -9,5 +9,5 @@ struct Color {
 	Color(int r, int g, int b, int a = 255) {
 		red = r; green = g; blue = b; transparency = a;
 	}
-	SDL_Color toSDLColor() { return SDL_Color{ static_cast<Uint8>(red), static_cast<Uint8>(green), static_cast<Uint8>(blue), static_cast<Uint8>(transparency) }; }
+	SDL_Color toSDLColor() const { return SDL_Color{ static_cast<Uint8>(red), static_cast<Uint8>(green), static_cast<Uint8>(blue), static_cast<Uint8>(transparency) }; }
 };

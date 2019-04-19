@@ -2,10 +2,11 @@
 #include "GraphicRect.h"
 #include "Text.h"
 class TextOnRect
-	:public GraphicRect, Text
+	:public GraphicRect, public Text
 {
 public:
 	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Rectangle textPosition, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
+	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Rectangle textPosition, Color textColor, const Font& font);
 	//Text on rect with the text taking all the rectangle
 	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
 	void render(SDL_Renderer* renderer) const;

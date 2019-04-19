@@ -20,7 +20,10 @@ public:
 private:
 	bool needRendering = false;
 	std::string inputText;
+	Font font;
+	//The actual texture rendered
 	std::unique_ptr<TextOnRect> graphicText;
+	//Those are needed to recreate the texture each time a character is typed
 	GraphicRect graphicRect;
 	Position<> position;
 	Color textColor;

@@ -8,6 +8,7 @@ public:
 	TTF_Font* getFont() const { return font; }
 	~Font();
 private:
+	Font(const Font&){}
 	TTF_Font* font;
 };
 

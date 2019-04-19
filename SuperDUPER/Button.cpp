@@ -2,13 +2,13 @@
 
 
 
-Button::Button(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer, Position<> position, Rectangle textPosition, Color offSetOnHovering, Color textColor, const std::string& fontFileName)
-	:TextOnRect{ graphicRect, text, renderer, position, textPosition, textColor, fontFileName }, offSetOnHovering{ offSetOnHovering }
+Button::Button(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer, Position<> position, Position<> textPosition, const Font& font, Color offSetOnHovering, Color textColor)
+	:TextOnRect{ graphicRect, text, renderer, position, textPosition, font, textColor }, offSetOnHovering{ offSetOnHovering }
 {
 }
 
-Button::Button(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer, Position<> position, Color offSetOnHovering, Color textColor, const std::string& fontFileName)
-	: TextOnRect{ graphicRect, text, renderer, position, textColor, fontFileName }, offSetOnHovering{ offSetOnHovering }
+Button::Button(GraphicRect graphicRect, std::string text, SDL_Renderer* renderer, Position<> position, const Font& font, Color offSetOnHovering, Color textColor)
+	: TextOnRect{ graphicRect, text, renderer, position, font, textColor }, offSetOnHovering{ offSetOnHovering }
 {}
 
 bool Button::checkIfHovering(const Position<>& mousePosition) {

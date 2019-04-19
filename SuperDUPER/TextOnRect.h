@@ -5,10 +5,9 @@ class TextOnRect
 	:public GraphicRect, public Text
 {
 public:
-	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Rectangle textPosition, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
-	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Rectangle textPosition, Color textColor, const Font& font);
+	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Position<> textPosition, const Font& font, Color textColor = Color{ 0, 0, 0 });
 	//Text on rect with the text taking all the rectangle
-	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Color textColor = Color{ 0, 0, 0 }, const std::string& fontFileName = "mainFont.ttf");
+	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, const Font& font, Color textColor = Color{ 0, 0, 0 });
 	void render(SDL_Renderer* renderer) const;
 	const Position<>& getPosition() const { return position; }
 	~TextOnRect();

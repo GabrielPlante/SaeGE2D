@@ -48,8 +48,7 @@ void InputBar::render(SDL_Renderer* renderer) {
 		int charWidth;
 		TTF_SizeText(font.getFont(), inputText.c_str(), &charWidth, nullptr);
 		const int textWidth{ min(static_cast<int>(charWidth), static_cast<int>(graphicRect.getW())) };
-		graphicText = std::unique_ptr<TextOnRect>{ new TextOnRect{graphicRect, inputText, renderer, position,
-			Rectangle{position.x, position.y, textWidth, graphicRect.getH()}, textColor, font} };
+		graphicText = std::unique_ptr<TextOnRect>{ new TextOnRect{graphicRect, inputText, renderer, position, font, textColor} };
 		needRendering = false;
 	}
 	if (graphicText)

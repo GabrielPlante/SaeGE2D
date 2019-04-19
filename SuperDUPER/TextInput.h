@@ -2,10 +2,10 @@
 #include <SDL.h>
 #include "Color.h"
 //Used to start and stop the sdl text input
-class TextInput
+struct TextInput
 {
 public:
-	TextInput();
-	~TextInput();
+	TextInput() { SDL_StartTextInput(); }
+	~TextInput() { SDL_StopTextInput(); }
 };
 

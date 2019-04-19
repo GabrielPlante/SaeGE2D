@@ -168,7 +168,6 @@
     <ClCompile Include="StatusEffect.cpp" />
     <ClCompile Include="TempStatusEffect.cpp" />
     <ClCompile Include="Text.cpp" />
-    <ClCompile Include="TextInput.cpp" />
     <ClCompile Include="TextOnRect.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Camera.cpp" />

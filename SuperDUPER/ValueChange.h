@@ -7,7 +7,7 @@ class ValueChange :
 	public Command
 {
 public:
-	ValueChange(std::string name, T * valuePointed) : Command{ name }, valuePointed{ valuePointed }{}
+	ValueChange(const std::string& name, T * valuePointed) : Command{ name }, valuePointed{ valuePointed }{}
 	void execute(GameLoop* gameLoop, const std::vector<float>& args) const override {//gameLoop can be null
 		if (args.size() != 1)
 			throw InvalidNumArgs(1, static_cast<short>(args.size()));

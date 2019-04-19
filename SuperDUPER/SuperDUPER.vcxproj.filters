@@ -194,9 +194,6 @@
     <ClCompile Include="InvalidNumArgs.cpp">
       <Filter>Source Files\Command\CommandError</Filter>
     </ClCompile>
-    <ClCompile Include="TextInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Console.cpp">
       <Filter>Source Files\Renderable</Filter>
     </ClCompile>
@@ -346,9 +343,6 @@
     <ClInclude Include="Damage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
@@ -365,6 +359,9 @@
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
     <ClInclude Include="TextToCommand.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInput.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
   </ItemGroup>

@@ -57,7 +57,8 @@ void Event::keyboardEvent(GameLoop* gameLoop) {
 		return;
 	//Those function need special arguments
 	else if (search->second == "pl_attack" || search->second == "pl_move") {
-		commandList.executeCommand(search->second, gameLoop, std::vector<float>{ static_cast<float>(event.motion.x), static_cast<float>(event.motion.y) });
+		Position<> absPosOfCursor{ gameLoop->getCamera()->relativeToAbsolute(event.motion.x, event.motion.y) };
+		commandList.executeCommand(search->second, gameLoop, std::vector<float>{ static_cast<float>(absPosOfCursor.x), static_cast<float>(absPosOfCursor.y) });
 	}
 	//Generic function that can be treated with only gameloop
 	else

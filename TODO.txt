@@ -1,15 +1,13 @@
-Console
+print text in console
 Pathfinding algorithm
-UI engine
+Finish proper UI engine
 Spell engine
-Melee weapon
-Range weapon rendering
 Map generating algorithm
 Create more block
 Make a menu / setting
 Particule engine
 Backpack
 Sound system
-Change most of short to unsigned short
 Use more protected and private
 Reliable command
+Finish polishing the text system

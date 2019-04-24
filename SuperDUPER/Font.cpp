@@ -3,7 +3,6 @@
 
 
 Font::Font(short fontSize, const std::string& fontFileName)
-	:fontSize{ fontSize }
 {
 	font = TTF_OpenFont(fontFileName.c_str(), static_cast<int>(fontSize));
 	if (!font)

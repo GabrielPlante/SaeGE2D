@@ -18,6 +18,7 @@ public:
 	void changeColor(Color newColor) { color = newColor; }
 	short getW() const { return w; }
 	short getH() const { return h; }
+	void setH(short newH) { h = newH; }
 	~GraphicRect();
 protected:
 	short w;

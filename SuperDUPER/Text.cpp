@@ -4,8 +4,9 @@
 Text::Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color)
 	:color{ color }
 {
-	int textWidth{ font.getWidth(text) };
-	rect = Rectangle{ position, font.getWidth(text), font.getHeight() };
+	//To compensate for strange ttf behaviour
+	const int positionY = position.y - font.getHeight() / 5;
+	rect = Rectangle{ position.x, positionY, font.getWidth(text), font.getHeight() };
 	//Create the surface
 	SDL_Surface* surfaceText{ TTF_RenderText_Solid(font.getFont(), text.c_str(), color.toSDLColor()) };
 	if (!surfaceText)

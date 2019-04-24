@@ -17,7 +17,7 @@ GameLoop::GameLoop()
 		std::unique_ptr<WeaponAttack>{new BasicArrow{0, 1, Position<float>{0, 0}, 300, 1000, 0.2, 1, (getPlayer()->getId())}} } });
 
 	//Test
-	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{Color{0, 0, 180, 180}, "TEST UUUUU olala", gameWindow.getRenderer(), Position<>{50, 50}, Font{50} } };
+	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{Color{0, 0, 180, 180}, "Une phrase random xDDDzqfj", gameWindow.getRenderer(), Position<>{50, 50}, Font{50} } };
 	buttonList.push_back(std::move(textTest));
 }
 
@@ -72,6 +72,10 @@ void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 		(**it).render(renderer);
 	console.render(renderer);
+	//Test
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+	SDL_RenderDrawPoint(renderer, 50, 50);
+	SDL_RenderDrawPoint(renderer, 50, 100);
 }
 
 GameLoop::~GameLoop()

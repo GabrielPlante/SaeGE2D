@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include "Map.h"
 
 
 Entity::Entity(float x, float y, short healthPoint, short mass, float bluntDamageMultiplier, float sharpDamageMultiplier)

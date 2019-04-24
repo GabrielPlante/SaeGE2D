@@ -21,6 +21,5 @@ public:
 	~CommandList();
 private:
 	std::set<std::unique_ptr<Command>, CommandCompare> commandList;
-	bool isInit = false;
 };
 

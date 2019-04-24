@@ -209,6 +209,9 @@
     <ClCompile Include="InputBar.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
+    <ClCompile Include="LifeFormList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -328,9 +331,6 @@
     <ClInclude Include="Clock.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="ValueChange.h">
-      <Filter>Header Files\Command</Filter>
-    </ClInclude>
     <ClInclude Include="CommandError.h">
       <Filter>Header Files\Command\CommandError</Filter>
     </ClInclude>
@@ -363,6 +363,9 @@
     </ClInclude>
     <ClInclude Include="TextInput.h">
       <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeFormList.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

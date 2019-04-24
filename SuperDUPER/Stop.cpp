@@ -8,7 +8,7 @@ Stop::Stop()
 }
 
 void Stop::execute(GameLoop* gameLoop, const std::vector<float>& args) const {
-	gameLoop->getLifeForms()->begin()->get()->clearAction();
+	gameLoop->getPlayer()->clearAction();
 }
 
 Stop::~Stop()

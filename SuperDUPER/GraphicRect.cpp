@@ -15,9 +15,9 @@ void GraphicRect::render(SDL_Renderer* renderer, const Camera& camera, const Pos
 	}
 }
 
-void GraphicRect::renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position) const {
+void GraphicRect::renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position, SDL_Rect* dstRect) const {
 	SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, color.transparency);
-	SDL_RenderFillRect(renderer, &Rectangle{ position.x, position.y, w, h }.toSDL_Rect());
+	SDL_RenderFillRect(renderer, &Rectangle{ position.x, position.y, dstRect ? dstRect->w : w, dstRect ? dstRect->h : h }.toSDL_Rect());
 }
 
 GraphicRect::~GraphicRect()

@@ -1,4 +1,5 @@
 #include "InputBar.h"
+#include <iostream>
 
 
 
@@ -45,14 +46,20 @@ void InputBar::close() {
 
 void InputBar::render(SDL_Renderer* renderer) {
 	if (needRendering) {
-		int charWidth;
-		TTF_SizeText(font.getFont(), inputText.c_str(), &charWidth, nullptr);
-		const int textWidth{ min(static_cast<int>(charWidth), static_cast<int>(graphicRect.getW())) };
 		graphicText = std::unique_ptr<TextOnRect>{ new TextOnRect{graphicRect.getColor(), inputText, renderer, position, font, textColor} };
 		needRendering = false;
 	}
-	if (graphicText)
-		graphicText->render(renderer);
+	if (graphicText) {
+		SDL_Rect sourceRect;
+		sourceRect.x = graphicText->getW() > graphicRect.getW() ?  graphicText->getW() - graphicRect.getW(): 0;
+		sourceRect.y = 0;
+		sourceRect.w = graphicText->getW();
+		sourceRect.h = graphicText->getH();
+		SDL_Rect destinationRect{ Rectangle{position, graphicRect.getW(), graphicRect.getH()}.toSDL_Rect() };
+		if (graphicRect.getW() > graphicText->getW())
+			destinationRect.w = graphicText->getW();
+		graphicText->render(renderer, &sourceRect, &destinationRect);
+	}
 }
 
 InputBar::~InputBar()

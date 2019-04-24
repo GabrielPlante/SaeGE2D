@@ -19,8 +19,11 @@ Text::Text(const std::string& text, const Position<>& position, SDL_Renderer* re
 	SDL_FreeSurface(surfaceText);
 }
 
-void Text::render(SDL_Renderer* renderer) const {
-	SDL_RenderCopy(renderer, texture, NULL, &rect.toSDL_Rect());
+void Text::render(SDL_Renderer* renderer, SDL_Rect* srcRect, SDL_Rect* dstRect) const {
+	//Due to strange ttf behaviour
+	if (srcRect)
+		srcRect->h = srcRect->h * 6 / 5;
+	SDL_RenderCopy(renderer, texture, srcRect, dstRect ? dstRect : &rect.toSDL_Rect());
 }
 
 Text::~Text()

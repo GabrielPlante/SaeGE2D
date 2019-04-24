@@ -47,12 +47,6 @@ public:
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }
 	void clearDestination() { movement.setDestination(Destination(this)); }
 	void clearAction() { actionQueue = std::queue<Action>(); }
-	//---Getter of pointer for command purpose (might be changed latter)---
-	int* getActualSpeedPtr() { return &actualSpeed; }
-	float* getRotatingSpeedPtr() { return &rotatingSpeed; }
-	short* getHealtPointPtr() { return &healthPoint; }
-	float* getPositionXPtr() { return &position.x; }
-	float* getPositionYPtr() { return &position.y; }
 private:
 	const int id;
 	static int idCount;//Each lifeForm has a unique ID

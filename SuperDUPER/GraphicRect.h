@@ -10,7 +10,7 @@ public:
 	GraphicRect(short w, short h, Color color);
 	void render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const override;
 	//To render in position relative to the window
-	void renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position) const;
+	void renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position, SDL_Rect* dstRect = nullptr) const;
 	bool pointIsIn(const Position<>& point, const Position<>& position) const override {
 		return point.x > position.x && point.x < position.x + w && point.y > position.y && point.y < position.y + h;
 	}

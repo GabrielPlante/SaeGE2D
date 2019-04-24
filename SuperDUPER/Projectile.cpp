@@ -1,5 +1,6 @@
 #include "Projectile.h"
 #include "LifeForm.h"
+#include "LifeFormList.h"
 
 
 
@@ -19,12 +20,12 @@ bool Projectile::refresh(const Map& map, const LifeFormList& lifeForms, float de
 	if (movement.getPosition().distanceSquared(startingPosition) > pow(getRange(), 2))
 		return true;
 	//check for everything
-	/*for (auto it = lifeForms.getLifeFormList().begin(); it != lifeForms.getLifeFormList().end(); it++) {
+	for (auto it = lifeForms.cbegin(); it != lifeForms.cend(); it++) {
 		if ((**it).getId() != ownerId && (**it).pointIsOnThis(Position<>{static_cast<long>(movement.getPosition().x), static_cast<long>(movement.getPosition().y)})) {
 			(**it).takeDamage(Damage{ damageMultiplier*speed, getMass(), sharpness, 1, 0 });
 			return true;
 		}
-	}*/
+	}
 	return false;
 }
 

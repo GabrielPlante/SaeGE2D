@@ -3,7 +3,7 @@
 
 
 
-LifeFormList::LifeFormList(std::vector<std::unique_ptr<LifeForm>> lifeFormList)
+LifeFormList::LifeFormList(LifeForms lifeFormList)
 	:lifeFormList{ std::move(lifeFormList) }
 {
 }

@@ -21,6 +21,7 @@ GameLoop::GameLoop()
 	buttonList.push_back(std::move(textTest));
 }
 
+//For some reasons, this function doesn't work if it's inlined
 LifeForm* GameLoop::getPlayer() { return lifeFormList.getPlayer(); }
 
 bool GameLoop::update() {
@@ -58,7 +59,7 @@ void GameLoop::refreshEntities() {
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	lifeFormList.renderList(renderer, camera);
 	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(getPlayer()->getPosition().x), static_cast<int>(getPlayer()->getPosition().y)) };
-	//Render the limited vision
+	//Render the limited vision, this need to be update (TODO)
 	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(getPlayer()->getPosition().x + getPlayer()->getSightRange() * cos(getPlayer()->getFacingDirection().get()+getPlayer()->getSightArea())),
 		static_cast<long int>(getPlayer()->getPosition().y + getPlayer()->getSightRange() * sin(getPlayer()->getFacingDirection().get()+getPlayer()->getSightArea()))) };
 	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(getPlayer()->getPosition().x + getPlayer()->getSightRange() * cos(getPlayer()->getFacingDirection().get()-getPlayer()->getSightArea())),

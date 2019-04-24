@@ -21,7 +21,7 @@ public:
 	Projectile(const std::string& name, short mass, Angle facingDirection, Position<float> position, short speed,
 		short range, float damageMultiplier, float sharpness, int ownerId);
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
-	bool refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) override;//Return true if the projectile doesn't exist anymore
+	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) override;//Return true if the projectile doesn't exist anymore
 	~Projectile();
 protected:
 	const Position<float> getPosition() const { return movement.getPosition(); }

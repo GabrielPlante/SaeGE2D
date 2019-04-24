@@ -12,19 +12,19 @@ Projectile::Projectile(const std::string& name, short mass, Angle facingDirectio
 	startingPosition.y = static_cast<float>(position.y);
 }
 
-bool Projectile::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+bool Projectile::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) {
 	//First calculate where the projectile will land
 	movement.move(speed, deltaTime);
 	//Check the range
 	if (movement.getPosition().distanceSquared(startingPosition) > pow(getRange(), 2))
 		return true;
 	//check for everything
-	for (auto it = lifeForms.begin(); it != lifeForms.end(); it++) {
+	/*for (auto it = lifeForms.getLifeFormList().begin(); it != lifeForms.getLifeFormList().end(); it++) {
 		if ((**it).getId() != ownerId && (**it).pointIsOnThis(Position<>{static_cast<long>(movement.getPosition().x), static_cast<long>(movement.getPosition().y)})) {
 			(**it).takeDamage(Damage{ damageMultiplier*speed, getMass(), sharpness, 1, 0 });
 			return true;
 		}
-	}
+	}*/
 	return false;
 }
 

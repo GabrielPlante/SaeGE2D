@@ -2,7 +2,6 @@
 #include "Clock.h"
 #include <thread>
 #include "GameLoop.h"
-#include "ValueChange.h"
 
 int main(int argc, char* args[]) {
 	constexpr double maxFps = 60;

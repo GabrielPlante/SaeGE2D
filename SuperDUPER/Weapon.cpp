@@ -13,7 +13,7 @@ void Weapon::render(SDL_Renderer* renderer, const Camera& camera, const LifeForm
 	}
 }
 
-bool Weapon::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+bool Weapon::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) {
 	auto it = weaponAttackList.begin();
 	while (it != weaponAttackList.end()) {
 		if ((**it).refresh(map, lifeForms, deltaTime))//Refresh the projectile and check if it's still alive

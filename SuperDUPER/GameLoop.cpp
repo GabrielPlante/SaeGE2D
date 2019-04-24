@@ -8,18 +8,20 @@ GameLoop::GameLoop()
 	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }, console{ Rectangle{700, 50, 400, 500} }
 {
 	//Create the player
-	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
+	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
 	//test
-	lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(400, 400, Color(128, 128, 128))});
+	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 400, 400, Color(128, 128, 128) }});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	(**lifeForms.begin()).takeWeaponInHand(std::unique_ptr<Weapon> {new Weapon{ "Basic Bow", 100, 100, 1000, 0.5, 1,
-		std::unique_ptr<WeaponAttack>{new BasicArrow{0, 1, Position<float>{0, 0}, 300, 1000, 0.2, 1, (**lifeForms.begin()).getId()}} } });
+	lifeFormList.getPlayer()->takeWeaponInHand(std::unique_ptr<Weapon> {new Weapon{ "Basic Bow", 100, 100, 1000, 0.5, 1,
+		std::unique_ptr<WeaponAttack>{new BasicArrow{0, 1, Position<float>{0, 0}, 300, 1000, 0.2, 1, (getPlayer()->getId())}} } });
 
 	//Test
 	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{GraphicRect{120, 50, Color{0, 0, 180, 180}}, "TEST", gameWindow.getRenderer(), Position<>{50, 50}, Font{50} } };
 	buttonList.push_back(std::move(textTest));
 }
+
+LifeForm* GameLoop::getPlayer() { return lifeFormList.getPlayer(); }
 
 bool GameLoop::update() {
 	timeSinceGameStart = SDL_GetTicks();
@@ -28,7 +30,7 @@ bool GameLoop::update() {
 
 	refreshEntities();
 
-	gameWindow.getCamera().setPosition(Position<>{static_cast<long>((**lifeForms.begin()).getPosition().x)-SCREEN_WIDTH/2, static_cast<long>((**lifeForms.begin()).getPosition().y)-SCREEH_HEIGHT/2});
+	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(lifeFormList.getPlayer()->getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(lifeFormList.getPlayer()->getPosition().y)-SCREEH_HEIGHT/2});
 
 	gameWindow.clear();//Then clear the screen
 	//Then put everything in the renderer
@@ -50,26 +52,17 @@ void GameLoop::handleEvent(Event& event) {
 
 void GameLoop::refreshEntities() {
 	float deltaTime = static_cast<float>(static_cast<double>(clock.resetTime()) / (1000 * 1000));
-	auto it = lifeForms.begin();
-	while (it != lifeForms.end()) {
-		if ((**it).refresh(map, lifeForms, deltaTime))
-			it = lifeForms.erase(it);
-		else
-			it++;
-	}
+	lifeFormList.refreshList(map, deltaTime);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
-	for (auto it = lifeForms.begin(); it != lifeForms.end(); it++)
-		//Render only if the player can see it
-		if ((**lifeForms.begin()).isInSight((**it).getPosition()) || it == lifeForms.begin())
-			(**it).render(renderer, camera);//Put all the lifeForms
-	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>((**lifeForms.begin()).getPosition().x), static_cast<int>((**lifeForms.begin()).getPosition().y)) };
+	lifeFormList.renderList(renderer, camera);
+	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(getPlayer()->getPosition().x), static_cast<int>(getPlayer()->getPosition().y)) };
 	//Render the limited vision
-	Position<> line1{ camera.absoluteToRelative(static_cast<long int>((**lifeForms.begin()).getPosition().x + (**lifeForms.begin()).getSightRange() * cos((**lifeForms.begin()).getFacingDirection().get()+(**lifeForms.begin()).getSightArea())),
-		static_cast<long int>((**lifeForms.begin()).getPosition().y + (**lifeForms.begin()).getSightRange() * sin((**lifeForms.begin()).getFacingDirection().get()+(**lifeForms.begin()).getSightArea()))) };
-	Position<> line2{ camera.absoluteToRelative(static_cast<long int>((**lifeForms.begin()).getPosition().x + (**lifeForms.begin()).getSightRange() * cos((**lifeForms.begin()).getFacingDirection().get()-(**lifeForms.begin()).getSightArea())),
-		static_cast<long int>((**lifeForms.begin()).getPosition().y + (**lifeForms.begin()).getSightRange() * sin((**lifeForms.begin()).getFacingDirection().get()-(**lifeForms.begin()).getSightArea()))) };
+	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(getPlayer()->getPosition().x + getPlayer()->getSightRange() * cos(getPlayer()->getFacingDirection().get()+getPlayer()->getSightArea())),
+		static_cast<long int>(getPlayer()->getPosition().y + getPlayer()->getSightRange() * sin(getPlayer()->getFacingDirection().get()+getPlayer()->getSightArea()))) };
+	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(getPlayer()->getPosition().x + getPlayer()->getSightRange() * cos(getPlayer()->getFacingDirection().get()-getPlayer()->getSightArea())),
+		static_cast<long int>(getPlayer()->getPosition().y + getPlayer()->getSightRange() * sin(getPlayer()->getFacingDirection().get()-getPlayer()->getSightArea()))) };
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line1.x, line1.y);
 	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);

@@ -32,7 +32,7 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 		inHandWeapon->render(renderer, camera, *this);
 }
 
-bool LifeForm::refresh(const Map& map, const std::list<std::unique_ptr<LifeForm>>& lifeForms, float deltaTime) {
+bool LifeForm::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) {
 	//First all the status effects are applied
 	for (auto it = statusEffectList.begin(); it != statusEffectList.end();) {
 		if (it->refresh(this, deltaTime))

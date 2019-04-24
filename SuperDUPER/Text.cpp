@@ -1,12 +1,11 @@
 #include "Text.h"
 
 
-Text::Text(const std::string& text, const Color& color, const Position<>& position, SDL_Renderer* renderer, const Font& font)
+Text::Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color)
 	:color{ color }
 {
-	int textWidth;
-	TTF_SizeText(font.getFont(), text.c_str(), &textWidth, nullptr);
-	rect = Rectangle{ position, textWidth, static_cast<int>(font.getFontSize()) };
+	int textWidth{ font.getWidth(text) };
+	rect = Rectangle{ position, font.getWidth(text), font.getHeight() };
 	//Create the surface
 	SDL_Surface* surfaceText{ TTF_RenderText_Solid(font.getFont(), text.c_str(), color.toSDLColor()) };
 	if (!surfaceText)

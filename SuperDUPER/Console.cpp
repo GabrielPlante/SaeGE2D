@@ -14,6 +14,8 @@ void Console::render(SDL_Renderer* renderer) {
 		//First render the background
 		SDL_SetRenderDrawColor(renderer, backgroundColor.red, backgroundColor.green, backgroundColor.blue, backgroundColor.transparency);
 		SDL_RenderFillRect(renderer, &rectangle.toSDL_Rect());
+		//Render the background
+		InputBar::render(renderer);
 		//Then render the boarder
 		SDL_SetRenderDrawColor(renderer, borderColor.red, borderColor.green, borderColor.blue, borderColor.transparency);
 		//upper left to upper right
@@ -24,9 +26,7 @@ void Console::render(SDL_Renderer* renderer) {
 		SDL_RenderFillRect(renderer, &Rectangle{ rectangle.x, rectangle.y + rectangle.h - borderSize, rectangle.w, borderSize }.toSDL_Rect());
 		//upper left to bottom left
 		SDL_RenderFillRect(renderer, &Rectangle{ rectangle.x, rectangle.y, borderSize, rectangle.h }.toSDL_Rect());
-		InputBar::render(renderer);
 		//The bar above the input bar
-		SDL_SetRenderDrawColor(renderer, borderColor.red, borderColor.green, borderColor.blue, borderColor.transparency);
 		SDL_RenderFillRect(renderer, &Rectangle{ rectangle.x, rectangle.y + rectangle.h - borderSize - textHeight, rectangle.w, borderSize }.toSDL_Rect());
 	}
 }

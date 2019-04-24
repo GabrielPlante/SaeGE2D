@@ -7,6 +7,8 @@ public:
 	Font(short fontSize, const std::string& fontFileName = "mainFont.ttf");
 	TTF_Font* getFont() const { return font; }
 	short getFontSize() const { return fontSize; }
+	int getWidth(const std::string& text) const;
+	int getHeight() const;
 	~Font();
 private:
 	Font(const Font&){}

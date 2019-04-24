@@ -7,7 +7,7 @@ class TextOnRect
 public:
 	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, Position<> textPosition, const Font& font, Color textColor = Color{ 0, 0, 0 });
 	//Text on rect with the text taking all the rectangle
-	TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Renderer* renderer, Position<> position, const Font& font, Color textColor = Color{ 0, 0, 0 });
+	TextOnRect(Color backgroundColor, const std::string& text, SDL_Renderer* renderer, Position<> position, const Font& font, Color textColor = Color{ 0, 0, 0 });
 	void render(SDL_Renderer* renderer) const;
 	const Position<>& getPosition() const { return position; }
 	~TextOnRect();

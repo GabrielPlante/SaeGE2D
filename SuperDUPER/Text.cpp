@@ -1,4 +1,5 @@
 #include "Text.h"
+#include <iostream>
 
 
 Text::Text(const std::string& text, const Position<>& position, SDL_Renderer* renderer, const Font& font, const Color& color)
@@ -9,12 +10,16 @@ Text::Text(const std::string& text, const Position<>& position, SDL_Renderer* re
 	rect = Rectangle{ position.x, positionY, font.getWidth(text), font.getHeight() };
 	//Create the surface
 	SDL_Surface* surfaceText{ TTF_RenderText_Solid(font.getFont(), text.c_str(), color.toSDLColor()) };
-	if (!surfaceText)
+	if (!surfaceText) {
+		std::cout << SDL_GetError() << std::endl;
 		throw std::runtime_error("Could not create SDL_Surface !");
+	}
 	//Transform the surface into a texture
 	texture = SDL_CreateTextureFromSurface(renderer, surfaceText);
-	if (!texture)
+	if (!texture) {
+		std::cout << SDL_GetError() << std::endl;
 		throw std::runtime_error("Could not create SDL_Texture !");
+	}
 	//Release the surface
 	SDL_FreeSurface(surfaceText);
 }

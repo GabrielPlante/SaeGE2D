@@ -1,5 +1,4 @@
 #include "InputBar.h"
-#include <iostream>
 
 
 
@@ -8,7 +7,7 @@ InputBar::InputBar(GraphicRect graphicRect, Position<> position, Color textColor
 {
 }
 
-void InputBar::addText(const std::string& text) {
+void InputBar::pushBackText(const std::string& text) {
 	inputText += text;
 	needRendering = true;
 }
@@ -46,20 +45,34 @@ void InputBar::close() {
 
 void InputBar::render(SDL_Renderer* renderer) {
 	if (needRendering) {
-		graphicText = std::unique_ptr<TextOnRect>{ new TextOnRect{graphicRect.getColor(), inputText, renderer, position, font, textColor} };
-		needRendering = false;
+		renderPendingText(renderer);
 	}
+	graphicRect.renderWithoutCamera(renderer, position);
 	if (graphicText) {
 		SDL_Rect sourceRect;
-		sourceRect.x = graphicText->getW() > graphicRect.getW() ?  graphicText->getW() - graphicRect.getW(): 0;
+		sourceRect.x = font.getWidth(inputText) > graphicRect.getW() ?  font.getWidth(inputText) - graphicRect.getW(): 0;
 		sourceRect.y = 0;
-		sourceRect.w = graphicText->getW();
-		sourceRect.h = graphicText->getH();
+		sourceRect.w = font.getWidth(inputText);
+		sourceRect.h = font.getHeight();
 		SDL_Rect destinationRect{ Rectangle{position, graphicRect.getW(), graphicRect.getH()}.toSDL_Rect() };
-		if (graphicRect.getW() > graphicText->getW())
-			destinationRect.w = graphicText->getW();
+		if (graphicRect.getW() > font.getWidth(inputText))
+			destinationRect.w = font.getWidth(inputText);
 		graphicText->render(renderer, &sourceRect, &destinationRect);
 	}
+}
+
+void InputBar::renderPendingText(SDL_Renderer* renderer) {
+	graphicText = std::unique_ptr<Text>{ new Text{inputText, position, renderer, font, textColor} };
+	needRendering = false;
+}
+
+std::unique_ptr<Text> InputBar::clear() {
+	if (inputText.size() == 0)
+		return nullptr;
+	inputText.clear();
+	std::unique_ptr<Text> textPtr;
+	graphicText.swap(textPtr);
+	return textPtr;
 }
 
 InputBar::~InputBar()

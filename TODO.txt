@@ -12,3 +12,4 @@ Use more protected and private
 Reliable command
 Finish polishing the text system
 Use more typedef
+Make a proper exception handling system

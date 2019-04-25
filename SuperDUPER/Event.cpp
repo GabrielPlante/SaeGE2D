@@ -19,7 +19,7 @@ void Event::handleEvent(GameLoop* gameLoop) {
 	else if (event.type == SDL_MOUSEMOTION)
 		mouseMoveEvent(gameLoop);
 	else if (event.type == SDL_TEXTINPUT && gameLoop->getConsole()->isOpened())
-		gameLoop->getConsole()->addText(event.text.text);
+		gameLoop->getConsole()->pushBackText(event.text.text);
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
@@ -38,14 +38,14 @@ void Event::keyboardEvent(GameLoop* gameLoop) {
 			gameLoop->getConsole()->popText();
 		//Handle paste
 		else if (event.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)
-			gameLoop->getConsole()->addText(SDL_GetClipboardText());
+			gameLoop->getConsole()->pushBackText(SDL_GetClipboardText());
 		//Handle copy
 		else if (event.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)
 			SDL_SetClipboardText(gameLoop->getConsole()->getInputText().c_str());
 		else if (event.key.keysym.sym == SDLK_RETURN) {
 			TextToCommand textToCommand{ gameLoop->getConsole()->getCommand() };
 			commandList.executeCommand(textToCommand.getCommandName(), gameLoop, textToCommand.getArgs());
-			gameLoop->getConsole()->clear();
+			gameLoop->getConsole()->enterText();
 		}
 		//We dont want the event to affect the game
 		return;

@@ -5,8 +5,8 @@
 Console::Console(Rectangle rectangle, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int textMargin)
 	:InputBar{ GraphicRect{static_cast<short>(rectangle.w - 2 * borderSize - 2*textMargin), static_cast<short>(textHeight), backgroundColor},
 		Position<>{rectangle.x + borderSize+textMargin, rectangle.y + rectangle.h - borderSize - textHeight-textMargin} },
-	TextArea{ GraphicRect{static_cast<short>(rectangle.w - 2 * borderSize - 2 * textMargin), static_cast<short>(rectangle.h - 4 * textHeight - 3 * textMargin), Color{0, 0, 0, 0}},
-		Position<>{rectangle.x + textMargin + borderSize, rectangle.y + textMargin + borderSize} },
+	TextArea{ GraphicRect{static_cast<short>(rectangle.w - 2 * borderSize - 2 * textMargin), static_cast<short>(rectangle.h - 2 * textHeight - 2 * borderSize - 3 * textMargin), Color{0, 0, 0, 0}},
+		Position<>{rectangle.x + textMargin + borderSize, rectangle.y + textMargin + borderSize}, textHeight },
 	rectangle{ rectangle }, backgroundColor{ backgroundColor }, borderColor{ borderColor }, borderSize{ borderSize }, textHeight{ textHeight }, textMargin{ textMargin }
 {}
 
@@ -19,7 +19,7 @@ void Console::render(SDL_Renderer* renderer) {
 		InputBar::render(renderer);
 		if (needToPressEnter)
 			enterText();
-		TextArea::render(renderer, textHeight);
+		TextArea::render(renderer);
 		//Then render the boarder
 		SDL_SetRenderDrawColor(renderer, borderColor.red, borderColor.green, borderColor.blue, borderColor.transparency);
 		//upper left to upper right

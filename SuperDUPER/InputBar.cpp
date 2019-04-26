@@ -8,8 +8,10 @@ InputBar::InputBar(GraphicRect graphicRect, Position<> position, Color textColor
 }
 
 void InputBar::pushBackText(const std::string& text) {
-	inputText += text;
-	needRendering = true;
+	if (!openingFrame) {
+		inputText += text;
+		needRendering = true;
+	}
 }
 
 void InputBar::setText(const std::string& text) {
@@ -33,6 +35,7 @@ void InputBar::open() {
 	if (!opened) {
 		opened = true;
 		textInput = std::unique_ptr<TextInput>{ new TextInput() };
+		openingFrame = true;
 	}
 }
 
@@ -44,6 +47,8 @@ void InputBar::close() {
 }
 
 void InputBar::render(SDL_Renderer* renderer) {
+	if (openingFrame)
+		openingFrame = false;
 	if (needRendering) {
 		renderPendingText(renderer);
 	}

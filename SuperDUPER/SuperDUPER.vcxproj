@@ -216,6 +216,7 @@
     <ClInclude Include="GraphicRect.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Renderable.h" />
+    <ClInclude Include="Sight.h" />
     <ClInclude Include="StatusEffect.h" />
     <ClInclude Include="Stop.h" />
     <ClInclude Include="StringTo.h" />

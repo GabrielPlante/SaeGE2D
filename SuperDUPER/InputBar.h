@@ -30,5 +30,7 @@ private:
 	std::string fontFileName;
 	std::unique_ptr<TextInput> textInput;
 	bool opened = false;
+	//To tackle the "open letter input" issue
+	bool openingFrame = false;
 };
 

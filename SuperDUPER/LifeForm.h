@@ -1,4 +1,5 @@
 #pragma once
+#include "Sight.h"
 #include "Damage.h"
 #include "Entity.h"
 #include <math.h>
@@ -27,11 +28,11 @@ public:
 	void checkCollision(const Map& map, Position<> position, short radius);
 
 	//---External information---
-	bool isInSight(const Position<float>& position) const;//return true if a position is in sight
+	bool isInSight(const Position<float>& otherPos) const { return sight.isInSight(position, otherPos, facingDirection); }
 	short getDamageMultiplier() const { return strength; }
 	int getHealthPoint() const { return healthPoint; }
-	int getSightRange() const { return sightRange; }
-	float getSightArea() const { return sightArea; }
+	int getSightRange() const { return sight.getSightRange(); }
+	float getSightArea() const { return sight.getSightArea(); }
 	Angle getFacingDirection() const { return facingDirection; }
 	Friendliness getFriendliness() const { return friendliness; }
 	int getRadius() const { return radius; }
@@ -52,8 +53,7 @@ private:
 	static int idCount;//Each lifeForm has a unique ID
 	int actualSpeed;//Speed unit is : pixel/sec
 	short strength = 50;
-	int sightRange;
-	float sightArea;//Between 0 (don't see anything) and PI (see everything)
+	Sight sight;
 	int baseSpeed;//Speed unit is : pixel/sec
 	float rotatingSpeed;
 	int baseHealtPoint = healthPoint;

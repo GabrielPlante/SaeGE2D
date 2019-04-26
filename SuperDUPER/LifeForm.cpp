@@ -8,8 +8,8 @@ int LifeForm::idCount = 0;
 LifeForm::LifeForm(float x, float y, int speed, short healthPoint, short radius, short mass, Friendliness friendliness,
 	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
 	:Entity(x, y, healthPoint, mass), baseSpeed{ speed }, actualSpeed{ speed }, radius{ radius }, friendliness{ friendliness },
-	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sightRange{ sightRange },
-	sightArea{ sightArea }, id{ idCount }, previousPosition{ x, y }
+	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sight{ sightRange, sightArea },
+	id{ idCount }, previousPosition{ x, y }
 {
 	idCount++;
 }
@@ -125,12 +125,6 @@ void LifeForm::attack(Position<> pointOfAttack) {
 			inHandWeapon->attack(this);
 		}
 	}
-}
-
-bool LifeForm::isInSight(const Position<float>& entity) const {
-	constexpr float PI = 3.14159265f;
-	Angle angleEntityPlayer = facingDirection.difference(position.angle(entity));
-	return (angleEntityPlayer.get() <= sightArea || angleEntityPlayer.get() >= 2 * PI - sightArea);
 }
 
 bool LifeForm::takeDamage(const Damage& damage) {

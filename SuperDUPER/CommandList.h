@@ -17,7 +17,7 @@ public:
 	CommandList();
 	void addCommand(std::unique_ptr<Command> command) { commandList.insert(std::move(command)); }
 	//Return true if the command executed properly
-	bool executeCommand(const std::string& commandName, GameLoop* gameLoop, const std::vector<float>& args = std::vector<float>{});
+	bool executeCommand(const std::string& commandName, GameLoop* gameLoop, const std::vector<float>& args = std::vector<float>{}) const;
 	~CommandList();
 private:
 	std::set<std::unique_ptr<Command>, CommandCompare> commandList;

@@ -1,5 +1,7 @@
 #include "Console.h"
-
+#include "CommandList.h"
+#include "GameLoop.h"
+#include "InvalidNumArgs.h"
 
 
 Console::Console(Rectangle rectangle, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int textMargin)
@@ -42,6 +44,19 @@ void Console::enterText() {
 	}
 	else if (doesNeedRendering())
 		needToPressEnter = true;
+}
+
+void Console::enterCommand(const CommandList& commandList, GameLoop* gameLoop) {
+	try {
+		TextToCommand textToCommand{ getCommand() };
+		commandList.executeCommand(textToCommand.getCommandName(), gameLoop, textToCommand.getArgs());
+	}
+	catch (CommandError ex) {
+		TextArea::addText(ex.what(), Color{ 255, 100, 100 });
+		InputBar::clear();
+		return;
+	}
+	enterText();
 }
 
 Console::~Console()

@@ -16,7 +16,7 @@ CommandList::CommandList()
 	commandList.insert(std::move(std::unique_ptr<Command>{new Stop{}}));
 }
 
-bool CommandList::executeCommand(const std::string& commandName, GameLoop* gameLoop, const std::vector<float>& args) {
+bool CommandList::executeCommand(const std::string& commandName, GameLoop* gameLoop, const std::vector<float>& args) const {
 	std::unique_ptr<Command> command{ new Command{commandName} };
 	auto search = commandList.find(command);
 	if (search == commandList.end())

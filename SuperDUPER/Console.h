@@ -4,16 +4,19 @@
 #include "TextToCommand.h"
 #include "TextArea.h"
 #include <memory>
+class CommandList;
+class GameLoop;
 class Console
 	:public InputBar, public TextArea
 {
 public:
-	Console(Rectangle rectangle, Color backgroundColor = Color{ 50, 50, 50 }, Color borderColor = Color{ 200, 200, 200 },
+	Console(Rectangle rectangle, Color backgroundColor = Color{ 100, 100, 100 }, Color borderColor = Color{ 200, 200, 200 },
 		int borderSize = 3, int textHeight = 20, int textMargin = 3);
 	void render(SDL_Renderer* renderer);
 	TextToCommand getCommand() const { return TextToCommand{ getInputText() }; }
 	//Used when the user press enter
 	void enterText();
+	void enterCommand(const CommandList& commandList, GameLoop* gameLoop);
 	~Console();
 private:
 	Rectangle rectangle;

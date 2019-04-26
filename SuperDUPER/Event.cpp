@@ -1,66 +1,31 @@
 #include "Event.h"
 #include "GameLoop.h"
 #include "TextToCommand.h"
+#include "ConsoleEventHandler.h"
+#include "GameEventHandler.h"
 
 Event::Event()
 {
 	//Then assign them
 	eventToEventType[SDL_QUIT] = "quit";
-	keyToEventType[SDLK_ESCAPE] = "quit";
-	keyToEventType[SDLK_a] = "co_open";
-	keyToEventType[static_cast<Uint8>(SDL_BUTTON_LEFT)] = "pl_attack";
-	keyToEventType[static_cast<Uint8>(SDL_BUTTON_RIGHT)] = "pl_move";
-	keyToEventType[SDLK_SPACE] = "pl_stop";
+	eventHandlerStack.emplace_back(std::unique_ptr<EventHandler>{new GameEventHandler{}});
 }
 
 void Event::handleEvent(GameLoop* gameLoop) {
-	if (event.type == SDL_KEYDOWN || event.type == SDL_MOUSEBUTTONDOWN)
-		keyboardEvent(gameLoop);
-	else if (event.type == SDL_MOUSEMOTION)
+	if (event.type == SDL_MOUSEMOTION)
 		mouseMoveEvent(gameLoop);
-	else if (event.type == SDL_TEXTINPUT && gameLoop->getConsole()->isOpened())
-		gameLoop->getConsole()->pushBackText(event.text.text);
 	else {
 		auto search = eventToEventType.find(event.type);
 		if (search != eventToEventType.end())
 			commandList.executeCommand(search->second, gameLoop);
-	}
-}
-
-//It's called keyboard event but it's mouse and keyboard event
-void Event::keyboardEvent(GameLoop* gameLoop) {
-	if (event.type == SDL_KEYDOWN && gameLoop->getConsole()->isOpened()) {
-		//Handle closing the console
-		if (event.key.keysym.sym == SDLK_ESCAPE)
-			gameLoop->getConsole()->close();
-		//Handle backspace
-		else if (event.key.keysym.sym == SDLK_BACKSPACE)
-			gameLoop->getConsole()->popText();
-		//Handle paste
-		else if (event.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)
-			gameLoop->getConsole()->pushBackText(SDL_GetClipboardText());
-		//Handle copy
-		else if (event.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)
-			SDL_SetClipboardText(gameLoop->getConsole()->getInputText().c_str());
-		else if (event.key.keysym.sym == SDLK_RETURN) {
-			gameLoop->getConsole()->enterCommand(commandList, gameLoop);
+		else {
+			HandlerType handle = eventHandlerStack[eventHandlerStack.size() - 1]->handleEvent(&event, gameLoop);
+			if (handle == HandlerType::POP)
+				eventHandlerStack.pop_back();
+			else if (handle == HandlerType::CONSOLE)
+				eventHandlerStack.emplace_back(std::unique_ptr<EventHandler>{new ConsoleEventHandler{}});
 		}
-		//We dont want the event to affect the game
-		return;
 	}
-	//Is it a mouse or keyboard event
-	auto search = event.type == SDL_KEYDOWN ? keyToEventType.find(event.key.keysym.sym) : keyToEventType.find(event.button.button);
-	//If nothing is found we exit early
-	if (search == keyToEventType.end())
-		return;
-	//Those function need special arguments
-	else if (search->second == "pl_attack" || search->second == "pl_move") {
-		Position<> absPosOfCursor{ gameLoop->getCamera()->relativeToAbsolute(event.motion.x, event.motion.y) };
-		commandList.executeCommand(search->second, gameLoop, std::vector<float>{ static_cast<float>(absPosOfCursor.x), static_cast<float>(absPosOfCursor.y) });
-	}
-	//Generic function that can be treated with only gameloop
-	else
-		commandList.executeCommand(search->second, gameLoop);
 }
 
 void Event::mouseMoveEvent(GameLoop* gameLoop) {

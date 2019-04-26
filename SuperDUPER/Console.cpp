@@ -52,8 +52,8 @@ void Console::enterCommand(const CommandList& commandList, GameLoop* gameLoop) {
 		commandList.executeCommand(textToCommand.getCommandName(), gameLoop, textToCommand.getArgs());
 	}
 	catch (CommandError ex) {
+		enterText();
 		TextArea::addText(ex.what(), Color{ 255, 100, 100 });
-		InputBar::clear();
 		return;
 	}
 	enterText();

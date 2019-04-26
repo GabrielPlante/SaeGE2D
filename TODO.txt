@@ -1,4 +1,3 @@
-print text in console
 Pathfinding algorithm
 Finish proper UI engine
 Spell engine
@@ -13,3 +12,4 @@ Reliable command
 Finish polishing the text system
 Use more typedef
 Make a proper exception handling system
+Finish the text area system with a camera

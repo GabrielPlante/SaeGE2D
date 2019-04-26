@@ -5,7 +5,7 @@ constexpr int SCREEN_WIDTH{ 1200 };
 constexpr int SCREEH_HEIGHT{ 600 };
 
 GameLoop::GameLoop()
-	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }, console{ Rectangle{700, 50, 400, 500} }
+	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }, console{ Rectangle{50, 50, 800, 500} }
 {
 	//Create the player
 	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});

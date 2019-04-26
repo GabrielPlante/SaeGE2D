@@ -213,7 +213,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextArea.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -371,7 +371,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextArea.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

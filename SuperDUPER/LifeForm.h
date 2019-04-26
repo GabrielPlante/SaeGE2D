@@ -48,6 +48,8 @@ public:
 	void takeWeaponInHand(std::unique_ptr<Weapon> weapon) { inHandWeapon = std::move(weapon); }
 	void clearDestination() { movement.setDestination(Destination(this)); }
 	void clearAction() { actionQueue = std::queue<Action>(); }
+	void setVisionRendering(bool set) { renderVision = set; }
+	void setHealthRendering(bool set) { renderHealth = set; }
 private:
 	const int id;
 	static int idCount;//Each lifeForm has a unique ID
@@ -67,6 +69,8 @@ private:
 	std::queue<Action> actionQueue;
 	std::vector<StatusEffect> statusEffectList;
 	Position<float> previousPosition;
+	bool renderVision = false;
+	bool renderHealth = true;
 protected:
 	short radius;
 };

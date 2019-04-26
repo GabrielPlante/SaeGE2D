@@ -20,11 +20,23 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 	constexpr int height{ 30 };
 
 	//healtbar (temporary)
-	SDL_SetRenderDrawColor(renderer, 230, 0, 0, 200);
-	Position<> relativePosition{ camera.absoluteToRelative(static_cast<long>(position.x), static_cast<long>(position.y)) };
-	for (int width = 0; width < 3; width++) {
-		SDL_RenderDrawLine(renderer, relativePosition.x - halfLenght, relativePosition.y - height + width,
-			relativePosition.x + static_cast<int>(halfLenght * (healthPoint * 2.0 / baseHealtPoint - 1)), relativePosition.y - height + width);
+	if (renderHealth) {
+		SDL_SetRenderDrawColor(renderer, 230, 0, 0, 200);
+		Position<> relativePosition{ camera.absoluteToRelative(static_cast<long>(position.x), static_cast<long>(position.y)) };
+		for (int width = 0; width < 3; width++) {
+			SDL_RenderDrawLine(renderer, relativePosition.x - halfLenght, relativePosition.y - height + width,
+				relativePosition.x + static_cast<int>(halfLenght * (healthPoint * 2.0 / baseHealtPoint - 1)), relativePosition.y - height + width);
+		}
+	}
+	if (renderVision) {
+		Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(position.x), static_cast<int>(position.y)) };
+		Position<> line1{ camera.absoluteToRelative(static_cast<long int>(position.x + sight.getSightRange() * cos(facingDirection.get() + sight.getSightArea())),
+			static_cast<long int>(position.y + sight.getSightRange() * sin(facingDirection.get() + sight.getSightArea()))) };
+		Position<> line2{ camera.absoluteToRelative(static_cast<long int>(position.x + sight.getSightRange() * cos(facingDirection.get() - sight.getSightArea())),
+			static_cast<long int>(position.y + sight.getSightRange() * sin(facingDirection.get() - sight.getSightArea()))) };
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line1.x, line1.y);
+		SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);
 	}
 
 	//Render the weapon

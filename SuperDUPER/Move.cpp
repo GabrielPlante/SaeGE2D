@@ -11,9 +11,12 @@ Move::Move()
 }
 
 void Move::execute(GameLoop* gameLoop, const std::vector<float>& args) const {
-	if (args.size() != 2)
+	if (args.size() != 2 && args.size() != 0)
 		throw InvalidNumArgs{ 2, static_cast<short>(args.size()) };
-	gameLoop->getPlayer()->setDestination(Position<>{static_cast<int>(args[0]), static_cast<int>(args[1])});
+	if (args.size() == 0)
+		gameLoop->getConsole()->addText(std::to_string(gameLoop->getPlayer()->getPosition().x) + " " + std::to_string(gameLoop->getPlayer()->getPosition().y));
+	else
+		gameLoop->getPlayer()->setDestination(Position<>{static_cast<int>(args[0]), static_cast<int>(args[1])});
 }
 
 Move::~Move()

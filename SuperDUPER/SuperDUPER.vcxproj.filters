@@ -209,11 +209,11 @@
     <ClCompile Include="InputBar.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
-    <ClCompile Include="LifeFormList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TextArea.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeFormList.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,14 +367,14 @@
     <ClInclude Include="TextInput.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="LifeFormList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextArea.h">
       <Filter>Header Files\Renderable\UI</Filter>
     </ClInclude>
     <ClInclude Include="Sight.h">
       <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeFormList.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

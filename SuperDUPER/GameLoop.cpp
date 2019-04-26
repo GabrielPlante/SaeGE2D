@@ -9,6 +9,7 @@ GameLoop::GameLoop()
 {
 	//Create the player
 	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
+	lifeFormList.getPlayer()->setVisionRendering(true);
 	//test
 	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 400, 400, Color(128, 128, 128) }});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
@@ -58,15 +59,6 @@ void GameLoop::refreshEntities() {
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	lifeFormList.renderList(renderer, camera);
-	Position<> relPlayerPosition{ camera.absoluteToRelative(static_cast<int>(getPlayer()->getPosition().x), static_cast<int>(getPlayer()->getPosition().y)) };
-	//Render the limited vision, this need to be update (TODO)
-	Position<> line1{ camera.absoluteToRelative(static_cast<long int>(getPlayer()->getPosition().x + getPlayer()->getSightRange() * cos(getPlayer()->getFacingDirection().get()+getPlayer()->getSightArea())),
-		static_cast<long int>(getPlayer()->getPosition().y + getPlayer()->getSightRange() * sin(getPlayer()->getFacingDirection().get()+getPlayer()->getSightArea()))) };
-	Position<> line2{ camera.absoluteToRelative(static_cast<long int>(getPlayer()->getPosition().x + getPlayer()->getSightRange() * cos(getPlayer()->getFacingDirection().get()-getPlayer()->getSightArea())),
-		static_cast<long int>(getPlayer()->getPosition().y + getPlayer()->getSightRange() * sin(getPlayer()->getFacingDirection().get()-getPlayer()->getSightArea()))) };
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line1.x, line1.y);
-	SDL_RenderDrawLine(renderer, relPlayerPosition.x, relPlayerPosition.y, line2.x, line2.y);
 	//player.render(renderer, camera);//Put the player last so he is above everything else
 
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)

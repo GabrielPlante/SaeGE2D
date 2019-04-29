@@ -133,7 +133,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
-    <ClCompile Include="Attributes.cpp" />
     <ClCompile Include="BasicArrow.cpp" />
     <ClCompile Include="BedRock.cpp" />
     <ClCompile Include="Button.cpp" />

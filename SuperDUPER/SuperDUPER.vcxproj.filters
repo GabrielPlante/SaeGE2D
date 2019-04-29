@@ -81,6 +81,12 @@
     <Filter Include="Source Files\Command\CommandError">
       <UniqueIdentifier>{3a8e54f0-88e3-4da5-998b-29d272f0b5ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\EventHandler">
+      <UniqueIdentifier>{bed2e07e-8116-4e9f-b933-92256cce0177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventHandler">
+      <UniqueIdentifier>{264db8b2-aa2d-42a1-a2eb-e92c09db6b62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -215,17 +221,14 @@
     <ClCompile Include="LifeFormList.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ConsoleEventHandler.cpp">
+      <Filter>Source Files\EventHandler</Filter>
     </ClCompile>
     <ClCompile Include="GameEventHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\EventHandler</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleEventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Attributes.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\EventHandler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,9 +358,6 @@
     <ClInclude Include="StringTo.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="Damage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Console.h">
       <Filter>Header Files\Renderable</Filter>
     </ClInclude>
@@ -388,17 +388,20 @@
     <ClInclude Include="LifeFormList.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="EventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleEventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Attributes.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Damage.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleEventHandler.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventHandler.h">
+      <Filter>Header Files\EventHandler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

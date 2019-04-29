@@ -5,9 +5,9 @@
 
 
 Console::Console(Rectangle rectangle, Color backgroundColor, Color borderColor, int borderSize, int textHeight, int textMargin)
-	:InputBar{ GraphicRect{static_cast<short>(rectangle.w - 2 * borderSize - 2*textMargin), static_cast<short>(textHeight), backgroundColor},
+	:InputBar{ GraphicRect{static_cast<int>(rectangle.w - 2 * borderSize - 2*textMargin), static_cast<int>(textHeight), backgroundColor},
 		Position<>{rectangle.x + borderSize+textMargin, rectangle.y + rectangle.h - borderSize - textHeight-textMargin} },
-	TextArea{ GraphicRect{static_cast<short>(rectangle.w - 2 * borderSize - 2 * textMargin), static_cast<short>(rectangle.h - 2 * textHeight - 2 * borderSize - 3 * textMargin), Color{0, 0, 0, 0}},
+	TextArea{ GraphicRect{static_cast<int>(rectangle.w - 2 * borderSize - 2 * textMargin), static_cast<int>(rectangle.h - 2 * textHeight - 2 * borderSize - 3 * textMargin), Color{0, 0, 0, 0}},
 		Position<>{rectangle.x + textMargin + borderSize, rectangle.y + textMargin + borderSize}, textHeight },
 	rectangle{ rectangle }, backgroundColor{ backgroundColor }, borderColor{ borderColor }, borderSize{ borderSize }, textHeight{ textHeight }, textMargin{ textMargin }
 {}

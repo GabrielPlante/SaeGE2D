@@ -18,20 +18,20 @@ class Projectile :
 	public WeaponAttack, public Item
 {
 public:
-	Projectile(const std::string& name, short mass, Angle facingDirection, Position<float> position, short speed,
-		short range, float damageMultiplier, float sharpness, int ownerId);
+	Projectile(const std::string& name, int mass, Angle facingDirection, Position<float> position, int speed,
+		int range, float damageMultiplier, float sharpness, int ownerId);
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
 	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) override;//Return true if the projectile doesn't exist anymore
 	~Projectile();
 protected:
 	const Position<float> getPosition() const { return movement.getPosition(); }
-	short getSpeed() const { return speed; }
-	short getBluntDamage() const { return static_cast<short>(damageMultiplier * getMass() * speed); }
-	short getSharpDamage() const { return static_cast<short>(damageMultiplier * sharpness * speed); }
+	int getSpeed() const { return speed; }
+	int getBluntDamage() const { return static_cast<int>(damageMultiplier * getMass() * speed); }
+	int getSharpDamage() const { return static_cast<int>(damageMultiplier * sharpness * speed); }
 	Angle getFacingDirection() const { return movement.getFacingDirection(); }
 private:
 	Movement movement;
-	short speed;
+	int speed;
 	Position<float> startingPosition;
 	int ownerId;
 };

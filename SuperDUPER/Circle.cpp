@@ -1,7 +1,7 @@
 #include "Circle.h"
 
 
-Circle::Circle(short radius, Color color)
+Circle::Circle(int radius, Color color)
 	: Renderable(), color{ color }, radius{ radius }
 {
 }

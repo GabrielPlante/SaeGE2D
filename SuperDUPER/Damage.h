@@ -1,17 +1,17 @@
 #pragma once
 struct Damage {
 	//The formula used to create damage
-	Damage(float damageMultiplier, short mass, float sharpness, short sharpnessDamage, short pureDamage)
-		:bluntDamage{ static_cast<short>(damageMultiplier*mass) }, sharpDamage{ static_cast<short>(damageMultiplier*sharpness*sharpnessDamage) },
-		pureDamage{ static_cast<short>(damageMultiplier*pureDamage) }
+	Damage(float damageMultiplier, int mass, float sharpness, int sharpnessDamage, int pureDamage)
+		:bluntDamage{ static_cast<int>(damageMultiplier*mass) }, sharpDamage{ static_cast<int>(damageMultiplier*sharpness*sharpnessDamage) },
+		pureDamage{ static_cast<int>(damageMultiplier*pureDamage) }
 	{
 	}
 	//The formula used to take the damage
-	short getDamage(float bluntResistance, float sharpResistance) const {
-		return static_cast<short>(pureDamage + bluntDamage * bluntResistance + sharpDamage * sharpResistance);
+	int getDamage(float bluntResistance, float sharpResistance) const {
+		return static_cast<int>(pureDamage + bluntDamage * bluntResistance + sharpDamage * sharpResistance);
 	}
 private:
-	short bluntDamage;
-	short sharpDamage;
-	short pureDamage;
+	int bluntDamage;
+	int sharpDamage;
+	int pureDamage;
 };

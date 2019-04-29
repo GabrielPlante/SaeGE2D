@@ -2,7 +2,7 @@
 #include "LifeForm.h"
 
 
-Weapon::Weapon(const std::string& name, short mass, int damageMultiplier, int range, float fireRate, float sharpness, std::unique_ptr<WeaponAttack> weaponAttackType)
+Weapon::Weapon(const std::string& name, int mass, int damageMultiplier, int range, float fireRate, float sharpness, std::unique_ptr<WeaponAttack> weaponAttackType)
 	:Item{ name, mass }, damageMultiplier{ damageMultiplier }, range{ range }, fireRate{ fireRate }, sharpness{ sharpness }, weaponAttackType{ std::move(weaponAttackType) }
 {
 }
@@ -33,12 +33,12 @@ bool Weapon::attack(LifeForm* owner) {
 	return true;
 }
 
-short Weapon::getBluntDamage() const {
+int Weapon::getBluntDamage() const {
 	return damageMultiplier * getMass();
 }
 
-short Weapon::getSharpDamage(const LifeForm& owner) const {
-	return static_cast<short>(damageMultiplier * owner.getDamageMultiplier() * sharpness);
+int Weapon::getSharpDamage(const LifeForm& owner) const {
+	return static_cast<int>(damageMultiplier * owner.getDamageMultiplier() * sharpness);
 }
 
 

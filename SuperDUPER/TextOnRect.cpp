@@ -8,7 +8,7 @@ TextOnRect::TextOnRect(GraphicRect graphicRect, const std::string& text, SDL_Ren
 }
 TextOnRect::TextOnRect(Color backgroundColor, const std::string& text, SDL_Renderer* renderer, Position<> position, const Font& font, Color textColor,
 	int borderSize, int textMargin, Color borderColor)
-	: TextOnRect{ GraphicRect{static_cast<short>(font.getWidth(text) + 2 * borderSize + 2 * textMargin), static_cast<short>(font.getHeight() * 5 / 6 + 2 * borderSize + 2 * textMargin), backgroundColor },
+	: TextOnRect{ GraphicRect{static_cast<int>(font.getWidth(text) + 2 * borderSize + 2 * textMargin), static_cast<int>(font.getHeight() * 5 / 6 + 2 * borderSize + 2 * textMargin), backgroundColor },
 	text, renderer, position, Position<>{position.x + borderSize + textMargin, position.y + borderSize + textMargin}, font, textColor, borderSize, textMargin, borderColor }
 {}
 

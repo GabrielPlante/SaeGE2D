@@ -4,7 +4,7 @@ class InvalidNumArgs :
 	public CommandError
 {
 public:
-	InvalidNumArgs(short wanted, short got);
+	InvalidNumArgs(int wanted, int got);
 	~InvalidNumArgs();
 };
 

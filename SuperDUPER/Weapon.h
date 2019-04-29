@@ -14,14 +14,14 @@ class Weapon :
 	public Item
 {
 public:
-	Weapon(const std::string& name, short mass, int damageMultiplier, int range, float fireRate, float sharpness, std::unique_ptr<WeaponAttack> weaponAttackType);
+	Weapon(const std::string& name, int mass, int damageMultiplier, int range, float fireRate, float sharpness, std::unique_ptr<WeaponAttack> weaponAttackType);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const;
 	//Return true if the weapon doesn't exist anymore
 	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime);
 	bool attack(LifeForm* owner);//Return true if the attack occur
 	int getDamageMultiplier() const { return damageMultiplier; }
-	short getBluntDamage() const;
-	short getSharpDamage(const LifeForm& owner) const;
+	int getBluntDamage() const;
+	int getSharpDamage(const LifeForm& owner) const;
 	float getFireRate() const { return fireRate; }
 	int getRange() const { return range; }
 	~Weapon();

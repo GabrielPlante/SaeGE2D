@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="Attributes.cpp" />
     <ClCompile Include="BasicArrow.cpp" />
     <ClCompile Include="BedRock.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="AdvancedMovement.h" />
     <ClInclude Include="Angle.h" />
     <ClInclude Include="Attack.h" />
+    <ClInclude Include="Attributes.h" />
     <ClInclude Include="BasicArrow.h" />
     <ClInclude Include="BedRock.h" />
     <ClInclude Include="Button.h" />

@@ -4,8 +4,8 @@
 
 
 
-Projectile::Projectile(const std::string& name, short mass, Angle facingDirection, Position<float> position, short speed,
-	short range, float damageMultiplier, float sharpness, int ownerId)
+Projectile::Projectile(const std::string& name, int mass, Angle facingDirection, Position<float> position, int speed,
+	int range, float damageMultiplier, float sharpness, int ownerId)
 	: Item{ name, mass }, WeaponAttack{ range, damageMultiplier, sharpness }, movement{ position, facingDirection },
 	speed{ speed }, ownerId{ ownerId }
 {

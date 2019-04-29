@@ -7,7 +7,7 @@
 class GraphicRect : public Renderable
 {
 public:
-	GraphicRect(short w, short h, Color color);
+	GraphicRect(int w, int h, Color color);
 	void render(SDL_Renderer* renderer, const Camera& camera, const Position<>& position) const override;
 	//To render in position relative to the window
 	void renderWithoutCamera(SDL_Renderer* renderer, const Position<>& position, SDL_Rect* dstRect = nullptr) const;
@@ -16,13 +16,13 @@ public:
 	}
 	const Color& getColor() const { return color; }
 	void changeColor(Color newColor) { color = newColor; }
-	short getW() const { return w; }
-	short getH() const { return h; }
-	void setH(short newH) { h = newH; }
+	int getW() const { return w; }
+	int getH() const { return h; }
+	void setH(int newH) { h = newH; }
 	~GraphicRect();
 protected:
-	short w;
-	short h;
+	int w;
+	int h;
 	Color color;
 };
 

@@ -2,7 +2,7 @@
 
 
 
-InvalidNumArgs::InvalidNumArgs(short wanted, short got)
+InvalidNumArgs::InvalidNumArgs(int wanted, int got)
 	: CommandError{ "Invalid number of arguments. Wanted: " + std::to_string(wanted) + ", got: " + std::to_string(got) }
 {
 }

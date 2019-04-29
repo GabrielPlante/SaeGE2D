@@ -64,10 +64,6 @@ void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 		(**it).render(renderer);
 	console.render(renderer);
-	//Test
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-	SDL_RenderDrawPoint(renderer, 50, 50);
-	SDL_RenderDrawPoint(renderer, 50, 100);
 }
 
 GameLoop::~GameLoop()

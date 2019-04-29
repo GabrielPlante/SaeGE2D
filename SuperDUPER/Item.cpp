@@ -2,7 +2,7 @@
 
 
 
-Item::Item(const std::string& name, short mass)
+Item::Item(const std::string& name, int mass)
 	: name{ name }, mass{ mass }
 {
 }

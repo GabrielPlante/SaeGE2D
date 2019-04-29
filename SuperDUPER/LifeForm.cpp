@@ -5,7 +5,7 @@ constexpr float deltaAngle = 0.001f;
 
 int LifeForm::idCount = 0;
 
-LifeForm::LifeForm(float x, float y, int speed, short healthPoint, short radius, short mass, Friendliness friendliness,
+LifeForm::LifeForm(float x, float y, int speed, int healthPoint, int radius, int mass, Friendliness friendliness,
 	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
 	:Entity(x, y, healthPoint, mass), baseSpeed{ speed }, actualSpeed{ speed }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sight{ sightRange, sightArea },
@@ -102,7 +102,7 @@ void LifeForm::setRotatingDestination(const Destination& destination) {
 }
 
 //Method to check collision, /!\ Only work if the player is smaller than a tile
-void LifeForm::checkCollision(const Map& map, Position<> position, short radius) {
+void LifeForm::checkCollision(const Map& map, Position<> position, int radius) {
 	//Check the "four corners" of the circle
 	for (int i = -1; i < 2; i += 2) {
 		for (int j = -1; j < 2; j += 2) {

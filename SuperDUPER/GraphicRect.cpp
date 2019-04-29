@@ -1,7 +1,7 @@
 #include "GraphicRect.h"
 #include "Rectangle.h"
 
-GraphicRect::GraphicRect(short w, short h, Color color)
+GraphicRect::GraphicRect(int w, int h, Color color)
 	:Renderable(), w{ w }, h{ h }, color{ color }
 {
 }

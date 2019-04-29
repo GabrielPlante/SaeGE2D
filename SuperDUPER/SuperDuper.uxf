@@ -1040,4 +1040,26 @@ Class: ValueChange</panel_attributes>
     <panel_attributes>Struct: Sight</panel_attributes>
     <additional_attributes/>
   </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>18</x>
+      <y>414</y>
+      <w>84</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Class: Attributes</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>96</x>
+      <y>396</y>
+      <w>48</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;40.0</additional_attributes>
+  </element>
 </diagram>

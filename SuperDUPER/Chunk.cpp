@@ -4,7 +4,7 @@
 #include "ErrorTile.h"
 
 
-Map::Chunk::Chunk(short x, short y)
+Map::Chunk::Chunk(int x, int y)
 	: position{ x, y } {
 	//Default constructor, make a chunk full of default tile
 	//The delta of the position caused by the chunk position
@@ -23,7 +23,7 @@ Map::Chunk::Chunk(short x, short y)
 
  * Wrong number || 255 == ErrorTile
  */
-Map::Chunk::Chunk(short x, short y, std::array<unsigned char, Map::chunkSize*Map::chunkSize> chunkMap) {
+Map::Chunk::Chunk(int x, int y, std::array<unsigned char, Map::chunkSize*Map::chunkSize> chunkMap) {
 	constexpr int tilePosChange = chunkSize * Tile::tileSize;
 	for (int i = 0; i != chunkSize; i++) {
 		for (int j = 0; j != chunkSize; j++) {

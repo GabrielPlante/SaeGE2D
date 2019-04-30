@@ -3,7 +3,7 @@
 
 
 BasicArrow::BasicArrow(Angle facingDirection, int mass, Position<float> position, int speed,
-	int range, float damageMultiplier, float sharpness, int ownerId)
+	int range, float damageMultiplier, float sharpness, unsigned long ownerId)
 	:Projectile{ "Basic Arrow", mass, facingDirection, position, speed, range, damageMultiplier, sharpness, ownerId }
 {
 }
@@ -16,7 +16,7 @@ void BasicArrow::render(SDL_Renderer* renderer, const Camera& camera, const Life
 	SDL_RenderDrawLine(renderer, rear.x, rear.y, front.x, front.y);
 }
 
-std::unique_ptr<WeaponAttack> BasicArrow::clone(Angle facingDirection, Position<float> position, int ownerId) const {
+std::unique_ptr<WeaponAttack> BasicArrow::clone(Angle facingDirection, Position<float> position, unsigned long ownerId) const {
 	return std::unique_ptr<WeaponAttack> {new BasicArrow{ facingDirection, getMass(), position, getSpeed(), getRange(),
 		damageMultiplier, sharpness, ownerId }};
 }

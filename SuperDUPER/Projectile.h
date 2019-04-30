@@ -19,7 +19,7 @@ class Projectile :
 {
 public:
 	Projectile(const std::string& name, int mass, Angle facingDirection, Position<float> position, int speed,
-		int range, float damageMultiplier, float sharpness, int ownerId);
+		int range, float damageMultiplier, float sharpness, unsigned long ownerId);
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
 	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) override;//Return true if the projectile doesn't exist anymore
 	~Projectile();
@@ -33,6 +33,6 @@ private:
 	Movement movement;
 	int speed;
 	Position<float> startingPosition;
-	int ownerId;
+	unsigned long ownerId;
 };
 

@@ -5,7 +5,7 @@
 
 
 Projectile::Projectile(const std::string& name, int mass, Angle facingDirection, Position<float> position, int speed,
-	int range, float damageMultiplier, float sharpness, int ownerId)
+	int range, float damageMultiplier, float sharpness, unsigned long ownerId)
 	: Item{ name, mass }, WeaponAttack{ range, damageMultiplier, sharpness }, movement{ position, facingDirection },
 	speed{ speed }, ownerId{ ownerId }
 {

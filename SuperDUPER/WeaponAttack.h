@@ -13,7 +13,7 @@ public:
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
 	//Return true if the projectile doesn't exist anymore
 	virtual bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) = 0;
-	virtual std::unique_ptr<WeaponAttack> clone(Angle facingDirection, Position<float> position, int ownerId) const = 0;
+	virtual std::unique_ptr<WeaponAttack> clone(Angle facingDirection, Position<float> position, unsigned long ownerId) const = 0;
 	~WeaponAttack();
 protected:
 	int getRange() const { return range; }

@@ -9,6 +9,7 @@
 #include <vector>
 #include <queue>
 #include "Weapon.h"
+#include "Attributes.h"
 
 enum class Friendliness {Neutral, Friend, Enemy};
 
@@ -20,7 +21,7 @@ class LifeForm :
 public:
 	//---Internal processing---
 	LifeForm(float x, float y, int speed, int healthPoint, int radius, int mass = 0, Friendliness friendliness = Friendliness::Neutral,
-		float facingDirection = 0, float rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1);//The default constructor
+		float facingDirection = 0, float rotatingSpeed = .1, int sightRange = 1000, float sightArea = 1, Attributes attributes = Attributes{});//The default constructor
 	void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) override;//Method to call each frame, return false if the player is still alive (return !isAlive())
 	//Return true if the destination is reached
@@ -37,7 +38,7 @@ public:
 	Friendliness getFriendliness() const { return friendliness; }
 	int getRadius() const { return radius; }
 	bool isAlive() const { return healthPoint > 0; }
-	int getId() const { return id; }
+	unsigned long getId() const { return id; }
 	bool operator==(const LifeForm& other) const { return id == other.getId(); }
 	bool operator!=(const LifeForm& other) const { return id != other.getId(); }
 
@@ -51,8 +52,9 @@ public:
 	void setVisionRendering(bool set) { renderVision = set; }
 	void setHealthRendering(bool set) { renderHealth = set; }
 private:
-	const int id;
-	static int idCount;//Each lifeForm has a unique ID
+	Attributes attributes;
+	const unsigned long id;
+	static unsigned long idCount;//Each lifeForm has a unique ID
 	int actualSpeed;//Speed unit is : pixel/sec
 	int strength = 50;
 	Sight sight;

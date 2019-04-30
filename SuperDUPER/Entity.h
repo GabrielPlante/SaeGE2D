@@ -6,7 +6,6 @@
 #include "Position.h"
 #include <vector>
 
-
 class LifeFormList;
 class Map;
 class Entity

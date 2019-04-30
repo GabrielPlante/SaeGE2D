@@ -3,13 +3,13 @@
 
 constexpr float deltaAngle = 0.001f;
 
-int LifeForm::idCount = 0;
+unsigned long LifeForm::idCount = 0;
 
 LifeForm::LifeForm(float x, float y, int speed, int healthPoint, int radius, int mass, Friendliness friendliness,
-	float directionAngle, float rotatingSpeed, int sightRange, float sightArea)
+	float directionAngle, float rotatingSpeed, int sightRange, float sightArea, Attributes attributes)
 	:Entity(x, y, healthPoint, mass), baseSpeed{ speed }, actualSpeed{ speed }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sight{ sightRange, sightArea },
-	id{ idCount }, previousPosition{ x, y }
+	id{ idCount }, previousPosition{ x, y }, attributes{ attributes }
 {
 	idCount++;
 }

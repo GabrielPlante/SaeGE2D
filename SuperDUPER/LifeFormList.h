@@ -12,7 +12,7 @@ private:
 	LifeForms lifeFormList;
 public:
 	LifeFormList(LifeForms lifeFormList = LifeForms{});
-	void refreshList(const Map& map, float deltaTime);
+	void refreshList(const Map& map, float deltaTime, const std::vector<float>& gameValues);
 	void renderList(SDL_Renderer* renderer, const Camera& camera);
 	LifeForm* getPlayer() { return &(*lifeFormList[0]); }
 	void addLifeForm(std::unique_ptr<LifeForm> lifeForm) { lifeFormList.push_back(std::move(lifeForm)); }

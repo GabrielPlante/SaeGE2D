@@ -8,10 +8,10 @@ LifeFormList::LifeFormList(LifeForms lifeFormList)
 {
 }
 
-void LifeFormList::refreshList(const Map& map, float deltaTime) {
+void LifeFormList::refreshList(const Map& map, float deltaTime, const std::vector<float>& gameValues) {
 	auto it = lifeFormList.begin();
 	while (it != lifeFormList.end()) {
-		if ((**it).refresh(map, (*this), deltaTime))
+		if ((**it).refresh(map, (*this), deltaTime, gameValues))
 			it = lifeFormList.erase(it);
 		else
 			it++;

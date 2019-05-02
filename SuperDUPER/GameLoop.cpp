@@ -7,6 +7,11 @@ constexpr int SCREEH_HEIGHT{ 600 };
 GameLoop::GameLoop()
 	:map{}, gameWindow{ SCREEN_WIDTH, SCREEH_HEIGHT }, console{ Rectangle{50, 50, 800, 500} }
 {
+	//The game values
+	float gravity = 1;
+	gameValues.push_back(gravity);
+
+
 	//Create the player
 	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
 	lifeFormList.getPlayer()->setVisionRendering(true);
@@ -54,7 +59,7 @@ void GameLoop::handleEvent(Event& event) {
 
 void GameLoop::refreshEntities() {
 	float deltaTime = static_cast<float>(static_cast<double>(clock.resetTime()) / (1000 * 1000));
-	lifeFormList.refreshList(map, deltaTime);
+	lifeFormList.refreshList(map, deltaTime, gameValues);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {

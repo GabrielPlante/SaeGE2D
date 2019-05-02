@@ -28,6 +28,7 @@ public:
 	void quit() { keepGoing = false; }
 	~GameLoop();
 private:
+	std::vector<float> gameValues;
 	Window gameWindow;
 	Map map;
 	Event event;

@@ -44,7 +44,7 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 		inHandWeapon->render(renderer, camera, *this);
 }
 
-bool LifeForm::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime) {
+bool LifeForm::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues) {
 	//First all the status effects are applied
 	for (auto it = statusEffectList.begin(); it != statusEffectList.end();) {
 		if (it->refresh(this, deltaTime))
@@ -57,7 +57,7 @@ bool LifeForm::refresh(const Map& map, const LifeFormList& lifeForms, float delt
 	map.getTile(Position<>{static_cast<long>(position.x), static_cast<long>(position.y)}).effectOnLifeForm(this);
 
 	if (inHandWeapon)
-		inHandWeapon->refresh(map, lifeForms, deltaTime);
+		inHandWeapon->refresh(map, lifeForms, deltaTime, gameValues);
 
 	if (actionQueue.empty());
 	else if (actionQueue.front() == Action::Turn) {//Treat hard turn (turning without moving)

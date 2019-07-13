@@ -143,9 +143,6 @@
     <None Include="Scripts\codemirror-3.01\mode\xml.js" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SeaGE2D.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\Clock.cpp" />
     <ClCompile Include="src\Command\Attack.cpp" />

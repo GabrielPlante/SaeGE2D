@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
@@ -20,10 +24,385 @@
     <Filter Include="Content\codemirror-3.01">
       <UniqueIdentifier>{22670162-b93d-4eeb-a8c0-7d2e2941515c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{e5e2ec09-b2d1-4479-bcac-3cd0e3c106e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{6203daf3-bc6f-4fc7-93d3-f49ed2902d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderable">
+      <UniqueIdentifier>{986e8746-5ab0-409c-ab53-df7587643dda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderable">
+      <UniqueIdentifier>{deb11b64-08e1-4bba-b901-2bf8c5458c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Struct">
+      <UniqueIdentifier>{1a0a8daf-33da-4b0a-af73-771035877dc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{a3939f41-e8ff-4aa4-816c-7bc505dd198a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{967e8869-e551-426d-8278-eda19458c82b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{da139411-cc38-4921-86aa-7c3c98d7651a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item">
+      <UniqueIdentifier>{f3b22ca3-b38d-4dd5-9d7d-c71734985891}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\StatusEffect">
+      <UniqueIdentifier>{5e38c1a2-3e72-4c2f-aaed-62504e69a3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StatusEffect">
+      <UniqueIdentifier>{e3e471bb-671a-4a9a-bc86-950e7c15352b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderable\UI">
+      <UniqueIdentifier>{a6b2ccaf-3143-46e6-af17-8ceec5ccb854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderable\UI">
+      <UniqueIdentifier>{7b02ab7b-940e-4f45-ad13-abaa9c9e3a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Command">
+      <UniqueIdentifier>{99bb3770-7fe8-45b2-9160-968c5a2a414a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command">
+      <UniqueIdentifier>{6d5e6ccb-0194-48da-8796-6cd1bdc0af73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Item\Weapon">
+      <UniqueIdentifier>{c279777e-88e1-4ab8-90ea-498aa908b55e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item\Weapon">
+      <UniqueIdentifier>{6bbcb180-b0d6-4893-b069-4a589b886c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Command\CommandError">
+      <UniqueIdentifier>{0c6815b2-98b3-4660-af96-53134dfe3a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Command\CommandError">
+      <UniqueIdentifier>{3a8e54f0-88e3-4da5-998b-29d272f0b5ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EventHandler">
+      <UniqueIdentifier>{bed2e07e-8116-4e9f-b933-92256cce0177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventHandler">
+      <UniqueIdentifier>{264db8b2-aa2d-42a1-a2eb-e92c09db6b62}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLoop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultTile.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeForm.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="BedRock.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Destination.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusEffect.cpp">
+      <Filter>Source Files\StatusEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorTile.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TempStatusEffect.cpp">
+      <Filter>Source Files\StatusEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicRect.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="TextOnRect.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Quit.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="StringSplit.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicArrow.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponAttack.cpp">
+      <Filter>Source Files\Item\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Clock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandError.cpp">
+      <Filter>Source Files\Command\CommandError</Filter>
+    </ClCompile>
+    <ClCompile Include="InvalidNumArgs.cpp">
+      <Filter>Source Files\Command\CommandError</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>Source Files\Renderable</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenConsole.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandList.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Stop.cpp">
+      <Filter>Source Files\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="InputBar.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TextArea.cpp">
+      <Filter>Source Files\Renderable\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeFormList.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleEventHandler.cpp">
+      <Filter>Source Files\EventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEventHandler.cpp">
+      <Filter>Source Files\EventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\EventHandler</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLoop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultTile.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeForm.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="BedRock.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Destination.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Angle.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Movement.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusEffect.h">
+      <Filter>Header Files\StatusEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorTile.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TempStatusEffect.h">
+      <Filter>Header Files\StatusEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicRect.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextOnRect.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Quit.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="AdvancedMovement.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicArrow.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponAttack.h">
+      <Filter>Header Files\Item\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Clock.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandError.h">
+      <Filter>Header Files\Command\CommandError</Filter>
+    </ClInclude>
+    <ClInclude Include="InvalidNumArgs.h">
+      <Filter>Header Files\Command\CommandError</Filter>
+    </ClInclude>
+    <ClInclude Include="StringTo.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>Header Files\Renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenConsole.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandList.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Stop.h">
+      <Filter>Header Files\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="InputBar.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextToCommand.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="TextInput.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="TextArea.h">
+      <Filter>Header Files\Renderable\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sight.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeFormList.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Attributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Damage.h">
+      <Filter>Header Files\Struct</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleEventHandler.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEventHandler.h">
+      <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\codemirror-3.01\mode\xml.js">
@@ -45,324 +424,5 @@
       <Filter>Content\codemirror-3.01</Filter>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="SeaGE2D.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Clock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\Attack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\Command.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\CommandError\CommandError.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\CommandError\InvalidNumArgs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\CommandList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\Move.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\OpenConsole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\Quit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Command\Stop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Destination.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\LifeForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entities\LifeFormList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventHandler\ConsoleEventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventHandler\EventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\EventHandler\GameEventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameLoop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Item\Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Item\Weapon\BasicArrow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Item\Weapon\Projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Item\Weapon\Weapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Item\Weapon\WeaponAttack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Map\BedRock.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Map\Chunk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Map\DefaultTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Map\ErrorTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Map\Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Map\Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\Circle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\Console.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\GraphicRect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\Renderable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\UI\Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\UI\Font.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\UI\InputBar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\UI\Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\UI\TextArea.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Renderable\UI\TextOnRect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StatusEffect\StatusEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\StatusEffect\TempStatusEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="header\Attributes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\Attack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\Command.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\CommandError\CommandError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\CommandError\InvalidNumArgs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\CommandList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\Move.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\OpenConsole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\Quit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Command\Stop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Destination.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Entities\Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Entities\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Entities\LifeForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Entities\LifeFormList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\EventHandler\ConsoleEventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\EventHandler\EventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\EventHandler\GameEventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\GameLoop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Item\Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Item\Weapon\BasicArrow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Item\Weapon\Projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Item\Weapon\Weapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Item\Weapon\WeaponAttack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Map\BedRock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Map\DefaultTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Map\ErrorTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Map\Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Map\Tile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\Circle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\GraphicRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\Renderable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\TextInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\Button.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\Console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\Font.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\InputBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\Text.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\TextArea.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Renderable\UI\TextOnRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\StatusEffect\StatusEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\StatusEffect\TempStatusEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\AdvancedMovement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Angle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Clock.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Damage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Key.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Rectangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\Sight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\StringSplit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\StringTo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Struct\TextToCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

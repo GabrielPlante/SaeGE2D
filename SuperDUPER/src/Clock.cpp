@@ -1,2 +1,2 @@
-#include "../header/Struct/Clock.h"
+#include "../header/Clock.h"
 float Clock::timeScale{ 1 };

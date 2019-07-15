@@ -58,7 +58,3 @@ void Console::enterCommand(const CommandList& commandList, GameLoop* gameLoop) {
 	}
 	enterText();
 }
-
-Console::~Console()
-{
-}

@@ -79,7 +79,3 @@ std::unique_ptr<Text> InputBar::clear() {
 	graphicText.swap(textPtr);
 	return textPtr;
 }
-
-InputBar::~InputBar()
-{
-}

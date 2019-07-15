@@ -24,7 +24,3 @@ void TextArea::addPendingText(SDL_Renderer* renderer) {
 		textColor.pop();
 	}
 }
-
-TextArea::~TextArea()
-{
-}

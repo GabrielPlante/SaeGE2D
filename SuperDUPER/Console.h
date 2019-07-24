@@ -1,6 +1,6 @@
 /*
 * The console
-* It is a singleton
+* It is a singleton (to be implemented)
 */
 #pragma once
 #include "Rectangle.h"

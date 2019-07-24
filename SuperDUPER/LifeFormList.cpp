@@ -24,7 +24,3 @@ void LifeFormList::renderList(SDL_Renderer* renderer, const Camera& camera) {
 			(**it).render(renderer, camera);
 	}
 }
-
-LifeFormList::~LifeFormList()
-{
-}

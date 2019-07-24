@@ -25,6 +25,8 @@ GameLoop::GameLoop()
 	//Test
 	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{Color{0, 0, 180, 180}, "Une phrase random xDDDzqfj", gameWindow.getRenderer(), Position<>{50, 50}, Font{50} } };
 	buttonList.push_back(std::move(textTest));
+
+	timeSinceGameStart = SDL_GetTicks();
 }
 
 //For some reasons, this function doesn't work if it's inlined
@@ -64,13 +66,8 @@ void GameLoop::refreshEntities() {
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
 	lifeFormList.renderList(renderer, camera);
-	//player.render(renderer, camera);//Put the player last so he is above everything else
 
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 		(**it).render(renderer);
 	console.render(renderer);
-}
-
-GameLoop::~GameLoop()
-{
 }

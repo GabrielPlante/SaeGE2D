@@ -19,7 +19,3 @@ void Entity::takeBluntDamage(int amount) {
 void Entity::takeSharpDamage(int amount) {
 	healthPoint -= static_cast<int>(amount*sharpDamageMultiplier);
 }
-
-Entity::~Entity()
-{
-}

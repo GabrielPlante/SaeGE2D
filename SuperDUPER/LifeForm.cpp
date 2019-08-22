@@ -3,15 +3,12 @@
 
 constexpr float deltaAngle = 0.001f;
 
-unsigned long LifeForm::idCount = 0;
-
 LifeForm::LifeForm(float x, float y, int speed, int healthPoint, int radius, int mass, Friendliness friendliness,
 	float directionAngle, float rotatingSpeed, int sightRange, float sightArea, Attributes attributes)
 	:Entity(x, y, healthPoint, mass), baseSpeed{ speed }, actualSpeed{ speed }, radius{ radius }, friendliness{ friendliness },
 	facingDirection{ directionAngle }, rotatingSpeed{ rotatingSpeed }, sight{ sightRange, sightArea },
-	id{ idCount }, previousPosition{ x, y }, attributes{ attributes }
+	previousPosition{ x, y }, attributes{ attributes }
 {
-	idCount++;
 }
 
 void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
@@ -44,7 +41,7 @@ void LifeForm::render(SDL_Renderer* renderer, const Camera& camera) const {
 		inHandWeapon->render(renderer, camera, *this);
 }
 
-bool LifeForm::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues) {
+bool LifeForm::refresh(const Map& map, const EntityList& lifeForms, float deltaTime, const std::vector<float>& gameValues) {
 	//First all the status effects are applied
 	for (auto it = statusEffectList.begin(); it != statusEffectList.end();) {
 		if (it->refresh(this, deltaTime))

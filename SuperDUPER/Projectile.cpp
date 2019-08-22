@@ -1,6 +1,6 @@
 #include "Projectile.h"
 #include "LifeForm.h"
-#include "LifeFormList.h"
+#include "EntityList.h"
 
 
 
@@ -13,7 +13,7 @@ Projectile::Projectile(const std::string& name, int mass, Angle facingDirection,
 	startingPosition.y = static_cast<float>(position.y);
 }
 
-bool Projectile::refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues) {
+bool Projectile::refresh(const Map& map, const EntityList& lifeForms, float deltaTime, const std::vector<float>& gameValues) {
 	//First calculate where the projectile will land
 	movement.move(speed, deltaTime);
 	//Check the range

@@ -13,13 +13,13 @@ GameLoop::GameLoop()
 
 
 	//Create the player
-	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }});
-	lifeFormList.getPlayer()->setVisionRendering(true);
+	player = std::unique_ptr<LifeForm>{new Character{ 100, 0, Color(0, 0, 255) }};
+	player->setVisionRendering(true);
 	//test
-	lifeFormList.addLifeForm(std::unique_ptr<LifeForm>{new Character{ 400, 400, Color(128, 128, 128) }});
+	entityList.addEntity(std::unique_ptr<LifeForm>{new Character{ 400, 400, Color(128, 128, 128) }});
 	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
 
-	lifeFormList.getPlayer()->takeWeaponInHand(std::unique_ptr<Weapon> {new Weapon{ "Basic Bow", 100, 100, 1000, 0.5, 1,
+	player->takeWeaponInHand(std::unique_ptr<Weapon> {new Weapon{ "Basic Bow", 100, 100, 1000, 0.5, 1,
 		std::unique_ptr<WeaponAttack>{new BasicArrow{0, 1, Position<float>{0, 0}, 300, 1000, static_cast<float>(0.2), 1, (getPlayer()->getId())}} } });
 
 	//Test
@@ -30,24 +30,33 @@ GameLoop::GameLoop()
 }
 
 //For some reasons, this function doesn't work if it's inlined
-LifeForm* GameLoop::getPlayer() { return lifeFormList.getPlayer(); }
+LifeForm* GameLoop::getPlayer() { return player.get(); }
 
 bool GameLoop::update() {
 	timeSinceGameStart = SDL_GetTicks();
 	//First, see if there is any input from the user
 	handleEvent(event);
 
+	//Refresh all the entity the game have
 	refreshEntities();
 
-	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(lifeFormList.getPlayer()->getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(lifeFormList.getPlayer()->getPosition().y)-SCREEH_HEIGHT/2});
+	//Set the camera position at the middle of the screen
+	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(entityList.getPlayer()->getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(entityList.getPlayer()->getPosition().y)-SCREEH_HEIGHT/2});
 
-	gameWindow.clear();//Then clear the screen
-	//Then put everything in the renderer
+	//Clear the screen
+	gameWindow.clear();
 
-
+	//Render the map first
 	map.render(gameWindow.getRenderer(), gameWindow.getCamera());
 
+	//Render the entities above the map
 	renderEntities(gameWindow.getRenderer(), gameWindow.getCamera());
+	
+	//Render the buttons above the entities
+	renderButtons(gameWindow.getRenderer());
+
+	//Render the console above everything else
+	console.render(gameWindow.getRenderer());
 
 	gameWindow.update();//Then print it
 	return keepGoing;
@@ -60,14 +69,15 @@ void GameLoop::handleEvent(Event& event) {
 }
 
 void GameLoop::refreshEntities() {
-	float deltaTime = static_cast<float>(static_cast<double>(clock.resetTime()) / (1000 * 1000));
-	lifeFormList.refreshList(map, deltaTime, gameValues);
+	float deltaTime = static_cast<float>(static_cast<double>(gameClock.resetTime()) / (1000 * 1000));
+	entityList.refreshList(map, deltaTime, gameValues);
 }
 
 void GameLoop::renderEntities(SDL_Renderer* renderer, Camera& camera) {
-	lifeFormList.renderList(renderer, camera);
+	entityList.renderList(renderer, camera);
+}
 
+void GameLoop::renderButtons(SDL_Renderer* renderer) {
 	for (auto it = buttonList.begin(); it != buttonList.end(); it++)
 		(**it).render(renderer);
-	console.render(renderer);
 }

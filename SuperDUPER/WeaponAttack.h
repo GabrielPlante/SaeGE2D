@@ -6,14 +6,14 @@
 #include <vector>
 class LifeForm;
 class Map;
-class LifeFormList;
+class EntityList;
 class WeaponAttack
 {
 public:
 	WeaponAttack(int range, float damageMultiplier, float sharpness);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const = 0;
 	//Return true if the projectile doesn't exist anymore
-	virtual bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues) = 0;
+	virtual bool refresh(const Map& map, const EntityList& lifeForms, float deltaTime, const std::vector<float>& gameValues) = 0;
 	virtual std::unique_ptr<WeaponAttack> clone(Angle facingDirection, Position<float> position, unsigned long ownerId) const = 0;
 	~WeaponAttack();
 protected:

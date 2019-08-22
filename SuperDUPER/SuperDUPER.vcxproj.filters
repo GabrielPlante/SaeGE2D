@@ -218,9 +218,6 @@
     <ClCompile Include="TextArea.cpp">
       <Filter>Source Files\Renderable\UI</Filter>
     </ClCompile>
-    <ClCompile Include="LifeFormList.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="ConsoleEventHandler.cpp">
       <Filter>Source Files\EventHandler</Filter>
     </ClCompile>
@@ -229,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="EventHandler.cpp">
       <Filter>Source Files\EventHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityList.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,9 +385,6 @@
     <ClInclude Include="Sight.h">
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
-    <ClInclude Include="LifeFormList.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Attributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -402,6 +399,9 @@
     </ClInclude>
     <ClInclude Include="GameEventHandler.h">
       <Filter>Header Files\EventHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityList.h">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

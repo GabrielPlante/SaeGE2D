@@ -5,6 +5,7 @@
 #include <array>
 #include "Position.h"
 #include <vector>
+#include "Damage.h"
 
 /*
 TODO: Change this class so it's the base class and the only class representing an entity in the game engine
@@ -12,11 +13,13 @@ It need to have a system so each can be rendered on a screen or not. It also nee
 Maybe do three functions called in this order: Command(Input); Refresh; Render
 */
 
-class LifeFormList;
+class EntityList;
 class Map;
 class Entity
 {
 protected:
+	const unsigned long id;
+	static unsigned long idCount;//Each entity has a unique ID
 	std::unique_ptr<Renderable> shape;
 	Position<float> position;
 	int mass;
@@ -31,7 +34,7 @@ public:
 	virtual void render(SDL_Renderer* renderer, const Camera& camera) const = 0;
 
 	//Refresh the entity
-	virtual bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues) = 0;//Return true if the entity doesn't exist anymore, else false
+	virtual bool refresh(const Map& map, const EntityList& lifeForms, float deltaTime, const std::vector<float>& gameValues) = 0;//Return true if the entity doesn't exist anymore, else false
 
 	//Get the position of the entity
 	Position<float> getPosition() const { return position; }
@@ -45,8 +48,16 @@ public:
 	//Get the mass of the entity
 	int getMass() const { return mass; }
 
-	void takeBluntDamage(int amount);
+	//Return true if the entity is still alive after the damage input
+	virtual bool takeDamage(const Damage& damage) = 0;
 
-	void takeSharpDamage(int amount);
+	virtual bool isInSight(const Position<float>& otherPos) const = 0;
+
+	//Return the id of the entity
+	unsigned long getId() const { return id; }
+
+	//Compare two entity with their id
+	bool operator==(const Entity& other) const { return id == other.getId(); }
+	bool operator!=(const Entity& other) const { return id != other.getId(); }
 };
 

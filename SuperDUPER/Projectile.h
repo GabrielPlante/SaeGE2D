@@ -21,7 +21,7 @@ public:
 	Projectile(const std::string& name, int mass, Angle facingDirection, Position<float> position, int speed,
 		int range, float damageMultiplier, float sharpness, unsigned long ownerId);
 	//Information about the projectiles that doesn't change are not kept to avoid duplicate
-	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues) override;//Return true if the projectile doesn't exist anymore
+	bool refresh(const Map& map, const EntityList& lifeForms, float deltaTime, const std::vector<float>& gameValues) override;//Return true if the projectile doesn't exist anymore
 	~Projectile();
 protected:
 	const Position<float> getPosition() const { return movement.getPosition(); }

@@ -9,7 +9,7 @@
 #include "Button.h"
 #include "Clock.h"
 #include "Console.h"
-#include "LifeFormList.h"
+#include "EntityList.h"
 
 class GameLoop
 {
@@ -24,13 +24,13 @@ private:
 	Event event;
 	Uint32 timeSinceGameStart;
 	//The official clock of the game
-	Clock clock;
+	Clock gameClock;
 	//Maybe need to be a list to make the access faster
 	std::vector<std::unique_ptr<Button>> buttonList;
 	bool keepGoing = true;
 	Console console;
 	//The lifeform list need to be an entitie list
-	LifeFormList lifeFormList;
+	EntityList entityList;
 
 public:
 	//Default constructor
@@ -48,8 +48,11 @@ public:
 	//Render all the entities
 	void renderEntities(SDL_Renderer* renderer, Camera& camera);
 
+	//Render all the buttons
+	void renderButtons(SDL_Renderer* renderer);
+
 	//Add an entity to the entity list
-	size_t addEntity(std::unique_ptr<LifeForm> lifeForm) { return lifeFormList.addLifeForm(std::move(lifeForm)); }
+	size_t addEntity(std::unique_ptr<LifeForm> lifeForm) { return entityList.addEntity(std::move(lifeForm)); }
 
 	//Return the window that contain the game (need to be moved out of the game engine)
 	Window* getGameWindow() { return &gameWindow; }
@@ -71,5 +74,8 @@ public:
 
 	//Quit the game
 	void quit() { keepGoing = false; }
+
+	//Temporary
+	std::unique_ptr<LifeForm> player;
 };
 

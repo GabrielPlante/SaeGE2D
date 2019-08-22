@@ -17,7 +17,7 @@ public:
 	Weapon(const std::string& name, int mass, int damageMultiplier, int range, float fireRate, float sharpness, std::unique_ptr<WeaponAttack> weaponAttackType);
 	virtual void render(SDL_Renderer* renderer, const Camera& camera, const LifeForm& owner) const;
 	//Return true if the weapon doesn't exist anymore
-	bool refresh(const Map& map, const LifeFormList& lifeForms, float deltaTime, const std::vector<float>& gameValues);
+	bool refresh(const Map& map, const EntityList& lifeForms, float deltaTime, const std::vector<float>& gameValues);
 	bool attack(LifeForm* owner);//Return true if the attack occur
 	int getDamageMultiplier() const { return damageMultiplier; }
 	int getBluntDamage() const;

@@ -12,10 +12,6 @@ GameLoop::GameLoop()
 	gameValues.push_back(gravity);
 
 
-	entityList.addEntity(std::unique_ptr<LifeForm>{new Character{ 400, 400, Color(128, 128, 128) }});
-	//lifeForms.emplace_back(std::unique_ptr<LifeForm>{new Character(600, 400, Color(128, 128, 128))});
-
-
 	//Test
 	std::unique_ptr<Button> textTest = std::unique_ptr<Button>{ new Button{Color{0, 0, 180, 180}, "Une phrase random xDDDzqfj", gameWindow.getRenderer(), Position<>{50, 50}, Font{50} } };
 	buttonList.push_back(std::move(textTest));
@@ -30,9 +26,6 @@ bool GameLoop::update() {
 
 	//Refresh all the entity the game have
 	refreshEntities();
-
-	//Set the camera position at the middle of the screen
-	gameWindow.getCamera().setPosition(Position<>{static_cast<long>(entityList.getPlayer()->getPosition().x)-SCREEN_WIDTH/2, static_cast<long>(entityList.getPlayer()->getPosition().y)-SCREEH_HEIGHT/2});
 
 	//Clear the screen
 	gameWindow.clear();

@@ -1,6 +1,5 @@
 #pragma once
 #include <SDL.h>
-#include "Character.h"
 #include <list>
 #include "Button.h"
 #include "Key.h"

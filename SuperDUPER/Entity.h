@@ -26,6 +26,9 @@ protected:
 	int healthPoint;
 	float bluntDamageMultiplier;//Between 0 and 1, 0 = full blunt damage resisting, 1 = non blunt damage resistance
 	float sharpDamageMultiplier;
+	
+
+
 public:
 	//Constructor
 	Entity(float x, float y, int healthPoint, int mass = 0, float bluntDamageMultiplier = 1, float sharpDamageMultiplier = 1);

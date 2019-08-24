@@ -4,7 +4,6 @@
 #include "Event.h"
 #include "Circle.h"
 #include "Map.h"
-#include "Character.h"
 #include <list>
 #include "Button.h"
 #include "Clock.h"
@@ -52,7 +51,7 @@ public:
 	void renderButtons(SDL_Renderer* renderer);
 
 	//Add an entity to the entity list
-	size_t addEntity(std::unique_ptr<LifeForm> lifeForm) { return entityList.addEntity(std::move(lifeForm)); }
+	size_t addEntity(std::unique_ptr<Entity> lifeForm) { return entityList.addEntity(std::move(lifeForm)); }
 
 	//Return the window that contain the game (need to be moved out of the game engine)
 	Window* getGameWindow() { return &gameWindow; }

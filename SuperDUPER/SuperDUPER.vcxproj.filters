@@ -128,9 +128,6 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="BedRock.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
@@ -266,9 +263,6 @@
       <Filter>Header Files\Struct</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Character.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="LifeForm.h">

@@ -10,7 +10,9 @@ Console::Console(Rectangle rectangle, Color backgroundColor, Color borderColor, 
 	TextArea{ GraphicRect{static_cast<int>(rectangle.w - 2 * borderSize - 2 * textMargin), static_cast<int>(rectangle.h - 2 * textHeight - 2 * borderSize - 3 * textMargin), Color{0, 0, 0, 0}},
 		Position<>{rectangle.x + textMargin + borderSize, rectangle.y + textMargin + borderSize}, textHeight },
 	rectangle{ rectangle }, backgroundColor{ backgroundColor }, borderColor{ borderColor }, borderSize{ borderSize }, textHeight{ textHeight }, textMargin{ textMargin }
-{}
+{
+	open();
+}
 
 void Console::render(SDL_Renderer* renderer) {
 	if (isOpened()) {

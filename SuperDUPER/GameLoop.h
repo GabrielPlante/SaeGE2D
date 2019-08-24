@@ -63,9 +63,6 @@ public:
 	//Get the button list
 	std::vector<std::unique_ptr<Button>>* getButtonList() { return &buttonList; }
 
-	//Get the player, need to be moved out of the game engine
-	LifeForm* getPlayer();
-
 	//Get the camera, need to be moved out of the game engine
 	Camera* getCamera() { return &(gameWindow.getCamera()); }
 
@@ -74,8 +71,5 @@ public:
 
 	//Quit the game
 	void quit() { keepGoing = false; }
-
-	//Temporary
-	std::unique_ptr<LifeForm> player;
 };
 

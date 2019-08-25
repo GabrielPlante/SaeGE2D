@@ -1,6 +1,5 @@
 # SaeGE2D
 Simple and easy Game Engine 2D
-SeaGE2D is a game engine for 2d horizontal game.
-It's goal is to make the development of 2D game easy, while keeping the game scalable and with good performance.
+SaeGE2D is a game engine for 2D horizontal gameplay. Its objective is to facilitate the development of game in 2D, while maintaining it evolutionary and with good performances.
 
-The project will be restarted under the name GameEngine2D in order to implement a proper ECS architecture and make the code more professional.
+The project will be relaunched as GameEngine2D in order to implement an appropriate ECS architecture and make the code more professional.
